@@ -1,2 +1,0 @@
-{{- $switcher := resources.Get "js/theme-switcher.js" | resources.Minify | resources.Fingerprint }}
-<script defer src="{{ $switcher.RelPermalink }}" integrity="{{ $switcher.Data.Integrity }}" crossorigin="anonymous"></script>

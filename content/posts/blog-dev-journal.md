@@ -1,7 +1,7 @@
 ---
 title: 个人博客（React+Vite）开发&部署落地全记录
 date: 2026-05-14
-genre: my
+genre: vibe
 tags: [技术, 项目复盘, 博客]
 description: 从零搭建 React + Vite + TypeScript + TailwindCSS 个人博客，完整记录内容架构设计、UI 优化、CI/CD 自动部署全流程及踩坑解决过程。
 pin: true

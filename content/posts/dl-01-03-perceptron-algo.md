@@ -35,20 +35,20 @@ description: 一个面试官，一份打分表，和一道做不了的题。
 
 你对每个候选人的综合评分是：
 
-\[
+$$
 \text{score} = w_1 x_1 + w_2 x_2 + w_3 x_3
-\]
+$$
 
 然后你设置一个门槛 threshold（也叫偏置 bias）：如果 score ≥ threshold，通过；否则，不通过。
 
 如果用数学统一表达，可以把 threshold 视为权重 \(w_0\) 乘以固定输入 +1：
 
-\[
+$$
 \text{output} = \begin{cases}
 1 & \text{if } w_0 + w_1 x_1 + w_2 x_2 + w_3 x_3 \geq 0 \\
 -1 & \text{otherwise}
 \end{cases}
-\]
+$$
 
 就是这么简单。没有隐藏层，没有非线性变换，没有反向传播。一个加权求和，一个阈值判断。
 
@@ -59,12 +59,12 @@ description: 一个面试官，一份打分表，和一道做不了的题。
 > 输入向量 \(x \in \mathbb{R}^n\)，权重向量 \(w \in \mathbb{R}^n\)，偏置 \(b \in \mathbb{R}\)。
 >
 > 决策函数：
-> \[
+> $$
 > \hat{y} = \text{sign}(w \cdot x + b) = \begin{cases}
 > +1 & \text{if } w \cdot x + b \geq 0 \\
 > -1 & \text{otherwise}
 > \end{cases}
-> \]
+> $$
 >
 > 决策边界是 \(w \cdot x + b = 0\) —— 一个 \(n\) 维空间中的超平面。超平面的一侧是 +1 类，另一侧是 -1 类。
 
@@ -74,9 +74,9 @@ description: 一个面试官，一份打分表，和一道做不了的题。
 
 第一个候选人：技能 8，经验 6，沟通 7。你的权重是 \((0.5, 0.3, 0.2)\)，阈值是 5。
 
-\[
+$$
 \text{score} = 0.5 \times 8 + 0.3 \times 6 + 0.2 \times 7 = 4.0 + 1.8 + 1.4 = 7.2
-\]
+$$
 
 7.2 ≥ 5 → 通过。你招了他。
 
@@ -86,17 +86,17 @@ description: 一个面试官，一份打分表，和一道做不了的题。
 
 用感知机的语言：当你判断错误时，你按照输入值的大小反向调整权重。
 
-\[
+$$
 w_{\text{new}} = w_{\text{old}} - \eta \cdot x
-\]
+$$
 
 \(\eta\) 是学习率，控制每次调整的幅度。
 
 反过来，如果一个人你拒绝了，但后来发现他其实很优秀——那你就把权重加上去：
 
-\[
+$$
 w_{\text{new}} = w_{\text{old}} + \eta \cdot x
-\]
+$$
 
 这就是 Rosenblatt 在 1958 年提出的感知机学习规则。
 
@@ -109,12 +109,12 @@ w_{\text{new}} = w_{\text{old}} + \eta \cdot x
 > 预测 \(\hat{y} = \text{sign}(w \cdot x_i + b)\)
 >
 > 如果 \(\hat{y} \neq y_i\)（分类错误）：
-> \[
+> $$
 > w \leftarrow w + \eta \cdot y_i \cdot x_i
-> \]
-> \[
+> $$
+> $$
 > b \leftarrow b + \eta \cdot y_i
-> \]
+> $$
 >
 > 如果分类正确：不做任何更新。
 >

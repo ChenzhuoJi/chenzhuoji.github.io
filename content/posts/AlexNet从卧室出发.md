@@ -76,3 +76,5 @@ AlexNet取得如此压倒性优势的原因，可以归结为当时恰到好处�
 
 <img src="/images/ilya-sutskever.jpg" width="200" alt="Ilya Sutskever" />
 <strong>伊利亚·苏茨克弗</strong>——多伦多大学博士生，提议 AlexNet 参加 ImageNet 竞赛，后共同创立 OpenAI
+
+<strong>亚历克斯·克里泽夫斯基</strong>——多伦多大学博士生，AlexNet 的第一作者。2013 年加入 Google，2017 年离开，此后几乎完全消失在公众视野中。他不参加会议，不接受采访，不留社交痕迹。他的个人主页上只有论文和代码，没有任何照片。这篇文章不需要一张亚历克斯的照片，因为他的存在方式就是代码本身

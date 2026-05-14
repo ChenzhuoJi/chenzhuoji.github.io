@@ -24,7 +24,16 @@ export default function Home() {
                     <div className="text-sm font-medium text-ink-900 dark:text-ink-100 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors truncate">
                       {post.meta.title}
                     </div>
-                    <div className="text-xs text-ink-400 dark:text-ink-500 mt-0.5">{post.meta.date}</div>
+                    <div className="text-xs text-ink-400 dark:text-ink-500 mt-0.5">
+                      <time>{post.meta.date}</time>
+                      {post.meta.column && (
+                        <>
+                          <span className="mx-1">·</span>
+                          <span>{post.meta.column}</span>
+                          {post.meta.order != null && <span> · 第 {post.meta.order} 篇</span>}
+                        </>
+                      )}
+                    </div>
                   </div>
                 </article>
               </Link>

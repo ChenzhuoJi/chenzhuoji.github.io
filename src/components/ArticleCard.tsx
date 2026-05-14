@@ -8,7 +8,16 @@ export default function ArticleCard({ post }: Props) {
   return (
     <article className="group">
       <a href={`/posts/${post.slug}`} className="block">
-        <time className="text-sm text-ink-400 dark:text-ink-500 font-mono">{post.date}</time>
+        <div className="text-sm text-ink-400 dark:text-ink-500">
+          <time className="font-mono">{post.date}</time>
+          {post.column && (
+            <>
+              <span className="mx-1.5">·</span>
+              <span>{post.column}</span>
+              {post.order != null && <span> · 第 {post.order} 篇</span>}
+            </>
+          )}
+        </div>
         <h2 className="mt-1 text-lg font-medium text-ink-900 dark:text-ink-100 group-hover:text-vermilion-500 dark:group-hover:text-vermilion-400 transition-colors">
           {post.title}
         </h2>

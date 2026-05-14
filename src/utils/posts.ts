@@ -105,7 +105,7 @@ export function getRecentPosts(count: number = 10): Post[] {
   return getAllPosts().filter((p) => !p.meta.pin).slice(0, count)
 }
 
-export function getRelatedPosts(slug: string, limit = 5): Array<{ post: Post; sharedTags: string[] }> {
+export function getRelatedPosts(slug: string, limit = 3): Array<{ post: Post; sharedTags: string[] }> {
   const all = getAllPosts()
   const post = all.find((p) => p.meta.slug === slug)
   if (!post) return []

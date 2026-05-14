@@ -26,7 +26,8 @@ export default function MarkdownRenderer({ content }: Props) {
     if (!ref.current) return
     const hash = window.location.hash
     if (hash) {
-      const el = ref.current.querySelector(hash)
+      const id = hash.slice(1)
+      const el = ref.current.querySelector(`[id="${id}"]`) ?? document.getElementById(id)
       el?.scrollIntoView({ behavior: 'smooth' })
     }
   }, [content])

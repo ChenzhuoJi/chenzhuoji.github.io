@@ -76,7 +76,7 @@ export default function Post() {
         </div>
       </header>
 
-      <div className="flex gap-12">
+      <div className="flex gap-12 items-start">
         <div className="flex-1 min-w-0">
           <MarkdownRenderer content={post.content} />
 

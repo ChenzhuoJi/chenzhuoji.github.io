@@ -46,7 +46,7 @@ export function useRecentPosts(count: number = 10) {
   return useMemo(() => getRecentPosts(count), [count])
 }
 
-export function useRelatedPosts(slug: string, limit = 5) {
+export function useRelatedPosts(slug: string, limit = 3) {
   return useMemo(() => getRelatedPosts(slug, limit), [slug, limit])
 }
 

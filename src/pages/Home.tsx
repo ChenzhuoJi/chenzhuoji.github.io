@@ -66,7 +66,7 @@ export default function Home() {
               <Link
                 key={col}
                 to={`/columns/${col}`}
-                className="px-5 py-2.5 rounded-full bg-ink-100 dark:bg-ink-800 text-ink-700 dark:text-ink-300 hover:bg-vermilion-50 dark:hover:bg-vermilion-950/30 hover:text-vermilion-600 dark:hover:text-vermilion-400 hover:border-vermilion-300 dark:hover:border-vermilion-700 transition-colors text-sm border border-ink-200 dark:border-ink-700"
+                className="px-8 py-4 rounded-full bg-ink-100 dark:bg-ink-800 text-ink-700 dark:text-ink-300 hover:bg-vermilion-50 dark:hover:bg-vermilion-950/30 hover:text-vermilion-600 dark:hover:text-vermilion-400 hover:border-vermilion-300 dark:hover:border-vermilion-700 transition-colors text-lg border border-ink-200 dark:border-ink-700"
               >
                 {col}
               </Link>

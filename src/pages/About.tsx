@@ -1,21 +1,18 @@
-import { Link } from 'react-router-dom'
+import MarkdownRenderer from '../components/MarkdownRenderer'
+import { usePost } from '../hooks/usePosts'
 
 export default function About() {
+  const post = usePost('why-vibe')
+
+  if (!post) return null
+
   return (
     <div className="max-w-2xl mx-auto">
       <h1 className="text-2xl font-serif font-semibold text-ink-900 dark:text-ink-100 mb-8">关于</h1>
-      <div className="prose prose-ink dark:prose-invert">
-        <p>这里是 Chenzhuo 的个人博客，记录技术思考与生活感悟。</p>
-        <h2>技术栈</h2>
-        <ul>
-          <li>框架：React + TypeScript</li>
-          <li>构建：Vite</li>
-          <li>样式：Tailwind CSS</li>
-          <li>内容：Markdown</li>
-        </ul>
-        <h2>联系</h2>
-        <p>
-          GitHub：<Link to="https://github.com/chenzhuoji" target="_blank">@chenzhuoji</Link>
+      <MarkdownRenderer content={post.content} />
+      <div className="mt-8 pt-8 border-t border-ink-200 dark:border-ink-700">
+        <p className="text-sm text-ink-400 dark:text-ink-500">
+          GitHub：<a href="https://github.com/chenzhuoji" target="_blank" rel="noopener noreferrer" className="text-vermilion-500 hover:text-vermilion-600 transition-colors">@chenzhuoji</a>
         </p>
       </div>
     </div>

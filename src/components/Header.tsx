@@ -28,7 +28,7 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-0 z-40 bg-ink-50/80 dark:bg-ink-950/80 backdrop-blur-md border-b border-ink-100 dark:border-ink-800">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link to="/" className="text-lg font-serif font-semibold text-ink-900 dark:text-ink-100 tracking-tight">
             Chenzhuo's Blog
           </Link>

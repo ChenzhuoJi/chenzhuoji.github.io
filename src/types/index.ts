@@ -7,6 +7,8 @@ export interface PostMeta {
   genre: Genre
   tags: string[]
   column?: string
+  series?: string
+  order?: number
   description?: string
   draft?: boolean
   pin?: boolean

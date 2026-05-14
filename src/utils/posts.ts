@@ -30,6 +30,8 @@ export function getAllPosts(): Post[] {
       genre: GENRE_MAP[genreRaw] ?? 'my',
       tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
       column: data.column ? String(data.column) : undefined,
+      series: data.series ? String(data.series) : undefined,
+      order: typeof data.order === 'number' ? data.order : undefined,
       description: data.description ?? '',
       draft: data.draft ?? false,
       pin: data.pin === true,
@@ -76,7 +78,12 @@ export function getAllColumns(): string[] {
 }
 
 export function getPostsByColumn(column: string): Post[] {
-  return getAllPosts().filter((p) => p.meta.column === column).sort((a, b) => a.meta.date.localeCompare(b.meta.date))
+  return getAllPosts().filter((p) => p.meta.column === column).sort((a, b) => {
+    const ao = a.meta.order ?? 9999
+    const bo = b.meta.order ?? 9999
+    if (ao !== bo) return ao - bo
+    return a.meta.date.localeCompare(b.meta.date)
+  })
 }
 
 export function getColumnNav(slug: string): { prev: Post | null; next: Post | null } {

@@ -27,3 +27,18 @@ export interface SearchIndex {
   tags: string[]
   content: string
 }
+
+export interface GraphNode {
+  id: string
+  title: string
+  genre: Genre
+  tagCount: number
+  connectionCount: number
+}
+
+export interface GraphEdge {
+  source: string
+  target: string
+  weight: number
+  sharedTags: string[]
+}

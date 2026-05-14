@@ -55,10 +55,14 @@ description: "152 层。人类水平的识别能力。超过三十二万次引�
 
 ## 人物
 
-**何恺明**（1984–）——清华物理系毕业，微软亚洲研究院研究员，ResNet 第一作者，CVPR 最佳论文奖得主，2023 年未来科学大奖得主，现 MIT 副教授
+<img src="/images/kaiming-he.jpg" width="200" alt="Kaiming He" />
+<strong>何恺明</strong>（1984–）——清华物理系毕业，微软亚洲研究院研究员，ResNet 第一作者，CVPR 最佳论文奖得主，2023 年未来科学大奖得主，现 MIT 副教授
 
-**孙剑**（1976–2022）——微软亚洲研究院首席研究员，ResNet 合作者，旷视科技首席科学家
+<img src="/images/sun-jian.jpg" width="200" alt="Sun Jian" />
+<strong>孙剑</strong>（1976–2022）——微软亚洲研究院首席研究员，ResNet 合作者，旷视科技首席科学家
 
-**任少卿**——中国科学技术大学校友，ResNet 合作者，Faster R-CNN 共同作者，现中科大教授
+<img src="/images/ren-shaoqing.jpg" width="200" alt="Ren Shaoqing" />
+<strong>任少卿</strong>——中国科学技术大学校友，ResNet 合作者，Faster R-CNN 共同作者，现中科大教授
 
-**张祥雨**——ResNet 合作者，现北京某 AI 公司联合创始人及首席科学家
+<img src="/images/zhang-xiangyu.jpg" width="200" alt="Zhang Xiangyu" />
+<strong>张祥雨</strong>——ResNet 合作者，现北京某 AI 公司联合创始人及首席科学家

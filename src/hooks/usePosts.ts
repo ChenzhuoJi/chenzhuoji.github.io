@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import {
   getAllPosts, getPostBySlug, getAllTags, getPostsByTag,
   getPostsByGenre, getAllColumns, getPostsByColumn, getColumnNav,
-  getPinnedPosts, getRecentPosts,
+  getPinnedPosts, getRecentPosts, getRelatedPosts, getGraphData,
 } from '../utils/posts'
 import type { Genre } from '../types'
 
@@ -44,4 +44,12 @@ export function usePinnedPosts() {
 
 export function useRecentPosts(count: number = 10) {
   return useMemo(() => getRecentPosts(count), [count])
+}
+
+export function useRelatedPosts(slug: string, limit = 5) {
+  return useMemo(() => getRelatedPosts(slug, limit), [slug, limit])
+}
+
+export function useGraphData() {
+  return useMemo(() => getGraphData(), [])
 }

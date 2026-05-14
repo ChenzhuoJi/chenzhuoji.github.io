@@ -10,6 +10,7 @@ import About from './pages/About'
 import Explore from './pages/Explore'
 import GenrePosts from './pages/GenrePosts'
 import ColumnPosts from './pages/ColumnPosts'
+import Graph from './pages/Graph'
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
             <Route path="columns/:name" element={<ColumnPosts />} />
             <Route path="tags" element={<TagList />} />
             <Route path="tags/:tag" element={<TagPosts />} />
+            <Route path="graph" element={<Graph />} />
             <Route path="about" element={<About />} />
           </Route>
         </Routes>

@@ -1,12 +1,14 @@
 import { useParams, Link } from 'react-router-dom'
 import MarkdownRenderer from '../components/MarkdownRenderer'
 import TOC from '../components/TOC'
-import { usePost, useColumnNav } from '../hooks/usePosts'
+import { usePost, useColumnNav, useRelatedPosts } from '../hooks/usePosts'
+import RelatedArticles from '../components/RelatedArticles'
 
 export default function Post() {
   const { slug } = useParams<{ slug: string }>()
   const post = usePost(slug ?? '')
   const nav = useColumnNav(slug ?? '')
+  const related = useRelatedPosts(slug ?? '')
 
   if (!post) {
     return (
@@ -79,6 +81,8 @@ export default function Post() {
       <div className="flex gap-12 items-start">
         <div className="flex-1 min-w-0">
           <MarkdownRenderer content={post.content} />
+
+          <RelatedArticles articles={related} />
 
           {(nav.prev || nav.next) && (
             <nav className="mt-12 pt-8 border-t border-ink-200 dark:border-ink-700">

@@ -1,5 +1,5 @@
 import matter from 'gray-matter'
-import type { Post, PostMeta, Genre, SearchIndex } from '../types'
+import type { Post, PostMeta, Genre, SearchIndex, GraphNode, GraphEdge } from '../types'
 
 const modules = import.meta.glob('/content/posts/*.md', { query: '?raw', import: 'default', eager: true })
 
@@ -103,6 +103,59 @@ export function getPinnedPosts(): Post[] {
 
 export function getRecentPosts(count: number = 10): Post[] {
   return getAllPosts().filter((p) => !p.meta.pin).slice(0, count)
+}
+
+export function getRelatedPosts(slug: string, limit = 5): Array<{ post: Post; sharedTags: string[] }> {
+  const all = getAllPosts()
+  const post = all.find((p) => p.meta.slug === slug)
+  if (!post) return []
+
+  return all
+    .filter((p) => p.meta.slug !== slug)
+    .map((p) => ({
+      post: p,
+      sharedTags: p.meta.tags.filter((t) => post.meta.tags.includes(t)),
+    }))
+    .filter((p) => p.sharedTags.length > 0)
+    .sort((a, b) => b.sharedTags.length - a.sharedTags.length)
+    .slice(0, limit)
+}
+
+export function getGraphData(): { nodes: GraphNode[]; edges: GraphEdge[] } {
+  const posts = getAllPosts()
+  const nodes: GraphNode[] = posts.map((p) => ({
+    id: p.meta.slug,
+    title: p.meta.title,
+    genre: p.meta.genre,
+    tagCount: p.meta.tags.length,
+    connectionCount: 0,
+  }))
+
+  const edgeMap = new Map<string, { count: number; tags: string[] }>()
+  for (let i = 0; i < posts.length; i++) {
+    for (let j = i + 1; j < posts.length; j++) {
+      const shared = posts[i].meta.tags.filter((t) => posts[j].meta.tags.includes(t))
+      if (shared.length > 0) {
+        edgeMap.set(`${posts[i].meta.slug}::${posts[j].meta.slug}`, { count: shared.length, tags: shared })
+      }
+    }
+  }
+
+  const edges: GraphEdge[] = [...edgeMap].map(([key, val]) => {
+    const [source, target] = key.split('::')
+    return { source, target, weight: val.count, sharedTags: val.tags }
+  })
+
+  const connCount = new Map<string, number>()
+  for (const e of edges) {
+    connCount.set(e.source, (connCount.get(e.source) ?? 0) + 1)
+    connCount.set(e.target, (connCount.get(e.target) ?? 0) + 1)
+  }
+  for (const n of nodes) {
+    n.connectionCount = connCount.get(n.id) ?? 0
+  }
+
+  return { nodes, edges }
 }
 
 export function buildSearchIndex(): SearchIndex[] {

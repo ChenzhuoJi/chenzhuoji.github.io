@@ -30,6 +30,16 @@ export default function Explore() {
         </section>
       )}
 
+      <section className="mb-12">
+        <h2 className="text-lg font-serif font-medium text-ink-900 dark:text-ink-100 mb-4">关系图谱</h2>
+        <Link
+          to="/graph"
+          className="inline-flex items-center px-4 py-2 rounded-lg bg-ink-100 dark:bg-ink-800 text-ink-700 dark:text-ink-300 hover:bg-vermilion-50 dark:hover:bg-vermilion-950/30 hover:text-vermilion-600 dark:hover:text-vermilion-400 transition-colors text-sm"
+        >
+          浏览文章关系图谱 →
+        </Link>
+      </section>
+
       <section>
         <h2 className="text-lg font-serif font-medium text-ink-900 dark:text-ink-100 mb-4">标签</h2>
         {tags.length === 0 ? (

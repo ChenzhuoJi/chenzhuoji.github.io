@@ -1,6 +1,6 @@
 ---
 title: "ResNet，超越人类！——21 世纪引用最多的论文"
-date: 2026-05-25
+date: 2026-05-14
 genre: vibe
 column: 深度学习的故事
 series: 爆发·ImageNet

@@ -1,6 +1,6 @@
 ---
 title: "英伟达：从游戏显卡到AI引擎"
-date: 2026-05-25
+date: 2026-05-14
 genre: vibe
 column: 深度学习的故事
 series: 爆发·基础设施

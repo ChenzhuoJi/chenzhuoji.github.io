@@ -1,6 +1,6 @@
 ---
 title: 第一次 AI 寒冬
-date: 2026-05-24
+date: 2026-05-14
 genre: vibe
 column: 深度学习的故事
 series: 序章·萌芽

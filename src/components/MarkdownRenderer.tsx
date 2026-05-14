@@ -7,7 +7,6 @@ import rehypeRaw from 'rehype-raw'
 import rehypeHighlight from 'rehype-highlight'
 
 import 'katex/dist/katex.min.css'
-import 'highlight.js/styles/github.css'
 
 interface Props {
   content: string

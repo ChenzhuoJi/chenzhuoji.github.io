@@ -1,0 +1,38 @@
+import { useParams, Link } from 'react-router-dom'
+import ArticleList from '../components/ArticleList'
+import { usePostsByColumn } from '../hooks/usePosts'
+
+export default function ColumnPosts() {
+  const { name } = useParams<{ name: string }>()
+  const posts = usePostsByColumn(name ?? '')
+
+  if (!name || posts.length === 0) {
+    return (
+      <div className="text-center py-20">
+        <p className="text-ink-400 dark:text-ink-500">栏目未找到</p>
+        <Link to="/explore" className="mt-4 inline-block text-sm text-vermilion-500 hover:text-vermilion-600 transition-colors">
+          ← 探索
+        </Link>
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      <section className="mb-12">
+        <Link
+          to="/explore"
+          className="inline-flex items-center text-sm text-ink-400 dark:text-ink-500 hover:text-ink-600 dark:hover:text-ink-300 transition-colors mb-4"
+        >
+          <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          探索
+        </Link>
+        <h1 className="text-2xl font-serif font-semibold text-ink-900 dark:text-ink-100">{name}</h1>
+        <p className="mt-1 text-sm text-ink-400 dark:text-ink-500">共 {posts.length} 篇 · 连载</p>
+      </section>
+      <ArticleList posts={posts} />
+    </div>
+  )
+}

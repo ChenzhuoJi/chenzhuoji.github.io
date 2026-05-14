@@ -5,7 +5,7 @@ import SearchDialog from './SearchDialog'
 
 const navItems = [
   { path: '/', label: '首页' },
-  { path: '/tags', label: '标签' },
+  { path: '/explore', label: '探索' },
   { path: '/about', label: '关于' },
 ]
 

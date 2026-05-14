@@ -1,8 +1,10 @@
 ---
 title: Hello World
 date: 2026-05-13
+genre: my
 tags: [随笔, 技术]
 description: 第一篇博客文章，使用 Markdown 编写。
+pin: true
 ---
 
 欢迎来到我的博客！这是使用 **React** + **Vite** 构建的个人站点。

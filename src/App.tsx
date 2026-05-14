@@ -6,6 +6,9 @@ import Post from './pages/Post'
 import TagList from './pages/TagList'
 import TagPosts from './pages/TagPosts'
 import About from './pages/About'
+import Explore from './pages/Explore'
+import GenrePosts from './pages/GenrePosts'
+import ColumnPosts from './pages/ColumnPosts'
 
 export default function App() {
   return (
@@ -15,6 +18,9 @@ export default function App() {
           <Route element={<BaseLayout />}>
             <Route index element={<Home />} />
             <Route path="posts/:slug" element={<Post />} />
+            <Route path="explore" element={<Explore />} />
+            <Route path="genre/:name" element={<GenrePosts />} />
+            <Route path="columns/:name" element={<ColumnPosts />} />
             <Route path="tags" element={<TagList />} />
             <Route path="tags/:tag" element={<TagPosts />} />
             <Route path="about" element={<About />} />

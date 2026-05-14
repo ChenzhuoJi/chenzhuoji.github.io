@@ -1,6 +1,8 @@
 ---
 title: TypeScript 入门笔记
 date: 2026-05-10
+genre: vibe
+column: 重构笔记
 tags: [技术, TypeScript]
 description: TypeScript 基础类型与常用技巧。
 ---

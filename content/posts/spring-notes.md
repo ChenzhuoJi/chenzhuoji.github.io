@@ -1,6 +1,7 @@
 ---
 title: 随笔：春日小记
 date: 2026-04-15
+genre: my
 tags: [随笔, 生活]
 description: 一个春日下午的随想。
 ---

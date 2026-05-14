@@ -1,11 +1,12 @@
 import { useParams, Link } from 'react-router-dom'
 import MarkdownRenderer from '../components/MarkdownRenderer'
 import TOC from '../components/TOC'
-import { usePost } from '../hooks/usePosts'
+import { usePost, useColumnNav } from '../hooks/usePosts'
 
 export default function Post() {
   const { slug } = useParams<{ slug: string }>()
   const post = usePost(slug ?? '')
+  const nav = useColumnNav(slug ?? '')
 
   if (!post) {
     return (
@@ -38,6 +39,24 @@ export default function Post() {
           <time>{post.meta.date}</time>
           <span className="w-1 h-1 rounded-full bg-ink-300 dark:bg-ink-600" />
           <span>{post.readingTime} 分钟阅读</span>
+          <span className="w-1 h-1 rounded-full bg-ink-300 dark:bg-ink-600" />
+          <Link
+            to={`/genre/${post.meta.genre}`}
+            className="text-vermilion-500 hover:text-vermilion-600 dark:hover:text-vermilion-400 transition-colors"
+          >
+            {post.meta.genre === 'vibe' ? 'Vibe Writing' : 'My Writing'}
+          </Link>
+          {post.meta.column && (
+            <>
+              <span className="w-1 h-1 rounded-full bg-ink-300 dark:bg-ink-600" />
+              <Link
+                to={`/columns/${post.meta.column}`}
+                className="text-vermilion-500 hover:text-vermilion-600 dark:hover:text-vermilion-400 transition-colors"
+              >
+                {post.meta.column}
+              </Link>
+            </>
+          )}
           {post.meta.tags.length > 0 && (
             <>
               <span className="w-1 h-1 rounded-full bg-ink-300 dark:bg-ink-600" />
@@ -60,6 +79,39 @@ export default function Post() {
       <div className="flex gap-12">
         <div className="flex-1 min-w-0">
           <MarkdownRenderer content={post.content} />
+
+          {(nav.prev || nav.next) && (
+            <nav className="mt-12 pt-8 border-t border-ink-200 dark:border-ink-700">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex-1 min-w-0">
+                  {nav.prev && (
+                    <Link
+                      to={`/posts/${nav.prev.meta.slug}`}
+                      className="group block"
+                    >
+                      <span className="text-xs text-ink-400 dark:text-ink-500">← 上一篇</span>
+                      <div className="mt-0.5 text-sm text-ink-700 dark:text-ink-300 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors truncate">
+                        {nav.prev.meta.title}
+                      </div>
+                    </Link>
+                  )}
+                </div>
+                <div className="flex-1 min-w-0 text-right">
+                  {nav.next && (
+                    <Link
+                      to={`/posts/${nav.next.meta.slug}`}
+                      className="group block"
+                    >
+                      <span className="text-xs text-ink-400 dark:text-ink-500">下一篇 →</span>
+                      <div className="mt-0.5 text-sm text-ink-700 dark:text-ink-300 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors truncate">
+                        {nav.next.meta.title}
+                      </div>
+                    </Link>
+                  )}
+                </div>
+              </div>
+            </nav>
+          )}
         </div>
         <TOC post={post} />
       </div>

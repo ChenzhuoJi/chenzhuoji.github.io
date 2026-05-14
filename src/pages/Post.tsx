@@ -82,40 +82,47 @@ export default function Post() {
         <div className="flex-1 min-w-0">
           <MarkdownRenderer content={post.content} />
 
-          <RelatedArticles articles={related} />
-
           {(nav.prev || nav.next) && (
-            <nav className="mt-12 pt-8 border-t border-ink-200 dark:border-ink-700">
+            <nav className="mt-12 p-5 bg-ink-50 dark:bg-ink-800/50 border border-ink-200 dark:border-ink-700 rounded-lg">
+              <div className="text-xs text-ink-400 dark:text-ink-500 mb-3 tracking-wide">
+                {post.meta.column}
+              </div>
               <div className="flex items-center justify-between gap-4">
                 <div className="flex-1 min-w-0">
-                  {nav.prev && (
+                  {nav.prev ? (
                     <Link
                       to={`/posts/${nav.prev.meta.slug}`}
                       className="group block"
                     >
                       <span className="text-xs text-ink-400 dark:text-ink-500">← 上一篇</span>
-                      <div className="mt-0.5 text-sm text-ink-700 dark:text-ink-300 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors truncate">
+                      <div className="mt-0.5 text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors truncate">
                         {nav.prev.meta.title}
                       </div>
                     </Link>
+                  ) : (
+                    <div />
                   )}
                 </div>
                 <div className="flex-1 min-w-0 text-right">
-                  {nav.next && (
+                  {nav.next ? (
                     <Link
                       to={`/posts/${nav.next.meta.slug}`}
                       className="group block"
                     >
                       <span className="text-xs text-ink-400 dark:text-ink-500">下一篇 →</span>
-                      <div className="mt-0.5 text-sm text-ink-700 dark:text-ink-300 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors truncate">
+                      <div className="mt-0.5 text-sm font-medium text-ink-700 dark:text-ink-300 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors truncate">
                         {nav.next.meta.title}
                       </div>
                     </Link>
+                  ) : (
+                    <div />
                   )}
                 </div>
               </div>
             </nav>
           )}
+
+          <RelatedArticles articles={related} />
         </div>
         <TOC post={post} />
       </div>

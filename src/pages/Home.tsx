@@ -1,14 +1,9 @@
 import { Link } from 'react-router-dom'
-import ArticleList from '../components/ArticleList'
-import { usePinnedPosts, useRecentPosts, usePosts } from '../hooks/usePosts'
-
-const RECENT_COUNT = 10
+import { usePinnedPosts, useColumns } from '../hooks/usePosts'
 
 export default function Home() {
   const pinned = usePinnedPosts()
-  const recent = useRecentPosts(RECENT_COUNT)
-  const all = usePosts()
-  const hasMore = all.filter((p) => !p.meta.pin).length > RECENT_COUNT
+  const columns = useColumns()
 
   return (
     <div>
@@ -59,20 +54,38 @@ export default function Home() {
         </Link>
       </section>
 
-      <section>
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-lg font-serif font-semibold text-ink-900 dark:text-ink-100">最新文章</h2>
-          {hasMore && (
-            <Link
-              to="/explore"
-              className="text-sm text-vermilion-500 hover:text-vermilion-600 dark:hover:text-vermilion-400 transition-colors"
-            >
-              浏览更多 →
-            </Link>
-          )}
-        </div>
-        <ArticleList posts={recent} />
-      </section>
+      {columns.length > 0 && (
+        <section className="mb-12">
+          <div className="relative flex items-center mb-6">
+            <div className="flex-grow border-t border-ink-200 dark:border-ink-700" />
+            <span className="mx-4 text-sm text-ink-400 dark:text-ink-500 whitespace-nowrap">栏目文章</span>
+            <div className="flex-grow border-t border-ink-200 dark:border-ink-700" />
+          </div>
+          <div className="flex flex-wrap gap-3">
+            {columns.map((col) => (
+              <Link
+                key={col}
+                to={`/columns/${col}`}
+                className="px-5 py-2.5 rounded-full bg-ink-100 dark:bg-ink-800 text-ink-700 dark:text-ink-300 hover:bg-vermilion-50 dark:hover:bg-vermilion-950/30 hover:text-vermilion-600 dark:hover:text-vermilion-400 hover:border-vermilion-300 dark:hover:border-vermilion-700 transition-colors text-sm border border-ink-200 dark:border-ink-700"
+              >
+                {col}
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <div className="text-center">
+        <Link
+          to="/posts"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-ink-100 dark:bg-ink-800 text-ink-700 dark:text-ink-300 hover:bg-vermilion-50 dark:hover:bg-vermilion-950/30 hover:text-vermilion-600 dark:hover:text-vermilion-400 transition-colors text-sm border border-ink-200 dark:border-ink-700"
+        >
+          全部文章
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </Link>
+      </div>
     </div>
   )
 }

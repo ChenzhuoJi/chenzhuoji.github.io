@@ -127,11 +127,9 @@ export default function Post() {
         </div>
         <aside className="hidden lg:flex flex-col gap-6 sticky top-24 w-56 shrink-0 h-[calc(100vh-6rem)]">
           <TOC post={post} />
-          <div className="flex-1 min-h-0 overflow-y-auto scrollbar-thin">
-            {post.meta.column && (
-              <ColumnSidebar column={post.meta.column} currentSlug={post.meta.slug} />
-            )}
-          </div>
+          {post.meta.column && (
+            <ColumnSidebar column={post.meta.column} currentSlug={post.meta.slug} />
+          )}
         </aside>
       </div>
     </article>

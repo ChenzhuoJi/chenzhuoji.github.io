@@ -1,5 +1,5 @@
 ---
-title: "英伟达：从游戏显卡到AI引擎"
+title: "特别篇·公司篇·英伟达：从游戏显卡到AI引擎"
 date: 2026-05-14
 genre: vibe
 column: 深度学习的故事

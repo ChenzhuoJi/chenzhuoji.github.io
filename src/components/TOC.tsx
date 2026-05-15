@@ -27,7 +27,7 @@ export default function TOC({ post }: Props) {
   if (headings.length < 2) return null
 
   return (
-    <nav className="hidden lg:block sticky top-24 w-56 shrink-0">
+    <nav>
       <h3 className="text-xs font-medium text-ink-400 dark:text-ink-500 uppercase tracking-wider mb-3">目录</h3>
       <ul className="space-y-1.5 text-sm border-l-2 border-ink-100 dark:border-ink-800 pl-3">
         {headings.map((h) => (

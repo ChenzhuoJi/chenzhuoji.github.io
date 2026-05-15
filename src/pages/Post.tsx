@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import MarkdownRenderer from '../components/MarkdownRenderer'
 import TOC from '../components/TOC'
+import ColumnSidebar from '../components/ColumnSidebar'
 import { usePost, useColumnNav, useRelatedPosts } from '../hooks/usePosts'
 import RelatedArticles from '../components/RelatedArticles'
 
@@ -124,7 +125,12 @@ export default function Post() {
 
           <RelatedArticles articles={related} />
         </div>
-        <TOC post={post} />
+        <aside className="hidden lg:flex flex-col gap-8 sticky top-24 w-56 shrink-0">
+          {post.meta.column && (
+            <ColumnSidebar column={post.meta.column} currentSlug={post.meta.slug} />
+          )}
+          <TOC post={post} />
+        </aside>
       </div>
     </article>
   )

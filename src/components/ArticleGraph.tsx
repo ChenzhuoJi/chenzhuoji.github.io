@@ -21,6 +21,10 @@ interface Props {
   edges: GraphEdge[]
 }
 
+type DragState =
+  | { type: 'node'; id: string; sx: number; sy: number; nx: number; ny: number }
+  | { type: 'bg'; sx: number; sy: number; tx: number; ty: number }
+
 export default function ArticleGraph({ nodes: rawNodes, edges: rawEdges }: Props) {
   const navigate = useNavigate()
   const containerRef = useRef<HTMLDivElement>(null)
@@ -28,9 +32,11 @@ export default function ArticleGraph({ nodes: rawNodes, edges: rawEdges }: Props
   const [positions, setPositions] = useState<Map<string, { x: number; y: number }>>(new Map())
   const [hovered, setHovered] = useState<string | null>(null)
   const [transform, setTransform] = useState({ x: 0, y: 0, k: 1 })
-  const dragRef = useRef<{ id: string; sx: number; sy: number; nx: number; ny: number } | null>(null)
+  const dragRef = useRef<DragState | null>(null)
   const posRef = useRef(positions)
   posRef.current = positions
+  const transformRef = useRef(transform)
+  transformRef.current = transform
 
   useEffect(() => {
     if (!containerRef.current) return
@@ -70,31 +76,36 @@ export default function ArticleGraph({ nodes: rawNodes, edges: rawEdges }: Props
     setPositions(new Map(simNodes.map((n) => [n.id, { x: n.x, y: n.y }])))
   }, [rawNodes, rawEdges, dim.width, dim.height])
 
-  const handleWheel = useCallback((e: React.WheelEvent) => {
-    e.preventDefault()
-    const factor = e.deltaY > 0 ? 0.9 : 1.1
-    setTransform((t) => ({ ...t, k: Math.max(0.3, Math.min(4, t.k * factor)) }))
-  }, [])
-
-  const handleMouseDown = useCallback((id: string, e: React.MouseEvent) => {
-    e.stopPropagation()
-    const p = posRef.current.get(id)
-    if (!p) return
-    dragRef.current = { id, sx: e.clientX, sy: e.clientY, nx: p.x, ny: p.y }
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const handler = (e: WheelEvent) => {
+      e.preventDefault()
+      const factor = e.deltaY > 0 ? 0.9 : 1.1
+      setTransform((t) => ({ ...t, k: Math.max(0.3, Math.min(4, t.k * factor)) }))
+    }
+    el.addEventListener('wheel', handler, { passive: false })
+    return () => el.removeEventListener('wheel', handler)
   }, [])
 
   useEffect(() => {
-    const drag = dragRef.current
-    if (!drag) return
-
     const onMove = (e: MouseEvent) => {
-      const dx = (e.clientX - drag.sx) / transform.k
-      const dy = (e.clientY - drag.sy) / transform.k
-      setPositions((prev) => {
-        const next = new Map(prev)
-        next.set(drag.id, { x: drag.nx + dx, y: drag.ny + dy })
-        return next
-      })
+      const drag = dragRef.current
+      if (!drag) return
+      const t = transformRef.current
+      if (drag.type === 'node') {
+        const dx = (e.clientX - drag.sx) / t.k
+        const dy = (e.clientY - drag.sy) / t.k
+        setPositions((prev) => {
+          const next = new Map(prev)
+          next.set(drag.id, { x: drag.nx + dx, y: drag.ny + dy })
+          return next
+        })
+      } else {
+        const dx = e.clientX - drag.sx
+        const dy = e.clientY - drag.sy
+        setTransform({ x: drag.tx + dx, y: drag.ty + dy, k: t.k })
+      }
     }
     const onUp = () => { dragRef.current = null }
     window.addEventListener('mousemove', onMove)
@@ -103,7 +114,20 @@ export default function ArticleGraph({ nodes: rawNodes, edges: rawEdges }: Props
       window.removeEventListener('mousemove', onMove)
       window.removeEventListener('mouseup', onUp)
     }
-  }, [transform.k])
+  }, [])
+
+  const handleNodeMouseDown = useCallback((id: string, e: React.MouseEvent) => {
+    e.stopPropagation()
+    const p = posRef.current.get(id)
+    if (!p) return
+    dragRef.current = { type: 'node', id, sx: e.clientX, sy: e.clientY, nx: p.x, ny: p.y }
+  }, [])
+
+  const handleBgMouseDown = useCallback((e: React.MouseEvent) => {
+    if (e.button !== 0) return
+    const t = transformRef.current
+    dragRef.current = { type: 'bg', sx: e.clientX, sy: e.clientY, tx: t.x, ty: t.y }
+  }, [])
 
   const isDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark')
   const labelColor = isDark ? LABEL_COLOR_DARK : LABEL_COLOR_LIGHT
@@ -116,7 +140,7 @@ export default function ArticleGraph({ nodes: rawNodes, edges: rawEdges }: Props
       <svg
         width={dim.width}
         height={dim.height}
-        onWheel={handleWheel}
+        onMouseDown={handleBgMouseDown}
         className="cursor-grab active:cursor-grabbing"
       >
         <g transform={`translate(${transform.x},${transform.y}) scale(${transform.k})`}>
@@ -157,7 +181,7 @@ export default function ArticleGraph({ nodes: rawNodes, edges: rawEdges }: Props
                   style={{ filter: isHovered ? 'brightness(1.15)' : undefined }}
                   onMouseEnter={() => setHovered(n.id)}
                   onMouseLeave={() => setHovered(null)}
-                  onMouseDown={(e) => handleMouseDown(n.id, e)}
+                  onMouseDown={(e) => handleNodeMouseDown(n.id, e)}
                   onClick={() => navigate(`/posts/${n.id}`)}
                 />
                 <text

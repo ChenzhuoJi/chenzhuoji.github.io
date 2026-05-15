@@ -4,6 +4,7 @@ date: 2026-05-15
 genre: vibe
 column: 深度学习的故事
 order: 99
+series: 后记
 tags: [后记, 未来, 论文线]
 description: "历史讲完了，故事还没有结束。关于未来、关于论文线、关于深度学习之外的世界。"
 ---

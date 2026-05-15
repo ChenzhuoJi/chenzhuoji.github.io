@@ -25,7 +25,7 @@ export default function ColumnSidebar({ column, currentSlug }: Props) {
   return (
     <div>
       <h3 className="text-xs font-medium text-ink-400 dark:text-ink-500 uppercase tracking-wider mb-3">{column}</h3>
-      <div className="max-h-[calc(100vh-8rem)] overflow-y-auto space-y-4 border-l-2 border-ink-100 dark:border-ink-800 pl-3">
+      <div className="space-y-4 border-l-2 border-ink-100 dark:border-ink-800 pl-3">
         {groups.map(([series, items]) => (
           <div key={series}>
             <h4 className="text-[11px] font-medium text-ink-300 dark:text-ink-600 uppercase tracking-wider mb-1.5">{series}</h4>

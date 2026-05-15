@@ -55,19 +55,10 @@ export default function Home() {
         </section>
       )}
 
-      <section className="mb-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Link
-          to="/genre/vibe"
-          className="group p-6 rounded-xl bg-gradient-to-br from-ink-100 to-ink-50 dark:from-ink-800 dark:to-ink-900 border border-ink-200 dark:border-ink-700 hover:border-vermilion-300 dark:hover:border-vermilion-700 transition-all"
-        >
-          <h2 className="text-lg font-serif font-semibold text-ink-900 dark:text-ink-100 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors">
-            Vibe Writing
-          </h2>
-          <p className="mt-1 text-sm text-ink-400 dark:text-ink-500">AI 主导写作</p>
-        </Link>
+      <section className="mb-12">
         <Link
           to="/genre/my"
-          className="group p-6 rounded-xl bg-gradient-to-br from-ink-100 to-ink-50 dark:from-ink-800 dark:to-ink-900 border border-ink-200 dark:border-ink-700 hover:border-vermilion-300 dark:hover:border-vermilion-700 transition-all"
+          className="group block max-w-sm p-6 rounded-xl bg-gradient-to-br from-ink-100 to-ink-50 dark:from-ink-800 dark:to-ink-900 border border-ink-200 dark:border-ink-700 hover:border-vermilion-300 dark:hover:border-vermilion-700 transition-all"
         >
           <h2 className="text-lg font-serif font-semibold text-ink-900 dark:text-ink-100 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors">
             My Writing

@@ -30,7 +30,7 @@ export default function ColumnPosts() {
           探索
         </Link>
         <h1 className="text-2xl font-serif font-semibold text-ink-900 dark:text-ink-100">{name}</h1>
-        <p className="mt-1 text-sm text-ink-400 dark:text-ink-500">共 {posts.length} 篇 · 连载</p>
+        <p className="mt-1 text-sm text-ink-400 dark:text-ink-500">共 {posts.length} 篇 · {posts.some(p => p.meta.series === '后记') ? '完结' : '连载'}</p>
       </section>
       <ArticleList posts={posts} />
     </div>

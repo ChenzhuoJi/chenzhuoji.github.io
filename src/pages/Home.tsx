@@ -1,12 +1,25 @@
 import { Link } from 'react-router-dom'
-import { usePinnedPosts, useColumns } from '../hooks/usePosts'
+import { usePosts, usePinnedPosts, useColumns } from '../hooks/usePosts'
 
 export default function Home() {
+  const posts = usePosts()
   const pinned = usePinnedPosts()
   const columns = useColumns()
 
+  const totalChars = posts.reduce((s, p) => s + p.content.replace(/\s/g, '').length, 0)
+
   return (
     <div>
+      <section className="mb-8">
+        <p className="text-sm text-ink-500 dark:text-ink-400 leading-relaxed">
+          一个普通人眼中的世界。
+        </p>
+        <div className="mt-3 flex gap-5 text-xs text-ink-400 dark:text-ink-500">
+          <span>共 {posts.length} 篇</span>
+          <span>约 {(totalChars / 10000).toFixed(1)} 万字</span>
+        </div>
+      </section>
+
       {pinned.length > 0 && (
         <section className="mb-10">
           <div className="space-y-3">

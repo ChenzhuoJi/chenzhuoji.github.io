@@ -29,8 +29,13 @@ export default function Header() {
     <>
       <header className="sticky top-0 z-40 bg-ink-50/80 dark:bg-ink-950/80 backdrop-blur-md border-b border-ink-100 dark:border-ink-800">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <Link to="/" className="text-lg font-serif font-semibold text-ink-900 dark:text-ink-100 tracking-tight">
-            Chenzhuo's Blog
+          <Link to="/" className="flex flex-col leading-tight">
+            <span className="text-lg font-serif font-semibold text-ink-900 dark:text-ink-100 tracking-tight">
+              Chenzhuo's Blog
+            </span>
+            <span className="text-[11px] text-ink-400 dark:text-ink-500 tracking-wide">
+              这是一个 toy
+            </span>
           </Link>
 
           <nav className="flex items-center gap-1">

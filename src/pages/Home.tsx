@@ -85,6 +85,7 @@ export default function Home() {
                 })
               const series = [...new Set(colPosts.map((p) => p.meta.series).filter(Boolean))]
               const totalChars = colPosts.reduce((s, p) => s + p.content.replace(/\s/g, '').length, 0)
+              const isComplete = colPosts.some((p) => p.meta.series === '后记')
               return (
                 <Link
                   key={col}
@@ -98,6 +99,7 @@ export default function Home() {
                     <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-vermilion-500 dark:text-vermilion-400 mb-5">
                       <div className="w-6 h-px bg-vermilion-500/30" />
                       <span>FEATURED</span>
+                      {isComplete && <span className="px-1.5 py-0.5 rounded text-[9px] bg-ink-300/50 dark:bg-ink-600/50 text-ink-500 dark:text-ink-400 tracking-normal">完结</span>}
                       <div className="w-6 h-px bg-vermilion-500/30" />
                     </div>
 

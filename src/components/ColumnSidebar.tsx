@@ -43,7 +43,7 @@ export default function ColumnSidebar({ column, currentSlug }: Props) {
           expanded ? 'max-h-[2000px]' : 'max-h-0'
         }`}
       >
-        <div className="overflow-y-auto max-h-[45vh] scrollbar-thin space-y-4 border-l-2 border-ink-100 dark:border-ink-800 pl-3 pt-1.5 pb-1">
+        <div className="overflow-y-auto max-h-[40vh] scrollbar-thin space-y-4 border-l-2 border-ink-100 dark:border-ink-800 pl-3 pt-1.5 pb-1">
           {groups.map(([series, items]) => (
             <div key={series}>
               <h4 className="text-[11px] font-medium text-ink-300 dark:text-ink-600 uppercase tracking-wider mb-1.5">{series}</h4>

@@ -1,5 +1,5 @@
 ---
-title: "结语：自然语言"
+title: "自然语言：结语"
 date: 2026-05-16
 genre: vibe
 column: 代码的故事

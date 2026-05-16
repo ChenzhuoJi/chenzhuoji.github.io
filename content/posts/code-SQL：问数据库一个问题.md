@@ -8,12 +8,17 @@ order: 4
 tags: [SQL, Edgar Codd, Donald Chamberlin, Raymond Boyce, 关系数据库, 查询语言, 编程语言, 计算机史]
 description: "Edgar Codd 说让用户声明他们想要什么，而不是怎么找。1970 年关系模型诞生，从此问数据库不再需要写程序——只需要 SELECT。"
 ---
+## Hello World
 
 ```sql
 SELECT 'Hello, World!';
 ```
 
 *这是 SQL 的 Hello World。没有变量声明，没有函数定义，没有循环。你写一个词 `SELECT`，再写你要的东西——数据库就给你答案。这是人类第一次可以"问"计算机一个问题，而不是"命令"它去找。*
+
+![](/images/sql-logo.png)
+
+*这是 SQL（结构化查询语言） 的标志性图标。左侧的圆柱形代表数据库的存储形态，右侧的 `sql` 字样则点明了它的核心 —— 用于管理和查询关系型数据库的标准语言。自 1986 年成为 ANSI 标准以来，SQL 一直是操作关系数据库的唯一通用语言。无论底层是 MySQL、PostgreSQL、Oracle 还是 SQLite，你问数据库的方式没有变：`SELECT`。*
 
 1969 年，一个程序员坐在 IBM System/360 的终端前。他面前的屏幕上一片漆黑，光标在左上角闪烁。他接到了一个简单的任务：查出上个月买过牙膏的所有客户。
 

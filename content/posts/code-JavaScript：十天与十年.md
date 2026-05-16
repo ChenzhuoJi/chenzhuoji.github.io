@@ -8,12 +8,17 @@ order: 7
 tags: [JavaScript, Brendan Eich, Netscape, AJAX, Node.js, 浏览器, 编程语言, 计算机史]
 description: "Brendan Eich 在 Netscape 被要求'在浏览器里加一个脚本语言'。10 天做出了 JavaScript。1995 年它只是个表单验证脚本；2025 年 98.9% 的网站在用它。"
 ---
+## Hello World
 
 ```javascript
 console.log("Hello, World!");
 ```
 
 *这是 JavaScript 的 Hello World。一行代码，一个函数调用，没有类、没有包、没有主函数。你在任何浏览器打开开发者工具，敲进去，回车，它就跑起来了。它是所有语言里门槛最低的 Hello World——不需要编译、不需要配置、不需要安装任何东西。这正是 JavaScript 从一开始就被设计成的样子：让任何人，在任何地方，立刻开始写代码。*
+
+![](/images/javascript-logo.svg)
+
+*JavaScript 的官方 logo——黄色的方块背景下，金色的 "JS" 字母以圆润的字体呈现。这个 logo 在 2010 年代随着 Node.js 的崛起而广为人知，但 JavaScript 真正意义上的"标志"是它在浏览器中的地位：全球 98% 的网站都在使用它。Brendan Eich 在 1995 年用 10 天做出它的原型时，没有人想到它会成为世界上使用最广泛的编程语言。*
 
 Brendan Eich 把这一切看在眼里——但他不喜欢自己正在看的东西。
 

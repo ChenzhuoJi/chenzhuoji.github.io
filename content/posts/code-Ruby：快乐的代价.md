@@ -9,11 +9,17 @@ tags: [Ruby, Matz, Ruby on Rails, DHH, 编程语言, Web 开发, 开源]
 description: "1993 年，一个日本程序员觉得写代码太痛苦了。他想让程序员幸福——于是他造了 Ruby。快乐很好，但快乐很贵。"
 ---
 
+## Hello World
+
 ```ruby
 puts "Hello, World!"
 ```
 
 *这是 Ruby 的 Hello World。没有括号，没有分号，没有 `public static void main`，没有 `<?php` 标签。它就是一句话：`puts "Hello, World!"`。读它的时候你几乎不需要知道"编程"是什么——你猜也能猜出它在做什么。C 的 Hello World 在告诉机器"你该做什么"；Java 的 Hello World 在穿正装戴礼帽；PHP 的 Hello World 在 HTML 中开了一扇窗；Python 的 Hello World 干干净净地打印一句话；而 Ruby 的 Hello World——它就像在跟计算机聊天。*
+
+![](/images/ruby-logo.svg)
+
+*Ruby 的官方 logo——红色的立体宝石（ruby）在白色背景上熠熠生辉。Yukihiro Matsumoto（Matz）在 1993 年起这个名字时，一位同事的诞生石正是红宝石——而那一行代码都还没写。红色是激情与活力的颜色，正如 Matz 在设计 Ruby 时的核心信条："程序员应该快乐"。Ruby on Rails 在 2004 年引爆了 Web 开发的速度革命，"约定优于配置"的哲学至今仍在影响整个行业。*
 
 1993 年 2 月 24 日，一个日本程序员坐在电脑前，在网上聊天室里和同事石塚圭树讨论一门新语言的名字。两个候选摆在他面前："Coral"和"Ruby"。他选了 Ruby。没有投票，没有委员会，没有论证。原因很简单——因为一位同事的诞生石是红宝石。此刻一行代码都还没有写。
 

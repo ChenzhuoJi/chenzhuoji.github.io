@@ -3,12 +3,13 @@ title: "Python：AI 帝国的方言（下篇）"
 date: 2026-05-16
 genre: vibe
 column: 代码的故事
-series: 第六章·脚本的世界
+series: 第五章·网络的语言
 order: 11
 tags: [Python, TensorFlow, PyTorch, Transformer, AI, 深度学习, Hugging Face, Jupyter, 机器学习]
 description: >-
   2008 年 Python 3.0 发布后的废墟上，没人想到这门"慢"语言会统治 AI。不是 Guido 的设计——是一群研究者悄悄把它捡了起来。
 ---
+## Hello World
 
 ```python
 import torch
@@ -16,6 +17,10 @@ print(torch.__version__)
 ```
 
 *这是 Python 下篇的 Hello World。没有 `print("Hello, World!")`——那已经是上篇的事了。下篇的 Python 不认识自己了。从 `import torch` 开始，Python 不再是一门"脚本语言"，它变成了 AI 的方言。你在终端敲下这两行，输出一个版本号——然后你就可以开始训练一个神经网络了。五年前，这件事需要一千行 C++ 和一块你买不起的 GPU。现在，五行 Python 就够了。*
+
+![](/images/python-ecosystem.png)
+
+*Python 在 AI 时代的生态图谱——从底层的 NumPy、SciPy 科学计算库，到数据处理的 Pandas、可视化的 Matplotlib，再到深度学习框架 TensorFlow、PyTorch。每一层都在说同一件事：Python 之所以能统治 AI，不是因为它快——而是因为整个生态里的每一个人都在用它。*
 
 ---
 

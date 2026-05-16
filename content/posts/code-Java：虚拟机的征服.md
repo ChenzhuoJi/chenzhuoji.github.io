@@ -9,6 +9,8 @@ tags: [Java, James Gosling, Green Team, 虚拟机, Sun Microsystems, JVM, 编程
 description: "James Gosling 在 Sun 想给机顶盒写一个跨平台的语言——但互联网需要它。1995 年 Java 发布，一次编写到处运行。JVM 证明了虚拟化的胜利。"
 ---
 
+## Hello World
+
 ```java
 public class HelloWorld {
     public static void main(String[] args) {
@@ -18,6 +20,10 @@ public class HelloWorld {
 ```
 
 *这是 Java 的 Hello World。五行代码，十五个关键词，加上一对花括号、一对圆括号、一个点号、一个分号。和 C 的 `main() { printf("hello, world\n"); }` 比起来，Java 的版本像是在参加一场正装晚宴。你在第一行就感受到了它的性格：正式、安全、绝不省略。*
+
+![](/images/java-coffee-cup-logo-original.svg)
+
+*Java 咖啡杯 logo，1995 年。这个充满生活气息的标志在技术圈里独树一帜——它暗示了一种轻松感：一杯咖啡、一行代码、一个正在运行的世界。*
 
 1995 年 5 月 23 日，旧金山的 SunWorld 大会现场，气氛有些不对。
 
@@ -188,10 +194,6 @@ Gosling 后来笑着说："我们选 Java 主要是因为它在头脑风暴的�
 1995 年 1 月，Sun 做了一次关键决策。McNealy 拍板：正式把 Oak 改名 Java，投入数百万美元做市场推广。Duke 从 Star7 的智能代理变成了新的吉祥物。Sun 打出了一个后来被全世界记住的口号——"Write Once, Run Anywhere"（一次编写，到处运行）。
 
 Oak 的规范文档中的所有"Oak"被替换成了"Java"。T 恤、马克杯、海报——全印上了那个咖啡热气腾腾的 logo。
-
-![](/images/java-coffee-cup-logo-original.svg)
-
-*Java 咖啡杯 logo，1995 年。这个充满生活气息的标志在技术圈里独树一帜——它暗示了一种轻松感：一杯咖啡、一行代码、一个正在运行的世界。*
 
 ![](/images/green-team-bbq-1997.jpg)
 

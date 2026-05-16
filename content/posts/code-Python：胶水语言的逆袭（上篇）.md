@@ -10,11 +10,17 @@ description: >-
   1989 年圣诞节，一个荷兰程序员在家里写了一门「为我自己」的语言。没有人想到——十九年后，它会分裂整个世界，并在二十年后统治 AI。
 ---
 
+## Hello World
+
 ```python
 print("Hello, World!")
 ```
 
 *这是 Python 的 Hello World。一行。没有分号，没有花括号，没有 `public static void main`，没有 `<?php` 标签——就是一句话：`print("Hello, World!")`。读它的时候你甚至不需要知道"编程"是什么——你猜也能猜出它在做什么。C 的 Hello World 在告诉机器"你该做什么"；Java 的 Hello World 在穿正装戴礼帽；PHP 的 Hello World 在 HTML 中开了一扇窗；Python 的 Hello World 什么都没做——它只是在说话。*
+
+![](/images/python-logo.svg)
+
+*Python 的官方 logo——蓝色和黄色的两条蛇形曲线交织在一起，形成双螺旋结构。两条蛇分别代表 Python 的两大核心哲学：简洁与强大。这个 logo 的名字就叫 "Python"，与 Guido van Rossum 在 1989 年圣诞节开始的个人项目同名——他当时在阿姆斯特丹的家里写一个"给自己用的脚本语言"，随手用了 BBC 喜剧《Monty Python's Flying Circus》来命名。不会有第二个语言 logo 那么恰当地反映它的血统：可读、有趣、不装严肃，但认真起来谁都挡不住。*
 
 1989 年 12 月，阿姆斯特丹。
 

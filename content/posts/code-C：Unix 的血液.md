@@ -8,12 +8,17 @@ order: 3
 tags: [C, Ken Thompson, Dennis Ritchie, Unix, PDP-11, 贝尔实验室, 编程语言, 计算机史]
 description: "Ken Thompson 想玩一个游戏，于是他写了一个操作系统。Dennis Ritchie 觉得 B 语言太弱，于是创造了 C。1973 年 Unix 内核用 C 重写——操作系统第一次可以用高级语言写。"
 ---
+## Hello World
 
 ```c
 main() { printf("hello, world\n"); }
 ```
 
 *这是 1978 年 K&R《The C Programming Language》第一章第一个例子的完整代码。11 个单词——在一个几百页的编程书里，它比任何一段文字都更清楚地说出了 C 的性格：极简、直接、不加修饰。它假设你知道 `main` 是什么，假设你知道 `printf` 从哪来，假设你不需要被解释什么叫"程序"。它信任你。*
+
+![](/images/c-logo.svg)
+
+*C 语言的经典 logo——图标中的六边形象征着它在系统底层、硬件交互中的核心地位，而中心的 “C” 则直接点明了它的身份，与 Dennis Ritchie 和 Ken Thompson 在贝尔实验室创造的这门语言的气质完全一致：极简、直接、不加修饰。C 自 1972 年诞生以来一直是系统编程的绝对主宰——操作系统、编译器、嵌入式设备的核心几乎全是用 C 写的。这个 logo 没有多余的装饰，就像 C 本身：它信任你，但不会替你做事。*
 
 2011 年 10 月 12 日，Dennis Ritchie 在新泽西州 Berkeley Heights 的家中去世，享年 70 岁。他独自生活，被发现时已经走了几天。同一周，全世界的新闻头条都在报道 Steve Jobs——苹果创始人五天前去世，人们排着队在 Apple Store 门口放鲜花、贴便签、哽咽着回忆这位改变了消费电子行业的天才。几乎没有一家主流媒体为 Ritchie 停下一分钟。那些同时报道了两件事的媒体，大多数也只是在文章末尾加了一句"顺便一提，Unix 操作系统和 C 语言的设计者也去世了"。
 

@@ -9,11 +9,17 @@ tags: [PHP, Rasmus Lerdorf, WordPress, LAMP, 动态网站, 编程语言, 互联�
 description: "Rasmus Lerdorf 在 1994 年用 Perl 写了一套个人主页工具——他没想到这成了全世界最简单的动态网站方案。PHP 让任何人都能搭一个留言板。"
 ---
 
+## Hello World
+
 ```php
 <?php echo "Hello, World!"; ?>
 ```
 
 *这是 PHP 的 Hello World。你注意到的第一件事是什么？不是语法里的 `echo`，不是分号——是那个 `<?php`。它告诉你：我正在切入 HTML。PHP 不像其他语言那样"输出 HTML"——它在 HTML 中开一扇窗。这个区别就是 PHP 的全部秘密。*
+
+![](/images/php-logo.svg)
+
+*PHP 的经典 logo——深蓝色圆环内的黑色 "PHP" 字母，简洁直接。PHP 是 "PHP: Hypertext Preprocessor" 的递归缩写。这个 logo 传达的信息和 PHP 的哲学一致：功能性强、不追求花哨。在 2000 年代，PHP 驱动了互联网上超过 70% 的网站——WordPress、Drupal、Joomla 这些统治了 Web 初期的内容管理系统全是用 PHP 写的。Rasmus Lerdorf 在 1994 年造它的时候只是想加一个访客计数器，结果它让任何人都能做一个动态网站。*
 
 1995 年 6 月 8 日，Rasmus Lerdorf 在 Usenet 的 `comp.infosystems.www.authoring.cgi` 新闻组里发了一封邮件。标题很普通——"Announce: Personal Home Page Tools (PHP Tools) version 1.0"——内容更像是一份自述，而不是一个改变互联网的宣言。他用朴素的技术写手口吻写道：这是一个给个人主页用的工具集，它能帮你跟踪谁访问了你的页面，能把表单数据嵌入你的 HTML，还支持一些简单的数据库查询。"你不需要 root 权限。你不需要 Perl 或 Tcl。你不需要访问 httpd 日志文件。"
 

@@ -9,6 +9,8 @@ tags: [Fortran, John Backus, IBM 704, 编译器, 编程语言, 计算机史]
 description: "John Backus 在 IBM 领导了第一个高级语言编译器。1957 年，一行 `y = x + 1` 跑起来了——人类第一次可以用数学符号和计算机对话。"
 ---
 
+## Hello World
+
 ```fortran
 PROGRAM HELLO
   PRINT *, "Hello, World!"
@@ -16,6 +18,10 @@ END PROGRAM HELLO
 ```
 
 *这是 Fortran 77 的 Hello World。在它之前，人类和计算机对话的方式是纸带上的孔、插线板上的线、和长达数百行的数字代码。这个写法和我们今天的代码已经相差无几——但它诞生在 1957 年。*
+
+![](/images/fortran-logo.svg)
+
+*Fortran 的官方 logo，以紫色的字母 "F" 为核心，延续了这门语言自 1957 年以来的标志性首字母造型。Fortran 是 Formula Translation（公式翻译）的缩写——这个 logo 的简洁与沉稳恰如其分地表达了它的历史分量：它是世界上第一个高级编程语言，今天仍在科学计算和超级计算机领域活跃。*
 
 物理学家不想写代码。
 

@@ -8,5 +8,25 @@
         }
       }
     }
+  },
+  "agent": {
+    "chief-editor": {
+      "description": "专栏主编，协调研究员→撰稿人→配图员→编辑的写作流水线",
+      "mode": "primary",
+      "prompt": "{file:.opencode/prompts/chief-editor.txt}",
+      "permission": {
+        "task": {
+          "*": "allow"
+        },
+        "bash": {
+          "npm run build": "allow",
+          "npm run dev": "allow",
+          "git add *": "allow",
+          "git commit *": "allow",
+          "git push": "ask",
+          "grep *": "allow"
+        }
+      }
+    }
   }
 }

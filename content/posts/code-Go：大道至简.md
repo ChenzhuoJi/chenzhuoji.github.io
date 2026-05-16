@@ -9,6 +9,8 @@ tags: [Go, Rob Pike, Ken Thompson, Robert Griesemer, Google, 并发, Docker, Kub
 description: "2007 年 Google 的三个工程师受够了——C++ 编译 45 分钟、依赖管理噩梦、并发痛苦。他们问了个简单的问题：能不能让写代码重新变得简单？"
 ---
 
+## Hello World
+
 ```go
 package main
 
@@ -20,6 +22,10 @@ func main() {
 ```
 
 *这是 Go 的 Hello World。九行代码，但真正在工作的只有一半。`package main` 告诉编译器入口在哪；`import "fmt"` 引入格式化 I/O；`func main()` 是起点；`fmt.Println` 打印那一行话。对比 C 的 `main() { printf("hello, world\n"); }`——Go 显然多写了几行。但对比 C++ 的 `#include <iostream>`、`using namespace std;` 和 `int main(int argc, char** argv)` 那一整套仪式——Go 已经在说：我清清爽爽，不含糊。它不追求最简的表达式，它追求最易读的代码。*
+
+![](/images/go-logo.svg)
+
+*Go 的官方 logo——一只蓝色的短尾地鼠（Gopher），由 Renée French 在 2009 年设计。地鼠是 Go 开源社区的非官方吉祥物，它的形象简单、亲切、没有攻击性——正如 Go 语言的设计目标。2007 年，Robert Griesemer、Rob Pike 和 Ken Thompson 在 Google 的办公室里受够了 C++ 的编译速度和复杂性，决定造一门"简单到可以在一个下午学会"的新语言。地鼠的形象完美地传达了这一点：复杂的世界里，做一个简单的工具。*
 
 2007 年的某个下午，Google 总部 Building 43 的一间办公室里，一个工程师盯着屏幕发愣。他的屏幕上没有 bug，没有报错，什么都没有——编译器正在跑，他能做的只有等。
 

@@ -9,11 +9,17 @@ tags: [Lisp, John McCarthy, Steve Russell, 递归, 符号计算, 人工智能, �
 description: "John McCarthy 想要一个做 AI 研究的语言——计算机能处理的不只是数字，还有思想。Lisp 的回答是'代码即数据'。1958 年，括号开始统治世界。"
 ---
 
+## Hello World
+
 ```lisp
 (print "Hello, World!")
 ```
 
 *这是 Lisp 的 Hello World。函数名写在前面，参数跟在后面，整个表达式用一对括号包裹。这门语言从第一行代码就在告诉世界：我长这样子不是偶然，是因为在 Lisp 看来，代码和数据是同一回事。*
+
+![](/images/lisp-logo.svg)
+
+*Lisp 的经典 logo，以三个互相连接的圆环构成一个三角结构。三环象征着 Lisp 的三个核心理念：代码即数据、递归、符号处理。1958 年诞生至今，Lisp 的语法——括号、前缀表达式、car/cdr——几乎没有改变过。这个 logo 就像 Lisp 本身：简洁、抽象、每一层都有含义。*
 
 计算机只能算数吗？
 

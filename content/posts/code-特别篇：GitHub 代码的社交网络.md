@@ -20,7 +20,7 @@ GitHub 改变了这一切。
 
 GitHub 没有发明编程语言，它发明了编程语言被使用的方式。
 
-![](/images/github-logo-2013.svg)
+![](/images/github-logo.png)
 
 *GitHub 的 logo——一只长着章鱼触须的猫（Octocat），由设计师 Simon Oxley 在 iStock 上以 50 美元出售后被 GitHub 买断。这个融合了"章鱼"（octopus）和"猫"（cat）的生物，比任何代码都更准确地定义了 GitHub 的气质：友好、古怪、不装严肃——但它构建了全世界最大的代码托管平台。两百公里外，北极斯瓦尔巴特群岛的废弃矿洞里，GitHub Archive Program 正在把 21 TB 的开源代码保存在胶片上，预期保存 1000 年。*
 

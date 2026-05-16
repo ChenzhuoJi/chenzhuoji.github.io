@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { usePosts, usePinnedPosts, useColumns } from '../hooks/usePosts'
+import AnimatedSection from '../components/AnimatedSection'
+import artworks from '../data/artworks'
 
 export default function Home() {
   const posts = usePosts()
@@ -10,7 +12,8 @@ export default function Home() {
 
   return (
     <div>
-      <section className="mb-8">
+      <AnimatedSection delay={0}>
+        <section className="mb-8">
         <p className="text-sm text-ink-500 dark:text-ink-400 leading-relaxed">
           乐高玩具
         </p>
@@ -19,8 +22,10 @@ export default function Home() {
           <span>约 {(totalChars / 10000).toFixed(1)} 万字</span>
         </div>
       </section>
+      </AnimatedSection>
 
       {pinned.length > 0 && (
+        <AnimatedSection delay={0.1}>
         <section className="mb-10">
           <div className="space-y-3">
             {pinned.map((post) => (
@@ -53,21 +58,38 @@ export default function Home() {
             ))}
           </div>
         </section>
+        </AnimatedSection>
       )}
 
+      <AnimatedSection delay={0.2}>
       <section className="mb-12">
-        <Link
-          to="/genre/my"
-          className="group block max-w-sm p-6 rounded-xl bg-gradient-to-br from-ink-100 to-ink-50 dark:from-ink-800 dark:to-ink-900 border border-ink-200 dark:border-ink-700 hover:border-vermilion-300 dark:hover:border-vermilion-700 transition-all"
-        >
-          <h2 className="text-lg font-serif font-semibold text-ink-900 dark:text-ink-100 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors">
-            My Writing
-          </h2>
-          <p className="mt-1 text-sm text-ink-400 dark:text-ink-500">我的原创写作</p>
-        </Link>
+        <div className="flex flex-col sm:flex-row gap-6">
+          <Link
+            to="/genre/my"
+            className="group block flex-1 p-6 rounded-xl bg-gradient-to-br from-ink-100 to-ink-50 dark:from-ink-800 dark:to-ink-900 border border-ink-200 dark:border-ink-700 hover:border-vermilion-300 dark:hover:border-vermilion-700 transition-all"
+          >
+            <h2 className="text-lg font-serif font-semibold text-ink-900 dark:text-ink-100 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors">
+              My Writing
+            </h2>
+            <p className="mt-1 text-sm text-ink-400 dark:text-ink-500">我的原创写作</p>
+          </Link>
+          <Link
+            to="/gallery"
+            className="group block flex-1 p-6 rounded-xl bg-gradient-to-br from-ink-100 to-ink-50 dark:from-ink-800 dark:to-ink-900 border border-ink-200 dark:border-ink-700 hover:border-vermilion-300 dark:hover:border-vermilion-700 transition-all"
+          >
+            <h2 className="text-lg font-serif font-semibold text-ink-900 dark:text-ink-100 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors">
+              画廊
+            </h2>
+            <p className="mt-1 text-sm text-ink-400 dark:text-ink-500">
+              {artworks.length > 0 ? `共 ${artworks.length} 幅作品` : '日常绘画练习与实验'}
+            </p>
+          </Link>
+        </div>
       </section>
+      </AnimatedSection>
 
       {columns.length > 0 && (
+        <AnimatedSection delay={0.3}>
         <section className="mb-12">
           <div className="relative flex items-center mb-6">
             <div className="flex-grow border-t border-ink-200 dark:border-ink-700" />
@@ -146,8 +168,10 @@ export default function Home() {
             })}
           </div>
         </section>
+        </AnimatedSection>
       )}
 
+      <AnimatedSection delay={0.4}>
       <div className="text-center">
         <Link
           to="/posts"
@@ -159,6 +183,7 @@ export default function Home() {
           </svg>
         </Link>
       </div>
+      </AnimatedSection>
     </div>
   )
 }

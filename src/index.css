@@ -87,6 +87,21 @@ pre:has(code) {
 .dark .hljs-deletion { color: #f69e7b; }
 .dark .hljs-link { text-decoration: underline; }
 
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
 @layer utilities {
   .line-clamp-2 {
     display: -webkit-box;

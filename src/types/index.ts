@@ -42,6 +42,15 @@ export interface GraphNode {
   connectionCount: number
 }
 
+export interface Artwork {
+  id: string
+  title: string
+  image: string
+  medium: string
+  date: string
+  description?: string
+}
+
 export interface GraphEdge {
   source: string
   target: string

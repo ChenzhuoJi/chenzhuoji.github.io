@@ -12,8 +12,8 @@ export default function ArticleList({ posts }: Props) {
 
   return (
     <div className="space-y-10">
-      {posts.map((post) => (
-        <PostCard key={post.meta.slug} post={post.meta} />
+      {posts.map((post, i) => (
+        <PostCard key={post.meta.slug} post={post.meta} index={i} />
       ))}
     </div>
   )

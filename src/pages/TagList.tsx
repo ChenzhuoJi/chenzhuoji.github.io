@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useTags } from '../hooks/usePosts'
+import AnimatedSection from '../components/AnimatedSection'
 
 export default function TagList() {
   const tags = useTags()
@@ -10,10 +11,11 @@ export default function TagList() {
 
   return (
     <div>
-      <section className="mb-12">
+      <section className="mb-12" style={{ animation: 'fade-up 0.4s ease-out' }}>
         <h1 className="text-2xl font-serif font-semibold text-ink-900 dark:text-ink-100">标签</h1>
         <p className="mt-1 text-sm text-ink-400 dark:text-ink-500">共 {tags.length} 个标签</p>
       </section>
+      <AnimatedSection delay={0.1}>
       <div className="flex flex-wrap gap-3">
         {tags.map((tag) => (
           <Link
@@ -25,6 +27,7 @@ export default function TagList() {
           </Link>
         ))}
       </div>
+      </AnimatedSection>
     </div>
   )
 }

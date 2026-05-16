@@ -25,15 +25,35 @@ export default function Post() {
 
   return (
     <article>
-      <Link
-        to="/"
-        className="inline-flex items-center text-sm text-ink-400 dark:text-ink-500 hover:text-ink-600 dark:hover:text-ink-300 transition-colors mb-8"
-      >
-        <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-        </svg>
-        返回
-      </Link>
+      <div className="flex items-center gap-2 text-sm mb-8">
+        <Link
+          to="/"
+          className="inline-flex items-center text-ink-400 dark:text-ink-500 hover:text-ink-600 dark:hover:text-ink-300 transition-colors"
+        >
+          <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          首页
+        </Link>
+        <span className="text-ink-300 dark:text-ink-600">/</span>
+        <Link
+          to={`/genre/${post.meta.genre}`}
+          className="text-ink-400 dark:text-ink-500 hover:text-ink-600 dark:hover:text-ink-300 transition-colors"
+        >
+          {post.meta.genre === 'vibe' ? 'Vibe Writing' : 'My Writing'}
+        </Link>
+        {post.meta.column && (
+          <>
+            <span className="text-ink-300 dark:text-ink-600">/</span>
+            <Link
+              to={`/columns/${getColumnUrl(post.meta.column)}`}
+              className="text-ink-400 dark:text-ink-500 hover:text-ink-600 dark:hover:text-ink-300 transition-colors"
+            >
+              {post.meta.column}
+            </Link>
+          </>
+        )}
+      </div>
 
       <header className="mb-10">
         <h1 className="text-3xl font-serif font-bold text-ink-900 dark:text-ink-100 leading-tight">

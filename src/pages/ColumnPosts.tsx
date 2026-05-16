@@ -22,15 +22,24 @@ export default function ColumnPosts() {
   return (
     <div>
       <section className="mb-12">
-        <Link
-          to="/explore"
-          className="inline-flex items-center text-sm text-ink-400 dark:text-ink-500 hover:text-ink-600 dark:hover:text-ink-300 transition-colors mb-4"
-        >
-          <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-          探索
-        </Link>
+        <div className="flex items-center gap-2 text-sm mb-4">
+          <Link
+            to="/"
+            className="inline-flex items-center text-ink-400 dark:text-ink-500 hover:text-ink-600 dark:hover:text-ink-300 transition-colors"
+          >
+            <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            首页
+          </Link>
+          <span className="text-ink-300 dark:text-ink-600">/</span>
+          <Link
+            to="/explore"
+            className="inline-flex items-center text-ink-400 dark:text-ink-500 hover:text-ink-600 dark:hover:text-ink-300 transition-colors"
+          >
+            探索
+          </Link>
+        </div>
         <h1 className="text-2xl font-serif font-semibold text-ink-900 dark:text-ink-100">{columnName}</h1>
         <p className="mt-1 text-sm text-ink-400 dark:text-ink-500">共 {posts.length} 篇 · {posts.some(p => p.meta.series === '后记') ? '完结' : '连载'}</p>
       </section>

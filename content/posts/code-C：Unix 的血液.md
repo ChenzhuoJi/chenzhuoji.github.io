@@ -139,6 +139,10 @@ Thompson 和 Ritchie 做了一个在当时堪称冒险的决定：用 C 重写 U
 
 ## 228 页
 
+![](/images/kr-c-book-cover-first-edition.svg)
+
+*《The C Programming Language》第一版（1978），228 页。它定义了 C 在程序员心中的形象。在 ANSI 标准化之前，它就是标准。封面朴素到极致——白色背景，黑色大字。这个设计本身就像 C 语言：不加修饰，相信内容本身的分量。*
+
 1978 年，Brian Kernighan 和 Dennis Ritchie 出版了《The C Programming Language》。228 页。它的封面是一本白色的书，书名用大写字母写着 THE C PROGRAMMING LANGUAGE，字下面是一行淡蓝色的分隔线。这个设计朴素到今天的出版社会拒绝——但它卖了超过一百万册。
 
 这本书的写法是 Kernighan 的主意。他认为，C 是一门小语言，一本大书是对它的不尊重。"没有人愿意花时间去读一本 600 页的编程书，"他说。于是他们只写了 228 页——"再多一页都是对 C 语言的小视。"
@@ -203,17 +207,9 @@ Fortran 打开了第一扇门。Lisp 打开了第二扇。C 打开了第三扇�
 
 *Ken Thompson（1943–），Unix 的创造者，B 语言的发明者，C 的共同开发者。新奥尔良人，从小迷二进制和逻辑。他是"如果我想要一个工具，我就写一个"的实干家——为了玩 Space Travel 游戏写了 Unix，为了让 Unix 能写高级语言催生了 C。后来还发明了 UTF-8、设计了 Go 语言。2026 年仍在世，在 Google 工作。*
 
-![](/images/thompson-ritchie-pdp11-1973.jpg)
-
-*1973 年，Dennis Ritchie（左）和 Ken Thompson（右）在贝尔实验室的 PDP-11 前。计算机史上最重要的二人组之一。Thompson 是挖掘者，Ritchie 是建筑师。Unix 和 C 是他们互补化学反应的产物。*
-
 ![](/images/brian-kernighan-portrait.jpg)
 
 *Brian Kernighan（1942–），贝尔实验室研究员，《The C Programming Language》的作者——他写了几乎全部正文，Ritchie 写附录。'Hello, World' 教学传统的发明者。后来还发明了 AWK 语言（其中的 K 就是 Kernighan）。2026 年仍在普林斯顿大学任教。*
-
-![](/images/kr-c-book-cover-first-edition.svg)
-
-*《The C Programming Language》第一版（1978），228 页。它定义了 C 在程序员心中的形象。在 ANSI 标准化之前，它就是标准。封面朴素到极致——白色背景，黑色大字。这个设计本身就像 C 语言：不加修饰，相信内容本身的分量。*
 
 ---
 

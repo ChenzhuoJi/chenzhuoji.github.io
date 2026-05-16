@@ -143,6 +143,10 @@ McCarthy 后来回忆说："Lisp 其实在定义的时候就已经几乎实现�
 
 ## IBM 704 的幽灵
 
+![](/images/ibm-704-mit-computation-center.jpg)
+
+*MIT 计算中心的 IBM 704——Lisp 诞生的地方。这台机器的地址寄存器和减量寄存器就是 car 和 cdr 的名字来源。硬件偶然性凝固为软件永恒性的最佳例子。*
+
 Lisp 的历史里有一段至今被人津津乐道的遗产，来自 IBM 704 的硬件设计。
 
 704 是一个 36 位的大型机。它的内存是以 36 位字为单位的——每个"字"可以存储一个机器指令或一个数据。在 704 的指令集里，每个机器指令被编码进一个 36 位的字里，其中 15 位是"地址部分"（address part），15 位是"减量部分"（decrement part），3 位是"标签部分"（tag part），还有 3 位用于其他目的。
@@ -237,13 +241,6 @@ Fortran 打开了第一扇门。Lisp 打开了第二扇。门后面的世界，�
 
 *Steve Russell（1937–），MIT 研究生，第一个 Lisp 解释器的实现者。"你在混淆理论和实践"——McCarthy 当年这样对他说。Russell 没有听他的，直接编译了 eval。后来他还写出了世界上第一个真正意义上的电子游戏 Spacewar!。*
 
-![](/images/ibm-704-mit-computation-center.jpg)
-
-*MIT 计算中心的 IBM 704——Lisp 诞生的地方。这台机器的地址寄存器和减量寄存器就是 car 和 cdr 的名字来源。硬件偶然性凝固为软件永恒性的最佳例子。*
-
-![](/images/lisp-15-programmers-manual-1962.jpg)
-
-*Lisp 1.5 程序员手册（1962），第一本 Lisp 语言参考书，由 MIT Press 出版。Lisp 1.5 是第一个广泛分发的 Lisp 版本，也是后来所有 Lisp 方言的起点。*
 
 ---
 

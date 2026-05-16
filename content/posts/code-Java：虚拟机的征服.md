@@ -123,7 +123,13 @@ Gosling 做的最重要的决策不是"加了什么"——而是"砍掉了什么
 
 他们给它取名叫 Star7（\*7）。一台手持设备——比当时的 PDA（比如 Apple Newton）小一圈——带有 5 英寸彩色 LCD 触摸屏。这在 1992 年看起来像从未来世界掉下来的东西。大多数掌上设备是黑白的。触摸屏更是实验室科技。
 
-Star7 运行着一个完整的操作系统——一个用 Oak 语言写的、带图形界面的操作系统。屏幕上有一个叫 Duke 的动画角色——一个小小的人物，会在角落里做各种表情，当用户操作界面时它会给出反应。Duke 是团队里的设计师 Joe Palrang 画的——他后来成了 Java 社区的标志性吉祥物。
+Star7 运行着一个完整的操作系统——一个用 Oak 语言写的、带图形界面的操作系统。
+
+![](/images/star7-prototype-device.jpg)
+
+*Star7（\*7）原型机，1992 年。5 英寸彩色触摸屏、无线网络、基于 Oak 语言的完整图形操作系统。这台手持设备在 1992 年看起来像是从 2022 年穿越回去的。但消费电子厂商的反应是"太先进了，我们还没想做这种东西"。*
+
+屏幕上有一个叫 Duke 的动画角色——一个小小的人物，会在角落里做各种表情，当用户操作界面时它会给出反应。Duke 是团队里的设计师 Joe Palrang 画的——他后来成了 Java 社区的标志性吉祥物。
 
 ![](/images/duke-java-mascot-original.jpg)
 
@@ -186,6 +192,10 @@ Oak 的规范文档中的所有"Oak"被替换成了"Java"。T 恤、马克杯、
 ![](/images/java-coffee-cup-logo-original.svg)
 
 *Java 咖啡杯 logo，1995 年。这个充满生活气息的标志在技术圈里独树一帜——它暗示了一种轻松感：一杯咖啡、一行代码、一个正在运行的世界。*
+
+![](/images/green-team-bbq-1997.jpg)
+
+*Green 团队 1997 年的重聚合影。五年前他们在 Sand Hill Road 的小办公室里创造了一门为机顶盒设计的语言——五年后那门语言正在统治互联网。前排左起：Al Frazier、Joe Palrang、Mike Sheridan、Ed Frank、Don Jackson、Faye Baxter、Patrick Naughton、Chris Warth、James Gosling、Bob Weisblatt、David Lavallee、Jon Payne。*
 
 ## 征服世界的 90 天
 
@@ -267,23 +277,7 @@ Java 选了一条路：用虚拟机换安全，用性能换开发效率，用严
 
 *James Gosling（1955–），Java 的创造者。加拿大卡尔加里人，卡内基梅隆大学博士，在 CMU 期间写了 Gosling Emacs 和第一个 p-code 虚拟机。1984 年加入 Sun，1990 年加入 Green 项目，创造了 Oak/Java。他是语言设计师中少数几个自己写编译器、写虚拟机、写标准库的"全栈语言创造者"。2010 年 Oracle 收购 Sun 后离职，先后加入 Google、Liquid Robotics、Amazon Web Services，2024 年退休。*
 
-![](/images/star7-prototype-device.jpg)
-
-*Star7（\*7）原型机，1992 年。5 英寸彩色触摸屏、无线网络、基于 Oak 语言的完整图形操作系统。这台手持设备在 1992 年看起来像是从 2022 年穿越回去的。但消费电子厂商的反应是"太先进了，我们还没想做这种东西"。*
-
-![](/images/duke-java-mascot-original.jpg)
-
-*Duke，Java 的吉祥物。最初由 Joe Palrang 在 Green 项目期间设计，作为 Star7 界面中的"智能代理"角色。1995 年 Java 发布后，Duke 变成了 Java 技术社区的标志。它的形象经过了多次更新，但一直保留着那个经典的红色小鼻头。*
-
-![](/images/green-team-bbq-1997.jpg)
-
-*Green 团队 1997 年的重聚合影。五年前他们在 Sand Hill Road 的小办公室里创造了一门为机顶盒设计的语言——五年后那门语言正在统治互联网。前排左起：Al Frazier、Joe Palrang、Mike Sheridan、Ed Frank、Don Jackson、Faye Baxter、Patrick Naughton、Chris Warth、James Gosling、Bob Weisblatt、David Lavallee、Jon Payne。*
-
-*Patrick Naughton（1965–），Green 项目的发起人。1990 年 12 月写给 Sun CEO Scott McNealy 的"上帝邮件"直接催生了 Green 项目。他的核心信念是"消费电子 + 网络将改变一切"——这个信念在 Star7 的原型上没有变现，但在互联网时代以十倍的速度兑现了。（注：Naughton 的个人肖像在开放档案中暂未找到，见上组合影中前排右起第二位。）*
-
-![](/images/java-coffee-cup-logo-original.svg)
-
-*Java 的咖啡杯 logo，1995 年。这个充满生活气息的标志在技术圈里独树一帜——它暗示了一种轻松感：一杯咖啡、一行代码、一个正在运行的世界。*
+*Patrick Naughton（1965–），Green 项目的发起人。1990 年 12 月写给 Sun CEO Scott McNealy 的"上帝邮件"直接催生了 Green 项目。他的核心信念是"消费电子 + 网络将改变一切"——这个信念在 Star7 的原型上没有变现，但在互联网时代以十倍的速度兑现了。（注：Naughton 的个人肖像在开放档案中暂未找到，参见正文 Green 团队合影中前排右起第二位。）*
 
 ---
 

@@ -7,11 +7,18 @@ interface Props {
 
 function extractHeadings(content: string): { id: string; text: string; level: number }[] {
   const headings: { id: string; text: string; level: number }[] = []
-  const regex = /^(#{2,3})\s+(.+)$/gm
-  let match: RegExpExecArray | null
-  while ((match = regex.exec(content)) !== null) {
-    const level = match[1].length
-    const text = match[2].trim()
+  const lines = content.split('\n')
+  let inCodeBlock = false
+  for (const line of lines) {
+    if (/^```/.test(line.trim())) {
+      inCodeBlock = !inCodeBlock
+      continue
+    }
+    if (inCodeBlock) continue
+    const m = line.match(/^(#{2,3})\s+(.+)$/)
+    if (!m) continue
+    const level = m[1].length
+    const text = m[2].trim()
     const id = text
       .toLowerCase()
       .replace(/[^\p{L}\p{N}\s-]/gu, '')

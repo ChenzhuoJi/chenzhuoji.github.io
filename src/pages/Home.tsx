@@ -12,7 +12,7 @@ export default function Home() {
     <div>
       <section className="mb-8">
         <p className="text-sm text-ink-500 dark:text-ink-400 leading-relaxed">
-          一个普通人眼中的世界。
+          乐高玩具
         </p>
         <div className="mt-3 flex gap-5 text-xs text-ink-400 dark:text-ink-500">
           <span>共 {posts.length} 篇</span>

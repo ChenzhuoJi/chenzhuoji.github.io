@@ -3,7 +3,7 @@ title: "Python：AI 帝国的方言（下篇）"
 date: 2026-05-16
 genre: vibe
 column: 代码的故事
-series: 第五章·网络的语言
+series: 网络的语言
 order: 11
 tags: [Python, TensorFlow, PyTorch, Transformer, AI, 深度学习, Hugging Face, Jupyter, 机器学习]
 description: >-

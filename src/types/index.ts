@@ -1,3 +1,8 @@
+export interface Column {
+  name: string
+  slug?: string
+}
+
 export type Genre = 'vibe' | 'my'
 
 export interface PostMeta {

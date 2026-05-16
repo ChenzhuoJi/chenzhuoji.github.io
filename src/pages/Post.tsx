@@ -3,6 +3,7 @@ import MarkdownRenderer from '../components/MarkdownRenderer'
 import TOC from '../components/TOC'
 import ColumnSidebar from '../components/ColumnSidebar'
 import { usePost, useColumnNav, useRelatedPosts } from '../hooks/usePosts'
+import { getColumnUrl } from '../utils/posts'
 import RelatedArticles from '../components/RelatedArticles'
 
 export default function Post() {
@@ -53,7 +54,7 @@ export default function Post() {
             <>
               <span className="w-1 h-1 rounded-full bg-ink-300 dark:bg-ink-600" />
               <Link
-                to={`/columns/${post.meta.column}`}
+                to={`/columns/${getColumnUrl(post.meta.column)}`}
                 className="text-vermilion-500 hover:text-vermilion-600 dark:hover:text-vermilion-400 transition-colors"
               >
                 {post.meta.column}

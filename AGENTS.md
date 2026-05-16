@@ -21,6 +21,7 @@ npm run preview                          # 预览生产构建
 
 ```
 src/
+├── data/columns.ts         # 栏目别名配置（可选英文 URL slug）
 ├── utils/posts.ts          # import.meta.glob 读取 content/posts/*.md
 ├── hooks/
 │   ├── useTheme.ts         # localStorage + prefers-color-scheme 持久化主题
@@ -77,6 +78,7 @@ pin: true               # 可选，置顶文章
 - 新文章直接在 `content/posts/` 下创建 `.md` 文件即可，无需注册路由
 - 门类只有两个：`vibe`（AI 辅助写作）和 `my`（纯手写）
 - 栏目是连载容器，同栏目文章按 order 排序（不设则按 date 排），文末自动生成上下篇导航
+- 栏目 URL 默认使用中文名（如 `/columns/代码的故事`），栏目完结后在 `src/data/columns.ts` 中配置 `slug` 可切换为英文 URL（如 `code-stories`），页面显示名不受影响
 - 系列是栏目内的子分组，一个栏目可含多个系列
 - 标签是扁平的，跨门类/栏目/系列自由组合
 - 首页显示：置顶文章 → 门类入口卡片 → 最新 10 篇 + 「浏览更多」
@@ -122,5 +124,6 @@ feat: add dark mode toggle
 
 - `vite.config.ts` —— Vite 构建配置 + node polyfills
 - `tailwind.config.ts` —— 日式配色（ink 墨色 / vermilion 朱红）+ 中文字体
+- `src/data/columns.ts` —— 栏目别名配置，新栏目默认无 slug，写完后可添加英文别名
 - `hugo.toml` —— Hugo 配置（仅用于 Hugo 构建路径）
 - `scripts/generate-rss.mjs` —— 构建后生成 `dist/rss.xml`

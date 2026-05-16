@@ -3,7 +3,7 @@ title: "SQL：问数据库一个问题"
 date: 2026-05-16
 genre: vibe
 column: 代码的故事
-series: 第三章·数据的语言
+series: 数据的语言
 order: 4
 tags: [SQL, Edgar Codd, Donald Chamberlin, Raymond Boyce, 关系数据库, 查询语言, 编程语言, 计算机史]
 description: "Edgar Codd 说让用户声明他们想要什么，而不是怎么找。1970 年关系模型诞生，从此问数据库不再需要写程序——只需要 SELECT。"

@@ -3,7 +3,7 @@ title: "C++：既要也要"
 date: 2026-05-16
 genre: vibe
 column: 代码的故事
-series: 第四章·规模化的软件
+series: 规模化的软件
 order: 5
 tags: [C++, Bjarne Stroustrup, Alexander Stepanov, STL, 面向对象, 泛型编程, 编程语言, 计算机史]
 description: "Bjarne Stroustrup 想要一个'既要性能又要抽象'的语言。1979 年他在贝尔实验室开始了一个自相矛盾的项目——给 C 加上类。"

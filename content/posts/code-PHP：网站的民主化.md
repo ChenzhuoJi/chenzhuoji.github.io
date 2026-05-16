@@ -3,7 +3,7 @@ title: "PHP：网站的民主化"
 date: 2026-05-16
 genre: vibe
 column: 代码的故事
-series: 第五章·网络的语言
+series: 网络的语言
 order: 8
 tags: [PHP, Rasmus Lerdorf, WordPress, LAMP, 动态网站, 编程语言, 互联网史]
 description: "Rasmus Lerdorf 在 1994 年用 Perl 写了一套个人主页工具——他没想到这成了全世界最简单的动态网站方案。PHP 让任何人都能搭一个留言板。"

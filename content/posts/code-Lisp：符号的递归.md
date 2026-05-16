@@ -3,7 +3,7 @@ title: "Lisp：符号的递归"
 date: 2026-05-16
 genre: vibe
 column: 代码的故事
-series: 第一章·计算的觉醒
+series: 计算的觉醒
 order: 2
 tags: [Lisp, John McCarthy, Steve Russell, 递归, 符号计算, 人工智能, 编程语言, 计算机史]
 description: "John McCarthy 想要一个做 AI 研究的语言——计算机能处理的不只是数字，还有思想。Lisp 的回答是'代码即数据'。1958 年，括号开始统治世界。"

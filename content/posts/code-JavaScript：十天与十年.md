@@ -3,7 +3,7 @@ title: "JavaScript：十天与十年"
 date: 2026-05-16
 genre: vibe
 column: 代码的故事
-series: 第五章·网络的语言
+series: 网络的语言
 order: 7
 tags: [JavaScript, Brendan Eich, Netscape, AJAX, Node.js, 浏览器, 编程语言, 计算机史]
 description: "Brendan Eich 在 Netscape 被要求'在浏览器里加一个脚本语言'。10 天做出了 JavaScript。1995 年它只是个表单验证脚本；2025 年 98.9% 的网站在用它。"

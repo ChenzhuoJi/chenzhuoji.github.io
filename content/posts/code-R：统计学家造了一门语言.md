@@ -3,7 +3,7 @@ title: "R：统计学家造了一门语言"
 date: 2026-05-16
 genre: vibe
 column: 代码的故事
-series: 第五章·网络的语言
+series: 网络的语言
 order: 9
 tags: [R, Ross Ihaka, Robert Gentleman, John Chambers, CRAN, 统计计算, 数据科学, ggplot2, 编程语言]
 description: "两个统计学教授在教学楼走廊的黑板前决定造一门语言。他们没想到——一个被嘲讽为'教学玩具'的东西，会成为数据科学的基础设施。"

@@ -3,7 +3,7 @@ title: "C：Unix 的血液"
 date: 2026-05-16
 genre: vibe
 column: 代码的故事
-series: 第二章·机器的语言
+series: 机器的语言
 order: 3
 tags: [C, Ken Thompson, Dennis Ritchie, Unix, PDP-11, 贝尔实验室, 编程语言, 计算机史]
 description: "Ken Thompson 想玩一个游戏，于是他写了一个操作系统。Dennis Ritchie 觉得 B 语言太弱，于是创造了 C。1973 年 Unix 内核用 C 重写——操作系统第一次可以用高级语言写。"

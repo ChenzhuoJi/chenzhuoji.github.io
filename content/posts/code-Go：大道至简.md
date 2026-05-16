@@ -3,7 +3,7 @@ title: "Go：大道至简"
 date: 2026-05-16
 genre: vibe
 column: 代码的故事
-series: 第七章·新时代
+series: 新时代
 order: 13
 tags: [Go, Rob Pike, Ken Thompson, Robert Griesemer, Google, 并发, Docker, Kubernetes, 编程语言]
 description: "2007 年 Google 的三个工程师受够了——C++ 编译 45 分钟、依赖管理噩梦、并发痛苦。他们问了个简单的问题：能不能让写代码重新变得简单？"

@@ -3,7 +3,7 @@ title: "Fortran：把公式交给机器"
 date: 2026-05-16
 genre: vibe
 column: 代码的故事
-series: 第一章·计算的觉醒
+series: 计算的觉醒
 order: 1
 tags: [Fortran, John Backus, IBM 704, 编译器, 编程语言, 计算机史]
 description: "John Backus 在 IBM 领导了第一个高级语言编译器。1957 年，一行 `y = x + 1` 跑起来了——人类第一次可以用数学符号和计算机对话。"

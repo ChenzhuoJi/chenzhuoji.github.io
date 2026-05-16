@@ -3,7 +3,7 @@ title: "Rust：安全的代价"
 date: 2026-05-16
 genre: vibe
 column: 代码的故事
-series: 第六章·当代的语言
+series: 当代的语言
 order: 14
 tags: [Rust, Graydon Hoare, Mozilla, 系统编程, 内存安全, 所有权, 编程语言]
 description: "2006 年，温哥华一栋公寓楼的电梯坏了——C++ 写的控制软件内存泄漏。住在 21 楼的程序员爬楼到家后打开电脑，开始设计一门'过度设计以求生存'的语言。"

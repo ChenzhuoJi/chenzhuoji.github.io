@@ -3,7 +3,7 @@ title: "Java：虚拟机的征服"
 date: 2026-05-16
 genre: vibe
 column: 代码的故事
-series: 第四章·规模化的软件
+series: 规模化的软件
 order: 6
 tags: [Java, James Gosling, Green Team, 虚拟机, Sun Microsystems, JVM, 编程语言, 计算机史]
 description: "James Gosling 在 Sun 想给机顶盒写一个跨平台的语言——但互联网需要它。1995 年 Java 发布，一次编写到处运行。JVM 证明了虚拟化的胜利。"

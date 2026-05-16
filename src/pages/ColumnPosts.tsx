@@ -1,12 +1,14 @@
 import { useParams, Link } from 'react-router-dom'
 import ArticleList from '../components/ArticleList'
 import { usePostsByColumn } from '../hooks/usePosts'
+import { resolveColumnName } from '../utils/posts'
 
 export default function ColumnPosts() {
-  const { name } = useParams<{ name: string }>()
-  const posts = usePostsByColumn(name ?? '')
+  const { name: identifier } = useParams<{ name: string }>()
+  const columnName = resolveColumnName(identifier ?? '') ?? ''
+  const posts = usePostsByColumn(columnName)
 
-  if (!name || posts.length === 0) {
+  if (!columnName || posts.length === 0) {
     return (
       <div className="text-center py-20">
         <p className="text-ink-400 dark:text-ink-500">栏目未找到</p>
@@ -29,7 +31,7 @@ export default function ColumnPosts() {
           </svg>
           探索
         </Link>
-        <h1 className="text-2xl font-serif font-semibold text-ink-900 dark:text-ink-100">{name}</h1>
+        <h1 className="text-2xl font-serif font-semibold text-ink-900 dark:text-ink-100">{columnName}</h1>
         <p className="mt-1 text-sm text-ink-400 dark:text-ink-500">共 {posts.length} 篇 · {posts.some(p => p.meta.series === '后记') ? '完结' : '连载'}</p>
       </section>
       <ArticleList posts={posts} />

@@ -3,7 +3,7 @@ title: "Ruby：快乐的代价"
 date: 2026-05-16
 genre: vibe
 column: 代码的故事
-series: 第五章·网络的语言
+series: 网络的语言
 order: 12
 tags: [Ruby, Matz, Ruby on Rails, DHH, 编程语言, Web 开发, 开源]
 description: "1993 年，一个日本程序员觉得写代码太痛苦了。他想让程序员幸福——于是他造了 Ruby。快乐很好，但快乐很贵。"

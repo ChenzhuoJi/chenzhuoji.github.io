@@ -19,11 +19,11 @@ export default function Explore() {
           <div className="flex flex-wrap gap-3">
             {columns.map((col) => (
               <Link
-                key={col}
-                to={`/columns/${col}`}
+                key={col.name}
+                to={`/columns/${col.slug ?? col.name}`}
                 className="px-4 py-2 rounded-lg bg-ink-100 dark:bg-ink-800 text-ink-700 dark:text-ink-300 hover:bg-vermilion-50 dark:hover:bg-vermilion-950/30 hover:text-vermilion-600 dark:hover:text-vermilion-400 transition-colors text-sm"
               >
-                {col}
+                {col.name}
               </Link>
             ))}
           </div>

@@ -1,5 +1,6 @@
 import matter from 'gray-matter'
-import type { Post, PostMeta, Genre, SearchIndex, GraphNode, GraphEdge } from '../types'
+import type { Post, PostMeta, Genre, SearchIndex, GraphNode, GraphEdge, Column } from '../types'
+import columnSlugs from '../data/columns'
 
 const modules = import.meta.glob('/content/posts/*.md', { query: '?raw', import: 'default', eager: true })
 
@@ -69,12 +70,29 @@ export function getPostsByGenre(genre: Genre): Post[] {
   return getAllPosts().filter((p) => p.meta.genre === genre)
 }
 
-export function getAllColumns(): string[] {
+function getColumnSlug(name: string): string | undefined {
+  return columnSlugs[name]
+}
+
+export function getColumnUrl(name: string): string {
+  return getColumnSlug(name) ?? name
+}
+
+export function resolveColumnName(identifier: string): string | undefined {
+  const entry = Object.entries(columnSlugs).find(([, slug]) => slug === identifier)
+  if (entry) return entry[0]
+  return identifier
+}
+
+export function getAllColumns(): Column[] {
   const cols = new Set<string>()
   for (const post of getAllPosts()) {
     if (post.meta.column) cols.add(post.meta.column)
   }
-  return [...cols].sort()
+  return [...cols].sort().map(name => ({
+    name,
+    slug: getColumnSlug(name),
+  }))
 }
 
 export function getPostsByColumn(column: string): Post[] {

@@ -3,7 +3,7 @@ title: "Python：胶水语言的逆袭（上篇）"
 date: 2026-05-16
 genre: vibe
 column: 代码的故事
-series: 第五章·网络的语言
+series: 网络的语言
 order: 10
 tags: [Python, Guido van Rossum, NumPy, Django, CPython, 编程语言, 开源]
 description: >-

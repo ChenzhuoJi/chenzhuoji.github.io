@@ -74,10 +74,10 @@ export default function Home() {
             <span className="mx-4 text-sm text-ink-400 dark:text-ink-500 whitespace-nowrap">栏目文章</span>
             <div className="flex-grow border-t border-ink-200 dark:border-ink-700" />
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center gap-6">
             {columns.map((col) => {
               const colPosts = posts
-                .filter((p) => p.meta.column === col)
+                .filter((p) => p.meta.column === col.name)
                 .sort((a, b) => {
                   const ao = a.meta.order ?? 9999
                   const bo = b.meta.order ?? 9999
@@ -88,8 +88,8 @@ export default function Home() {
               const isComplete = colPosts.some((p) => p.meta.series === '后记')
               return (
                 <Link
-                  key={col}
-                  to={`/columns/${encodeURIComponent(col)}`}
+                  key={col.name}
+                  to={`/columns/${col.slug ?? col.name}`}
                   className="relative overflow-hidden rounded-xl bg-gradient-to-br from-ink-100 to-ink-50 dark:from-ink-800 dark:to-ink-950 border border-ink-200 dark:border-ink-700 w-72 group hover:border-vermilion-300 dark:hover:border-vermilion-700 transition-all"
                 >
                   <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full bg-vermilion-500/[0.04] dark:bg-vermilion-500/[0.06] blur-3xl" />
@@ -104,7 +104,7 @@ export default function Home() {
                     </div>
 
                     <h3 className="text-xl font-serif font-bold text-ink-900 dark:text-ink-100 mb-3 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors leading-snug">
-                      {col}
+                      {col.name}
                     </h3>
 
                     <p className="text-[11px] text-ink-400 dark:text-ink-500 leading-relaxed mb-5">

@@ -74,7 +74,7 @@ export default function Home() {
             <span className="mx-4 text-sm text-ink-400 dark:text-ink-500 whitespace-nowrap">栏目文章</span>
             <div className="flex-grow border-t border-ink-200 dark:border-ink-700" />
           </div>
-          <div className="flex justify-center gap-6">
+          <div className="flex flex-col items-center md:flex-row md:justify-center gap-6">
             {columns.map((col) => {
               const colPosts = posts
                 .filter((p) => p.meta.column === col.name)
@@ -90,7 +90,7 @@ export default function Home() {
                 <Link
                   key={col.name}
                   to={`/columns/${col.slug ?? col.name}`}
-                  className="relative overflow-hidden rounded-xl bg-gradient-to-br from-ink-100 to-ink-50 dark:from-ink-800 dark:to-ink-950 border border-ink-200 dark:border-ink-700 w-72 group hover:border-vermilion-300 dark:hover:border-vermilion-700 transition-all"
+                  className="relative overflow-hidden rounded-xl bg-gradient-to-br from-ink-100 to-ink-50 dark:from-ink-800 dark:to-ink-950 border border-ink-200 dark:border-ink-700 w-full max-w-sm md:w-72 group hover:border-vermilion-300 dark:hover:border-vermilion-700 transition-all"
                 >
                   <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full bg-vermilion-500/[0.04] dark:bg-vermilion-500/[0.06] blur-3xl" />
                   <div className="absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-vermilion-500/[0.03] dark:bg-vermilion-500/[0.04] blur-2xl" />

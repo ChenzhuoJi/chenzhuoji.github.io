@@ -20,7 +20,8 @@ permission:
 
 1. 读 `content/posts/` 下的目标文章，理解叙事结构和每章主题
 2. 判断每个章节适合插什么图（场景照片、设备图、示意图、人物肖像等）
-3. 按判断的关键词搜索公有领域 / CC 协议图片（Wikipedia Commons、Archive.org、Pexels 等）
+3. **先搜 `public/images/`**：看已有图片中有没有能复用的（同一栏目不同文章可能共用同一人物、同一概念图）
+4. 找不到再去搜索公有领域 / CC 协议图片（Wikipedia Commons、Archive.org、Pexels 等）
 4. 下载图片到 `public/images/`，文件名用英文连字符命名
 5. 在文章中插入图片引用和说明文字——说明文字要有信息量，不能只是一句"XX 图"
 

@@ -266,21 +266,9 @@ Python 的故事还没有结束。上篇到这里，只是一个序曲。
 
 *Jim Hugunin——MIT 研究生，1995 年创建了 Numeric，Python 的第一个数值计算扩展。这是 Python 踏入科学计算的第一步。后来参与 JPython（Jython）的开发。*
 
-![](/images/travis-oliphant-numpy.jpg)
-
-*Travis Oliphant——2005–2006 年整合 Numeric 和 Numarray 创建了 NumPy，奠定了 Python 科学计算生态的基础。后来共同创建了 SciPy 和 Anaconda（Python 数据科学发行版）。现任 OpenTeams 联合创始人兼 CEO。*
-
 ![](/images/adrian-holovaty-simon-willison-django.jpg)
 
 *Adrian Holovaty 和 Simon Willison——Django 联合创始人。2003 年在堪萨斯州劳伦斯市《Lawrence Journal-World》报社用 Python 创建了 Django 框架，2005 年开源。Holovaty 后来创办了 EveryBlock（本地新闻聚合），Willison 创办了 Lanyrd（会议社交平台）。*
-
-![](/images/tim-peters-python.jpg)
-
-*Tim Peters——Python 核心开发者、长期贡献者。1999 年在邮件列表中写下 19 条箴言，后成为 PEP 20（The Zen of Python）。他对 Python 的贡献包括排序算法（TimSort，Python 和 Java 的默认排序算法）、生成器、装饰器语法。*
-
-![](/images/pythonlabs-beopen-2000.jpg)
-
-*2000 年 BeOpen.com 时期的 PythonLabs 核心团队合影。从左至右：Barry Warsaw、Guido van Rossum、Jeremy Hylton、Fredrik Lundh 等。这是 Python 从个人项目走向社区化治理的关键时刻。*
 
 ---
 

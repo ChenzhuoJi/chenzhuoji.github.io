@@ -107,8 +107,8 @@ export default function Home() {
                       {col.name}
                     </h3>
 
-                    <p className="text-[11px] text-ink-400 dark:text-ink-500 leading-relaxed mb-5">
-                      智能如何在计算中涌现
+                    <p className="text-[11px] text-ink-400 dark:text-ink-500 leading-relaxed mb-5 min-h-[1em]">
+                      {col.description}
                     </p>
 
                     <div className="grid grid-cols-3 gap-3 mb-5 w-full">

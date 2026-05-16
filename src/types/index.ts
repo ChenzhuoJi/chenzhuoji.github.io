@@ -1,6 +1,7 @@
 export interface Column {
   name: string
   slug?: string
+  description?: string
 }
 
 export type Genre = 'vibe' | 'my'

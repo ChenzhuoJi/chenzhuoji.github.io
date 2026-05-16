@@ -1,6 +1,6 @@
 import matter from 'gray-matter'
 import type { Post, PostMeta, Genre, SearchIndex, GraphNode, GraphEdge, Column } from '../types'
-import columnSlugs from '../data/columns'
+import columnsConfig from '../data/columns'
 
 const modules = import.meta.glob('/content/posts/*.md', { query: '?raw', import: 'default', eager: true })
 
@@ -70,8 +70,19 @@ export function getPostsByGenre(genre: Genre): Post[] {
   return getAllPosts().filter((p) => p.meta.genre === genre)
 }
 
+const slugMap = new Map<string, string>()
+const descriptionMap = new Map<string, string>()
+const nameBySlug = new Map<string, string>()
+for (const col of columnsConfig) {
+  if (col.slug) {
+    slugMap.set(col.name, col.slug)
+    nameBySlug.set(col.slug, col.name)
+  }
+  if (col.description) descriptionMap.set(col.name, col.description)
+}
+
 function getColumnSlug(name: string): string | undefined {
-  return columnSlugs[name]
+  return slugMap.get(name)
 }
 
 export function getColumnUrl(name: string): string {
@@ -79,9 +90,7 @@ export function getColumnUrl(name: string): string {
 }
 
 export function resolveColumnName(identifier: string): string | undefined {
-  const entry = Object.entries(columnSlugs).find(([, slug]) => slug === identifier)
-  if (entry) return entry[0]
-  return identifier
+  return nameBySlug.get(identifier) ?? identifier
 }
 
 export function getAllColumns(): Column[] {
@@ -91,7 +100,8 @@ export function getAllColumns(): Column[] {
   }
   return [...cols].sort().map(name => ({
     name,
-    slug: getColumnSlug(name),
+    slug: slugMap.get(name),
+    description: descriptionMap.get(name),
   }))
 }
 

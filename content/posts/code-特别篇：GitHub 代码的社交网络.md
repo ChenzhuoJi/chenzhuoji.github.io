@@ -4,6 +4,7 @@ date: 2026-05-16
 genre: vibe
 column: 代码的故事
 order: 98
+series: 特别篇
 tags: [Git, GitHub, Linus Torvalds, 开源, 版本控制, Pull Request, 社交编程, 微软收购]
 description: "2005 年 BitKeeper 收回免费许可，Linus Torvalds 两周写出 Git。三年后三个年轻人在旧金山酒吧里构思了 GitHub。这不是一门编程语言——但它改变了所有编程语言被使用的方式。"
 ---

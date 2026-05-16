@@ -4,6 +4,7 @@ date: 2026-05-16
 genre: vibe
 column: 代码的故事
 order: 99
+series: 后记
 tags: [编程语言, 计算机史, 后记]
 description: "从 Fortran 到自然语言，七十年的旅程。这不是编程语言的历史——这是一群人和机器如何学会对话的故事。"
 ---

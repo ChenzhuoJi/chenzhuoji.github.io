@@ -158,6 +158,10 @@ PHP 把这个关系完全颠倒过来：
 
 ## LAMP 栈——免费的午餐
 
+![](/images/lamp-stack-architecture.svg)
+
+*LAMP 栈架构——Linux、Apache、MySQL、PHP。四个开源软件的组合创造了一个完全免费、完全开放的 Web 开发平台。这个缩写由德国记者 Michael Kunze 在 1998 年提出，它让中学生用零成本就能上线一个动态网站。*
+
 1998 年，德国《c't》杂志的记者 Michael Kunze 写了一篇文章。他在文章里提出了一个缩写：LAMP——Linux, Apache, MySQL, PHP（或 Perl 或 Python）。他的核心论点是：这四个开源软件加在一起，构成了一套足以匹敌商业 Web 开发平台的免费方案。
 
 对比当时的企业级方案：微软的解决方案是 ASP + IIS + SQL Server，许可证费用是每台服务器几千美元，而且你被锁定在 Windows 上。IBM 的方案是 WebSphere + DB2，价格可以到六位数。Oracle 的方案是 Oracle Application Server + Oracle Database，同样昂贵。而 LAMP 的全部组件都是免费的——你不需要为任何软件支付许可证费用。你只需要一台服务器（或者一个共享主机的账号，月费 10 美元），装一个 Linux 发行版，apt-get install 或者 yum install 四个组件，就拥有了一个完整的企业级 Web 平台。
@@ -276,10 +280,6 @@ Rasmus Lerdorf 在 1993 年只是想知道谁看了他的个人主页。35 年�
 ![](/images/matt-mullenweg-young.jpg)
 
 *Matt Mullenweg（1984–），WordPress 的联合创始人。19 岁时因为 b2/cafelog 停止开发而 fork 了它的代码，创建了 WordPress。2004 年 Movable Type 变更许可条款引爆迁移潮，WordPress 成为全球最流行的 CMS。到 2024 年，43% 的网站使用 WordPress。*
-
-![](/images/lamp-stack-architecture.svg)
-
-*LAMP 栈架构——Linux、Apache、MySQL、PHP。四个开源软件的组合创造了一个完全免费、完全开放的 Web 开发平台。这个缩写由德国记者 Michael Kunze 在 1998 年提出，它让中学生用零成本就能上线一个动态网站。*
 
 ---
 

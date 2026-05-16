@@ -77,6 +77,10 @@ ImageNet 是一个由斯坦福教授李飞飞在 2007 年启动的巨型图像�
 
 Krizhevsky 训练的网络叫 AlexNet——一个 8 层深的卷积神经网络。6000 万个参数。650000 个神经元。用两块 GTX 580 训练了五到六天。每块 GPU 上放一半的神经元，中间有一层专门的通信机制让两块卡交换数据。
 
+![](/images/alexnet-architecture.png)
+
+*AlexNet 的网络架构——8 层深度、6000 万参数。这个在卧室里训练出来的网络将 ImageNet 错误率降低了近 11 个百分点，彻底改变了计算机视觉的方向。*
+
 结果出来后，整个计算机视觉界都震惊了。
 
 AlexNet 在 ImageNet 比赛上的 top-5 错误率是 15.3%。第二名只有 26.2%。不是好了一点点——是好了将近 11 个百分点。这是 ImageNet 比赛历史上最大的一次性能飞跃。从 2011 年到 2012 年，错误率的下降幅度超过了前几年的总和。
@@ -345,10 +349,6 @@ Python 不是被设计成 AI 语言的。它是被捡起来的。被一群不想
 ---
 
 ## 人物
-
-<!-- ⛔ Alex Krizhevsky 的肖像无法从 Wikipedia Commons 或任何公有领域来源获取。此处使用 AlexNet 论文中的架构图作为替代。 -->
-
-![](/images/alexnet-architecture.png)
 
 *Alex Krizhevsky——AlexNet 的第一作者。2012 年在多伦多大学他父母家的卧室里，用两块 GTX 580 训练了改写计算机视觉历史的卷积神经网络。毕业后与 Hinton、Sutskever 共同创办 DNNResearch，后公司被 Google 收购。2017 年离开 Google，此后保持低调。*
 

@@ -245,6 +245,10 @@ Rust 没有杀死 C——它让 C 从"唯一选项"变成了"遗留选项"。对
 
 2026 年，Rust 1.95 发布了。Stack Overflow 的年度开发者调查中，Rust 连续多年排在"最受喜爱语言"的榜首。《The Rust Programming Language》已经被翻译成了二十多种语言。crates.io 上已经有了超过十五万个包。Rust Foundation 的成员公司已经扩展到了几十家。美国政府的报告里还在提它的名字。
 
+![](/images/ferris-the-crab-rust.svg)
+
+*Ferris the Crab——Rust 的非官方吉祥物。这只红色的螃蟹由 Karen Rustad Tölva 在 2010 年设计，后成为 Rust 社区最广为人知的象征。选择螃蟹是因为 Rust 中的借用（borrowing）和所有权（ownership）概念让人联想到寄居蟹借贝壳的隐喻。Ferris 在 Rust 活动中无处不在——从贴纸到 T 恤到毛绒玩具——是 Rust 社区温暖一面的化身。*
+
 而这一切的起点，是 2006 年温哥华一栋公寓楼的 21 层楼梯。一个程序员在爬完楼梯后打开电脑，开始造一门"过度设计以求生存"的语言。他可能没有意识到，那个让他愤怒的瞬间——一座电梯的 C++ 内存泄漏——会催生出一门被白宫推荐、被 Linux 接纳、被全球开发者连续多年评为"最爱"的语言。
 
 Rust 选的路是"在编译期付钱，让运行时免费"。这条路不好走，但走的人越来越多。也许某一天，电梯的控制软件也会用 Rust 重写。到那时，Graydon Hoare 就可以安心坐电梯了。
@@ -272,10 +276,6 @@ Rust 选的路是"在编译期付钱，让运行时免费"。这条路不好走�
 ![](/images/steve-klabnik-rust.jpg)
 
 **Steve Klabnik**—— Rust 文档和社区核心人物。2012 年加入 Rust 社区，撰写了大量 Rust 文档，包括《The Rust Programming Language》（"TRPL"）的第二版——这是 Rust 社区最权威的教材。Rust 社区的文化塑造者之一，长期活跃在 Rust 论坛和会议演讲中。他将 Rust 定位为"一种让不可能出错的事情成为可能的语言"。
-
-![](/images/ferris-the-crab-rust.svg)
-
-*Ferris the Crab——Rust 的非官方吉祥物。这只红色的螃蟹由 Karen Rustad Tölva 在 2010 年设计，后成为 Rust 社区最广为人知的象征。选择螃蟹是因为 Rust 中的借用（borrowing）和所有权（ownership）概念让人联想到寄居蟹借贝壳的隐喻。Ferris 在 Rust 活动中无处不在——从贴纸到 T 恤到毛绒玩具——是 Rust 社区温暖一面的化身。*
 
 ---
 

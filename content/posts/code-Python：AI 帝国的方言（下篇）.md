@@ -38,7 +38,7 @@ print(torch.__version__)
 
 但几乎没人注意到底层发生了什么。
 
-这篇论文的**参考实现**，是用 Python 写的。用 TensorFlow 写的。用 Python 写的 TensorFlow。
+这篇论文参考实现使用 TensorFlow 完成，而 TensorFlow 主流应用生态以 Python 为主。
 
 这个细节看起来微不足道——就像问 Gutenberg 印刷的第一本书是什么纸印的一样。但就是这个细节，藏着一个更大的故事：Python 怎么从 2008 年的废墟上站起来，变成了 AI 帝国的普通话。
 

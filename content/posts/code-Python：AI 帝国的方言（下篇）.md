@@ -186,7 +186,7 @@ Soumith Chintala 后来在一个采访中说了一句意味深长的话：
 
 这句看起来轻描淡写的话，其实是整个 Python AI 故事的缩影。
 
-![](/images/pytorch-logo.jpg)
+![](/images/pytorch-logo.png)
 
 *PyTorch 的 logo。火炬的意象延续自 Torch7，但前面的"Py"前缀宣告了它和 Python 的血缘关系。它不只是一个框架——它是 Python 社区对 Google 技术霸权的一次文化反击。*
 

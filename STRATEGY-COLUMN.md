@@ -143,6 +143,6 @@ pin: true               # 可选，置顶文章
 |--------|----------|------|
 | 深度学习的故事 | `DEEP-LEARNING-COLUMN-STRATEGY.md` | 进行中 |
 | 统计学的故事 | `STATISTICS-COLUMN-STRATEGY.md` | 计划中 |
-| 中国移动互联网的故事 | `CHINA-MOBILE-INTERNET-STRATEGY.md` | 计划中 |
+| 掌上的互联网 | `STRATEGY-掌上的互联网.md` | 进行中 |
 | 代码的故事 | `CODE-COLUMN-STRATEGY.md` | 计划中 |
 | 中国金融的故事 | `CHINA-FINANCE-COLUMN-STRATEGY.md` | 计划中 |

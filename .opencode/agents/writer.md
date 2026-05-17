@@ -1,6 +1,7 @@
 ---
 description: 按大纲撰写专栏文章全文
 mode: subagent
+model: deepseek/deepseek-v4-pro
 permission:
   edit: allow
   bash: allow

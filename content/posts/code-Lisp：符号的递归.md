@@ -19,7 +19,7 @@ description: "John McCarthy 想要一个做 AI 研究的语言——计算机能
 
 ![](/images/lisp-logo.svg)
 
-*Lisp 的经典 logo，以三个互相连接的圆环构成一个三角结构。三环象征着 Lisp 的三个核心理念：代码即数据、递归、符号处理。1958 年诞生至今，Lisp 的语法——括号、前缀表达式、car/cdr——几乎没有改变过。这个 logo 就像 Lisp 本身：简洁、抽象、每一层都有含义。*
+*Lisp 的经典 logo。这个 logo 的设计和黑客文化中 “Lambda 演算骑士团（Knights of the Lambda Calculus）” 的符号一脉相承，用东方阴阳哲学的形式，将 Lisp 的理论根源、函数式编程的核心思想做了高度凝练的视觉表达。*
 
 计算机只能算数吗？
 

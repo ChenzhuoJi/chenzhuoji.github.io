@@ -30,7 +30,13 @@ jobs:
           cache: npm
 
       - run: npm ci
-      - run: npm run build
+
+      - name: TypeScript check
+        run: npx tsc --noEmit
+      - name: Vite build
+        run: npx vite build
+      - name: Generate RSS
+        run: node scripts/generate-rss.mjs
 
       - name: SPA fallback for GitHub Pages
         run: cp dist/index.html dist/404.html

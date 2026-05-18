@@ -31,12 +31,7 @@ jobs:
 
       - run: npm ci
 
-      - name: TypeScript check
-        run: npx tsc --noEmit
-      - name: Vite build
-        run: npx vite build
-      - name: Generate RSS
-        run: node scripts/generate-rss.mjs
+      - run: npm run build
 
       - name: SPA fallback for GitHub Pages
         run: cp dist/index.html dist/404.html

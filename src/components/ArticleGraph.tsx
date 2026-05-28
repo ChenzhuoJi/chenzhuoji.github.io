@@ -135,7 +135,7 @@ export default function ArticleGraph({ nodes: rawNodes, edges: rawEdges }: Props
   return (
     <div
       ref={containerRef}
-      className="w-full bg-ink-50/50 dark:bg-ink-900/30 rounded-xl overflow-hidden border border-ink-200 dark:border-ink-700"
+      className="w-full bg-ink-50/50 dark:bg-ink-900/30 rounded-md overflow-hidden border border-ink-200 dark:border-ink-700"
     >
       <svg
         width={dim.width}
@@ -192,7 +192,7 @@ export default function ArticleGraph({ nodes: rawNodes, edges: rawEdges }: Props
                   fontSize={isHovered ? 12 : 11}
                   fontWeight={isHovered ? '600' : '400'}
                   className="pointer-events-none select-none"
-                  style={{ fontFamily: '"Noto Sans SC", system-ui, sans-serif' }}
+                  style={{ fontFamily: 'var(--font-ui)' }}
                 >
                   {n.title.length > 10 ? n.title.slice(0, 10) + '…' : n.title}
                 </text>

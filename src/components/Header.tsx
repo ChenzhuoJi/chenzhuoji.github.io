@@ -27,14 +27,11 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-ink-50/80 dark:bg-ink-950/80 backdrop-blur-md border-b border-ink-100 dark:border-ink-800">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <header className="sticky top-0 z-40 bg-ink-50 dark:bg-ink-950 border-b border-ink-200 dark:border-ink-800">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <Link to="/" className="flex flex-col leading-tight">
-            <span className="text-lg font-serif font-semibold text-ink-900 dark:text-ink-100 tracking-tight">
+            <span className="text-base font-heading font-semibold text-ink-900 dark:text-ink-100 tracking-tight">
               Chenzhuo's Blog
-            </span>
-            <span className="text-[11px] text-ink-400 dark:text-ink-500 tracking-wide">
-              这是一个 toy
             </span>
           </Link>
 
@@ -43,10 +40,10 @@ export default function Header() {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-colors ${
+                className={`px-3 py-1.5 text-sm transition-colors ${
                   location.pathname === item.path
-                    ? 'text-vermilion-600 dark:text-vermilion-400 bg-vermilion-50 dark:bg-vermilion-950/30'
-                    : 'text-ink-600 dark:text-ink-400 hover:text-ink-900 dark:hover:text-ink-200 hover:bg-ink-100 dark:hover:bg-ink-800'
+                    ? 'text-vermilion-600 dark:text-vermilion-400'
+                    : 'text-ink-600 dark:text-ink-400 hover:text-ink-900 dark:hover:text-ink-200'
                 }`}
               >
                 {item.label}
@@ -54,7 +51,7 @@ export default function Header() {
             ))}
             <button
               onClick={() => setSearchOpen(true)}
-              className="p-2 rounded-lg text-ink-600 dark:text-ink-400 hover:bg-ink-100 dark:hover:bg-ink-800 transition-colors"
+              className="p-1.5 text-ink-600 dark:text-ink-400 hover:text-ink-900 dark:hover:text-ink-200 transition-colors"
               aria-label="搜索"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

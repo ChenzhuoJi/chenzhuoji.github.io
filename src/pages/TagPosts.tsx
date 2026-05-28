@@ -11,14 +11,11 @@ export default function TagPosts() {
       <section className="mb-12">
         <Link
           to="/tags"
-          className="inline-flex items-center text-sm text-ink-400 dark:text-ink-500 hover:text-ink-600 dark:hover:text-ink-300 transition-colors mb-4"
+          className="inline-block text-sm text-ink-400 dark:text-ink-500 hover:text-ink-600 dark:hover:text-ink-300 transition-colors mb-4"
         >
-          <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-          所有标签
+          ← 所有标签
         </Link>
-        <h1 className="text-2xl font-serif font-semibold text-ink-900 dark:text-ink-100">#{tag}</h1>
+        <h1 className="text-2xl font-heading font-semibold text-ink-900 dark:text-ink-100">#{tag}</h1>
         <p className="mt-1 text-sm text-ink-400 dark:text-ink-500">共 {posts.length} 篇</p>
       </section>
       <ArticleList posts={posts} />

@@ -17,35 +17,31 @@ export default function ArticleCard({ post, index = 0 }: Props) {
         inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
       }`}
     >
-      <a href={`/posts/${post.slug}`} className="block">
-        <div className="text-sm text-ink-400 dark:text-ink-500">
-          <time className="font-mono">{post.date}</time>
+      <a href={`/posts/${post.slug}`} className="article-row">
+        <div className="flex items-center gap-3">
+          <time className="text-xs text-ink-400 dark:text-ink-500 font-mono shrink-0">{post.date}</time>
+          <h2 className="text-sm font-medium text-ink-900 dark:text-ink-100 group-hover:text-vermilion-500 dark:group-hover:text-vermilion-400 transition-colors truncate">
+            {post.title}
+          </h2>
+        </div>
+        {post.description && (
+          <p className="mt-1 text-sm text-ink-500 dark:text-ink-400 line-clamp-1">{post.description}</p>
+        )}
+        <div className="mt-1 flex flex-wrap gap-2 text-xs text-ink-400 dark:text-ink-500">
           {post.column && (
             <>
-              <span className="mx-1.5">·</span>
               <span>{post.column}</span>
-              {post.order != null && <span> · 第 {post.order} 篇</span>}
+              {post.order != null && <span>第 {post.order} 篇</span>}
+            </>
+          )}
+          {post.tags.length > 0 && (
+            <>
+              {post.tags.map((t) => (
+                <span key={t} className="tag">#{t}</span>
+              ))}
             </>
           )}
         </div>
-        <h2 className="mt-1 text-lg font-medium text-ink-900 dark:text-ink-100 group-hover:text-vermilion-500 dark:group-hover:text-vermilion-400 transition-colors">
-          {post.title}
-        </h2>
-        {post.description && (
-          <p className="mt-1 text-sm text-ink-500 dark:text-ink-400 line-clamp-2">{post.description}</p>
-        )}
-        {post.tags.length > 0 && (
-          <div className="mt-2 flex flex-wrap gap-1.5">
-            {post.tags.map((t) => (
-              <span
-                key={t}
-                className="text-xs px-2 py-0.5 rounded-full bg-ink-100 dark:bg-ink-800 text-ink-500 dark:text-ink-400"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-        )}
       </a>
     </article>
   )

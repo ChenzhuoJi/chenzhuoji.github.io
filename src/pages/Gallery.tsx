@@ -19,7 +19,7 @@ export default function Gallery() {
           </svg>
           首页
         </Link>
-        <h1 className="text-2xl font-serif font-semibold text-ink-900 dark:text-ink-100">
+        <h1 className="text-2xl font-heading font-semibold text-ink-900 dark:text-ink-100">
           画廊
         </h1>
         <div className="mt-3 flex items-center gap-3">

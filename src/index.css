@@ -3,14 +3,37 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* ══════════════════════════════════════════════════════
+       字体变量 — 修改 src/data/fonts.ts 后同步更新此处
+       ══════════════════════════════════════════════════════ */
+    --font-heading: 'Open Sans', 'Noto Sans CJK SC', 'Noto Sans SC',
+      'Noto Sans JP', system-ui, -apple-system, sans-serif;
+    --font-body: 'Noto Serif CJK SC', 'Noto Serif SC', 'Noto Serif JP',
+      'Source Han Serif SC', 'STSong', Georgia, serif;
+    --font-ui: 'Open Sans', 'Noto Sans CJK SC', 'Noto Sans SC',
+      'Noto Sans JP', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Noto Sans Mono SC', 'Fira Code',
+      ui-monospace, SFMono-Regular, monospace;
+    --font-accent: 'Noto Serif CJK SC', 'Noto Serif SC', 'LXGW WenKai',
+      'KaiTi', serif;
+  }
+
   html {
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    @apply bg-ink-50 dark:bg-ink-950 text-ink-900 dark:text-ink-100;
+    font-family: var(--font-ui);
+    @apply bg-ink-50 dark:bg-ink-950 text-ink-700 dark:text-ink-300;
+    transition: background-color 350ms ease, color 350ms ease;
+  }
+
+  h1, h2, h3, h4 {
+    text-wrap: balance;
   }
 
   ::selection {
@@ -19,7 +42,35 @@
 }
 
 @layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-2.5 text-sm font-medium
+           text-white bg-vermilion-500 hover:bg-vermilion-600
+           transition-colors duration-200;
+    font-family: var(--font-ui);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-4 py-2 text-sm
+           text-ink-600 dark:text-ink-400 hover:text-ink-900 dark:hover:text-ink-200
+           hover:bg-ink-100 dark:hover:bg-ink-800
+           transition-colors duration-200;
+    font-family: var(--font-ui);
+  }
+
+  .tag {
+    @apply text-xs text-ink-500 dark:text-ink-400 hover:text-vermilion-500 dark:hover:text-vermilion-400 transition-colors duration-200;
+  }
+
+  .divider {
+    @apply border-t border-ink-200 dark:border-ink-800;
+  }
+
+  .article-row {
+    @apply block py-3 border-b border-ink-100 dark:border-ink-800 last:border-b-0;
+  }
+
   .prose-ink {
+    font-family: var(--font-body);
     --tw-prose-body: theme('colors.ink.700');
     --tw-prose-headings: theme('colors.ink.900');
     --tw-prose-links: theme('colors.vermilion.500');
@@ -59,7 +110,7 @@
 
 /* Code blocks */
 pre:has(code) {
-  @apply rounded-lg border border-ink-200 dark:border-ink-800;
+  @apply border border-ink-200 dark:border-ink-800;
 }
 
 /* Code highlighting tokens */
@@ -97,11 +148,6 @@ pre:has(code) {
   to   { opacity: 1; }
 }
 
-@keyframes scale-in {
-  from { opacity: 0; transform: scale(0.96); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
 @layer utilities {
   .line-clamp-2 {
     display: -webkit-box;
@@ -136,7 +182,6 @@ pre:has(code) {
   }
 
   .scrollbar-thin::-webkit-scrollbar-thumb {
-    border-radius: 9999px;
     background-color: theme('colors.ink.200');
   }
 

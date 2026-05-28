@@ -3,7 +3,6 @@ title: Why Vibe
 date: 2026-05-14
 genre: my
 description: 这个博客的由来，对 vibe coding 与 vibe writing 的极简思考
-pin: true
 ---
 ## Vibe 是一种趋势
 

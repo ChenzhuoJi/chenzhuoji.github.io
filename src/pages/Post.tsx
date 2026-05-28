@@ -25,29 +25,26 @@ export default function Post() {
 
   return (
     <article>
-      <div className="flex items-center gap-2 text-sm mb-8">
+      <div className="flex items-center gap-2 text-xs text-ink-400 dark:text-ink-500 mb-8">
         <Link
           to="/"
-          className="inline-flex items-center text-ink-400 dark:text-ink-500 hover:text-ink-600 dark:hover:text-ink-300 transition-colors"
+          className="hover:text-ink-600 dark:hover:text-ink-300 transition-colors"
         >
-          <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
           首页
         </Link>
-        <span className="text-ink-300 dark:text-ink-600">/</span>
+        <span>/</span>
         <Link
           to={`/genre/${post.meta.genre}`}
-          className="text-ink-400 dark:text-ink-500 hover:text-ink-600 dark:hover:text-ink-300 transition-colors"
+          className="hover:text-ink-600 dark:hover:text-ink-300 transition-colors"
         >
           {post.meta.genre === 'vibe' ? 'Vibe Writing' : 'My Writing'}
         </Link>
         {post.meta.column && (
           <>
-            <span className="text-ink-300 dark:text-ink-600">/</span>
+            <span>/</span>
             <Link
               to={`/columns/${getColumnUrl(post.meta.column)}`}
-              className="text-ink-400 dark:text-ink-500 hover:text-ink-600 dark:hover:text-ink-300 transition-colors"
+              className="hover:text-ink-600 dark:hover:text-ink-300 transition-colors"
             >
               {post.meta.column}
             </Link>
@@ -56,14 +53,14 @@ export default function Post() {
       </div>
 
       <header className="mb-10">
-        <h1 className="text-3xl font-serif font-bold text-ink-900 dark:text-ink-100 leading-tight">
+        <h1 className="text-3xl font-heading font-bold text-ink-900 dark:text-ink-100 leading-tight">
           {post.meta.title}
         </h1>
-        <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-ink-400 dark:text-ink-500">
+        <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-400 dark:text-ink-500">
           <time>{post.meta.date}</time>
-          <span className="w-1 h-1 rounded-full bg-ink-300 dark:bg-ink-600" />
+          <span className="text-ink-300 dark:text-ink-600">/</span>
           <span>{post.readingTime} 分钟阅读</span>
-          <span className="w-1 h-1 rounded-full bg-ink-300 dark:bg-ink-600" />
+          <span className="text-ink-300 dark:text-ink-600">/</span>
           <Link
             to={`/genre/${post.meta.genre}`}
             className="text-vermilion-500 hover:text-vermilion-600 dark:hover:text-vermilion-400 transition-colors"
@@ -72,7 +69,7 @@ export default function Post() {
           </Link>
           {post.meta.column && (
             <>
-              <span className="w-1 h-1 rounded-full bg-ink-300 dark:bg-ink-600" />
+              <span className="text-ink-300 dark:text-ink-600">/</span>
               <Link
                 to={`/columns/${getColumnUrl(post.meta.column)}`}
                 className="text-vermilion-500 hover:text-vermilion-600 dark:hover:text-vermilion-400 transition-colors"
@@ -83,7 +80,7 @@ export default function Post() {
           )}
           {post.meta.tags.length > 0 && (
             <>
-              <span className="w-1 h-1 rounded-full bg-ink-300 dark:bg-ink-600" />
+              <span className="text-ink-300 dark:text-ink-600">/</span>
               <div className="flex gap-1.5">
                 {post.meta.tags.map((t) => (
                   <Link
@@ -101,12 +98,12 @@ export default function Post() {
       </header>
 
       <div className="flex gap-12 items-start">
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0 max-w-2xl">
           <MarkdownRenderer content={post.content} />
 
           {(nav.prev || nav.next) && (
-            <nav className="mt-12 p-5 bg-ink-50 dark:bg-ink-800/50 border border-ink-200 dark:border-ink-700 rounded-lg">
-              <div className="text-xs text-ink-400 dark:text-ink-500 mb-3 tracking-wide">
+            <nav className="mt-12 pt-5 border-t-2 border-ink-200 dark:border-ink-700">
+              <div className="text-xs text-ink-400 dark:text-ink-500 mb-4 tracking-wide">
                 {post.meta.column}
               </div>
               <div className="flex items-center justify-between gap-4">
@@ -146,7 +143,7 @@ export default function Post() {
 
           <RelatedArticles articles={related} />
         </div>
-        <aside className="hidden lg:flex flex-col gap-6 sticky top-24 w-56 shrink-0 h-[calc(100vh-6rem)]">
+        <aside className="hidden lg:flex flex-col gap-6 sticky top-24 w-56 shrink-0">
           <TOC post={post} />
           {post.meta.column && (
             <ColumnSidebar column={post.meta.column} currentSlug={post.meta.slug} />

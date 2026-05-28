@@ -20,7 +20,7 @@ export default function GalleryCard({ artwork, index, onSelect }: Props) {
     >
       <button
         onClick={() => onSelect(artwork)}
-        className="group relative overflow-hidden rounded-xl w-full text-left"
+        className="group relative overflow-hidden rounded-md w-full text-left"
       >
         <img
           src={artwork.image}

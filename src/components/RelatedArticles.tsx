@@ -15,7 +15,7 @@ export default function RelatedArticles({ articles }: Props) {
 
   return (
     <section className="mt-12 pt-8 border-t border-ink-200 dark:border-ink-700">
-      <h2 className="text-lg font-serif font-semibold text-ink-900 dark:text-ink-100 mb-4">
+      <h2 className="text-lg font-heading font-semibold text-ink-900 dark:text-ink-100 mb-4">
         相关文章
       </h2>
       <div className="space-y-3">
@@ -23,7 +23,7 @@ export default function RelatedArticles({ articles }: Props) {
           <Link
             key={post.meta.slug}
             to={`/posts/${post.meta.slug}`}
-            className="block p-4 rounded-lg bg-ink-50 dark:bg-ink-800/50 hover:bg-ink-100 dark:hover:bg-ink-800 transition-colors"
+            className="block py-3 border-b border-ink-100 dark:border-ink-800 last:border-b-0 hover:border-ink-200 dark:hover:border-ink-700 transition-colors"
           >
             <div className="text-sm font-medium text-ink-900 dark:text-ink-100">
               {post.meta.title}
@@ -32,9 +32,9 @@ export default function RelatedArticles({ articles }: Props) {
               {sharedTags.map((t) => (
                 <span
                   key={t}
-                  className="text-xs px-2 py-0.5 rounded-full bg-vermilion-100 dark:bg-vermilion-900/30 text-vermilion-600 dark:text-vermilion-400"
+                  className="text-xs text-vermilion-600 dark:text-vermilion-400"
                 >
-                  {t}
+                  #{t}
                 </span>
               ))}
             </div>

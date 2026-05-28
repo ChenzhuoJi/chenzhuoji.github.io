@@ -81,7 +81,7 @@ export default function GalleryLightbox({ artwork, artworks, onClose, onSelect }
         <img
           src={artwork.image}
           alt={artwork.title}
-          className="max-h-[85vh] max-w-full object-contain rounded-lg animate-[scale-in_0.3s_ease-out]"
+          className="max-h-[85vh] max-w-full object-contain rounded-md animate-[scale-in_0.3s_ease-out]"
         />
 
         <div className="absolute bottom-0 left-0 right-0 p-6 text-center">

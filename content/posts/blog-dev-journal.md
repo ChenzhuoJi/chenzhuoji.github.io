@@ -4,17 +4,15 @@ date: 2026-05-14
 genre: vibe
 tags: [技术, 项目复盘, 博客]
 description: 从零搭建 React + Vite + TypeScript + TailwindCSS 个人博客，完整记录内容架构设计、UI 优化、CI/CD 自动部署全流程及踩坑解决过程。
-pin: true
 ---
-
 ## 项目概览
 
-| 项目 | 信息 |
-|------|------|
-| 技术栈 | React + Vite + TypeScript + TailwindCSS |
-| 源码 | https://github.com/ChenzhuoJi/chenzhuoji.github.io |
-| 线上地址 | https://chenzhuoji.github.io/ |
-| 开发周期 | 2026-05-13 ~ 2026-05-14 |
+| 项目     | 信息                                               |
+| -------- | -------------------------------------------------- |
+| 技术栈   | React + Vite + TypeScript + TailwindCSS            |
+| 源码     | https://github.com/ChenzhuoJi/chenzhuoji.github.io |
+| 线上地址 | https://chenzhuoji.github.io/                      |
+| 开发周期 | 2026-05-13 ~ 2026-05-14                            |
 
 ---
 
@@ -65,14 +63,14 @@ pin: true             # 可选，置顶
 
 ### 1.4 路由规划
 
-| 路由 | 页面 | 说明 |
-|------|------|------|
-| `/` | Home | 置顶 → 门类入口 → 最新文章 |
-| `/posts/:slug` | Post | 文章详情，文末连载导航 |
-| `/explore` | Explore | 栏目 + 标签气泡总览 |
-| `/genre/:name` | GenrePosts | 按门类过滤 |
-| `/columns/:name` | ColumnPosts | 栏目文章列表 |
-| `/tags`, `/tags/:tag` | TagList / TagPosts | 标签系统 |
+| 路由                      | 页面               | 说明                         |
+| ------------------------- | ------------------ | ---------------------------- |
+| `/`                     | Home               | 置顶 → 门类入口 → 最新文章 |
+| `/posts/:slug`          | Post               | 文章详情，文末连载导航       |
+| `/explore`              | Explore            | 栏目 + 标签气泡总览          |
+| `/genre/:name`          | GenrePosts         | 按门类过滤                   |
+| `/columns/:name`        | ColumnPosts        | 栏目文章列表                 |
+| `/tags`, `/tags/:tag` | TagList / TagPosts | 标签系统                     |
 
 ---
 
@@ -82,14 +80,14 @@ pin: true             # 可选，置顶
 
 初始版本日间模式代码框存在深色背景 + 深色文字的问题，对比度极低。完成全局代码样式适配：
 
-| 项 | 改前 | 改后 |
-|-----|------|------|
-| 日间代码框背景 | `ink.800`（深褐） | `ink.100`（暖白） |
-| 日间代码文字 | 浅色（被 hljs 覆盖） | 深色，清晰可读 |
-| 夜间代码框背景 | `ink.900` | `ink.950`（更深） |
-| 高亮样式 | 外挂 `github.css` 固定浅色主题 | 自定义 token 颜色，深浅各一套 |
-| 代码框边框 | 无 | 淡边框划分区域 |
-| 内联代码 | 默认色 | `vermilion` 朱红自适应 |
+| 项             | 改前                             | 改后                          |
+| -------------- | -------------------------------- | ----------------------------- |
+| 日间代码框背景 | `ink.800`（深褐）              | `ink.100`（暖白）           |
+| 日间代码文字   | 浅色（被 hljs 覆盖）             | 深色，清晰可读                |
+| 夜间代码框背景 | `ink.900`                      | `ink.950`（更深）           |
+| 高亮样式       | 外挂 `github.css` 固定浅色主题 | 自定义 token 颜色，深浅各一套 |
+| 代码框边框     | 无                               | 淡边框划分区域                |
+| 内联代码       | 默认色                           | `vermilion` 朱红自适应      |
 
 ---
 

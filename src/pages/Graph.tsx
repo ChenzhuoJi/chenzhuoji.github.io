@@ -7,7 +7,7 @@ export default function Graph() {
   return (
     <div>
       <section className="mb-8">
-        <h1 className="text-2xl font-serif font-semibold text-ink-900 dark:text-ink-100">关系图谱</h1>
+        <h1 className="text-2xl font-heading font-semibold text-ink-900 dark:text-ink-100">关系图谱</h1>
         <p className="mt-1 text-sm text-ink-400 dark:text-ink-500">
           每篇文章是一个节点，共享标签的文章之间产生连线
         </p>

@@ -21,7 +21,7 @@ const content = `## About Me
 export default function About() {
   return (
     <div className="max-w-2xl mx-auto" style={{ animation: 'fade-up 0.5s ease-out' }}>
-      <h1 className="text-2xl font-serif font-semibold text-ink-900 dark:text-ink-100 mb-8">关于</h1>
+      <h1 className="text-2xl font-heading font-semibold text-ink-900 dark:text-ink-100 mb-8">关于</h1>
       <MarkdownRenderer content={content} />
       <div className="mt-8 pt-8 border-t border-ink-200 dark:border-ink-700 space-y-1">
         <p className="text-sm text-ink-400 dark:text-ink-500">

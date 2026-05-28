@@ -2,7 +2,7 @@ import matter from 'gray-matter'
 import type { Post, PostMeta, Genre, SearchIndex, GraphNode, GraphEdge, Column } from '../types'
 import columnsConfig from '../data/columns'
 
-const modules = import.meta.glob('/content/posts/*.md', { query: '?raw', import: 'default', eager: true })
+const modules = import.meta.glob('/content/posts/**/*.md', { query: '?raw', import: 'default', eager: true })
 
 const READING_SPEED = 400
 

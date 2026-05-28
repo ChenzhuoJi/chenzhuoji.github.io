@@ -42,7 +42,7 @@ export default function SearchDialog({ open, onClose }: Props) {
       }}
       onKeyDown={handleKeyDown}
     >
-      <div className="w-full max-w-lg mx-4 bg-white dark:bg-ink-900 rounded-xl shadow-2xl border border-ink-200 dark:border-ink-700 overflow-hidden">
+      <div className="w-full max-w-lg mx-4 bg-white dark:bg-ink-900 rounded-lg shadow-2xl border border-ink-200 dark:border-ink-700 overflow-hidden">
         <div className="flex items-center px-4 border-b border-ink-200 dark:border-ink-700">
           <svg className="w-4 h-4 text-ink-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />

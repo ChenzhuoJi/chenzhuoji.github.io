@@ -30,7 +30,7 @@ export default function Header() {
       <header className="sticky top-0 z-40 bg-ink-50 dark:bg-ink-950 border-b border-ink-200 dark:border-ink-800">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <Link to="/" className="flex flex-col leading-tight">
-            <span className="text-base font-heading font-semibold text-ink-900 dark:text-ink-100 tracking-tight">
+            <span className="text-[1.5rem] font-heading font-semibold text-ink-900 dark:text-ink-100 tracking-tight">
               Chenzhuo's Blog
             </span>
           </Link>

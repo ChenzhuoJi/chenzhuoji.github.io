@@ -14,7 +14,7 @@ export default function Home() {
     <div>
       <AnimatedSection delay={0}>
         <section className="mb-12">
-          <p className="text-sm text-ink-500 dark:text-ink-400 leading-relaxed">
+          <p className="font-accent text-sm text-ink-500 dark:text-ink-400 leading-relaxed">
             乐高玩具
           </p>
           <div className="mt-2 flex gap-4 text-xs text-ink-400 dark:text-ink-500">
@@ -55,23 +55,23 @@ export default function Home() {
               to="/genre/my"
               className="group block flex-1"
             >
-              <h2 className="text-lg font-heading font-semibold text-ink-900 dark:text-ink-100 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors">
+              <h2 className="text-lg font-heading font-semibold text-ink-900 dark:text-ink-100 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors text-center">
                 My Writing
               </h2>
-              <p className="mt-1 text-sm text-ink-400 dark:text-ink-500">我的原创写作</p>
-              <div className="mt-2 w-12 h-0.5 bg-vermilion-500/50 group-hover:bg-vermilion-500 transition-colors" />
+              <p className="mt-1 font-accent text-sm text-ink-400 dark:text-ink-500 leading-relaxed text-center">我的原创写作</p>
+              <div className="mt-2 w-12 h-0.5 bg-vermilion-500/50 group-hover:bg-vermilion-500 transition-colors mx-auto" />
             </Link>
             <Link
               to="/gallery"
               className="group block flex-1"
             >
-              <h2 className="text-lg font-heading font-semibold text-ink-900 dark:text-ink-100 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors">
-                画廊
+              <h2 className="text-lg font-heading font-semibold text-ink-900 dark:text-ink-100 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors text-center">
+                Gallery
               </h2>
-              <p className="mt-1 text-sm text-ink-400 dark:text-ink-500">
+              <p className="mt-1 font-accent text-sm text-ink-400 dark:text-ink-500 leading-relaxed text-center">
                 {artworks.length > 0 ? `共 ${artworks.length} 幅作品` : '日常绘画练习与实验'}
               </p>
-              <div className="mt-2 w-12 h-0.5 bg-vermilion-500/50 group-hover:bg-vermilion-500 transition-colors" />
+              <div className="mt-2 w-12 h-0.5 bg-vermilion-500/50 group-hover:bg-vermilion-500 transition-colors mx-auto" />
             </Link>
           </div>
         </section>
@@ -81,8 +81,8 @@ export default function Home() {
         <AnimatedSection delay={0.3}>
           <section className="mb-12">
             <div className="divider mb-6" />
-            <div className="text-xs text-ink-400 dark:text-ink-500 mb-4 tracking-wide">栏目文章</div>
-            <div className="space-y-6">
+            <div className="text-sm text-ink-400 dark:text-ink-500 mb-4 tracking-wide">栏目文章</div>
+            <div className="space-y-8">
               {columns.map((col) => {
                 const colPosts = posts
                   .filter((p) => p.meta.column === col.name)
@@ -98,13 +98,13 @@ export default function Home() {
                   <Link
                     key={col.name}
                     to={`/columns/${col.slug ?? col.name}`}
-                    className="group block border-t-2 border-ink-200 dark:border-ink-700 pt-3 hover:border-vermilion-500/50 transition-colors"
+                    className="group block hover:border-vermilion-500/50 transition-colors"
                   >
-                    <h3 className="text-base font-heading font-semibold text-ink-900 dark:text-ink-100 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors">
+                    <h3 className="text-lg font-heading font-medium text-ink-900 dark:text-ink-100 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors">
                       {col.name}
                     </h3>
-                    <p className="text-sm text-ink-400 dark:text-ink-500 mt-1">{col.description}</p>
-                    <p className="text-xs text-ink-400 dark:text-ink-500 mt-1">
+                    <p className="text-sm text-ink-400 dark:text-ink-500 mt-1 font-accent">{col.description}</p>
+                    <p className="text-xs text-ink-400 dark:text-ink-500 mt-2">
                       共 {colPosts.length} 篇
                       {series.length > 0 && <span> · {series.length} 个系列</span>}
                       <span> · 约 {(colTotalChars / 10000).toFixed(1)} 万字</span>

@@ -1,13 +1,21 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
 export default function BaseLayout() {
   const { pathname } = useLocation()
+  const prevPath = useRef(pathname)
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    if (pathname !== prevPath.current) {
+      prevPath.current = pathname
+      if (document.startViewTransition) {
+        document.startViewTransition(() => window.scrollTo(0, 0))
+      } else {
+        window.scrollTo(0, 0)
+      }
+    }
   }, [pathname])
 
   return (

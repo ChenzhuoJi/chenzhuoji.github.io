@@ -24,17 +24,17 @@ export default {
     extend: {
       colors: {
         ink: {
-          50: '#FAFAF8',
-          100: '#F0EFEA',
-          200: '#E0DDD4',
-          300: '#C5BFAF',
-          400: '#A59D88',
-          500: '#8B826C',
-          600: '#736A56',
-          700: '#5C5443',
-          800: '#484132',
-          900: '#332E22',
-          950: '#1A1812',
+          50: '#FFFFFF',
+          100: '#F6F7F9',
+          200: '#E6E8EC',
+          300: '#D0D3D9',
+          400: '#A8ADB7',
+          500: '#838996',
+          600: '#636A78',
+          700: '#4A5160',
+          800: '#323949',
+          900: '#1C2230',
+          950: '#0C0F16',
         },
         vermilion: {
           50: '#FEF3EE',
@@ -48,6 +48,19 @@ export default {
           800: '#932718',
           900: '#772317',
           950: '#400F0A',
+        },
+        frost: {
+          50: '#F0F5FF',
+          100: '#E3EBFA',
+          200: '#C7D6F0',
+          300: '#A5BAE0',
+          400: '#809BC9',
+          500: '#5F7DB0',
+          600: '#4A6395',
+          700: '#3A4E7A',
+          800: '#2D3B5E',
+          900: '#1F2A45',
+          950: '#12192E',
         },
       },
       fontFamily: {
@@ -81,9 +94,9 @@ export default {
           '"JetBrains Mono"', '"Noto Sans Mono SC"', '"Fira Code"',
           'ui-monospace', 'SFMono-Regular', 'monospace',
         ],
-        /** 装饰/引用: 思源宋体 + 霞鹜文楷 */
+        /** 装饰/引用/描述: 霞鹜文楷 + 思源宋体 */
         accent: [
-          '"Noto Serif CJK SC"', '"Noto Serif SC"', '"LXGW WenKai"', '"KaiTi"',
+          '"LXGW WenKai"', '"Noto Serif CJK SC"', '"Noto Serif SC"', '"KaiTi"',
           'serif',
         ],
       },

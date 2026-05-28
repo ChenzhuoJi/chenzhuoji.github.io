@@ -70,7 +70,7 @@ export default function SearchDialog({ open, onClose }: Props) {
             >
               <div className="text-sm font-medium text-ink-900 dark:text-ink-100">{r.title}</div>
               {r.description && (
-                <div className="text-xs text-ink-400 dark:text-ink-500 mt-0.5 line-clamp-1">{r.description}</div>
+                <div className="text-xs text-ink-400 dark:text-ink-500 mt-0.5 line-clamp-1 font-accent">{r.description}</div>
               )}
               {r.tags.length > 0 && (
                 <div className="flex gap-1.5 mt-1">

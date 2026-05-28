@@ -51,11 +51,10 @@ export default function MarkdownRenderer({ content }: Props) {
               {children}
             </a>
           ),
-          img: ({ alt, src, ...props }) => (
+          img: ({ alt, src }) => (
             <figure className="my-6">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={src} alt={alt} className="rounded-md mx-auto w-full max-w-md md:max-w-lg h-auto" loading="lazy" {...props} />
-              {alt && <figcaption className="text-center text-sm text-ink-400 mt-2">{alt}</figcaption>}
+              <img src={src} alt={alt} className="rounded-md mx-auto w-full max-w-md md:max-w-lg h-auto" loading="lazy" />
+              {alt && <figcaption className="text-center text-xs text-ink-400 mt-2 font-accent">{alt}</figcaption>}
             </figure>
           ),
           table: ({ children, ...props }) => (

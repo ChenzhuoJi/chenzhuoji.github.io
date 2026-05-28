@@ -15,8 +15,32 @@
       'Noto Sans JP', system-ui, -apple-system, sans-serif;
     --font-mono: 'JetBrains Mono', 'Noto Sans Mono SC', 'Fira Code',
       ui-monospace, SFMono-Regular, monospace;
-    --font-accent: 'Noto Serif CJK SC', 'Noto Serif SC', 'LXGW WenKai',
+    --font-accent: 'LXGW WenKai', 'Noto Serif CJK SC', 'Noto Serif SC',
       'KaiTi', serif;
+
+
+    /* ══════════════════════════════════════════════════════
+       语义化颜色变量
+       ══════════════════════════════════════════════════════ */
+    --color-body: hsl(220, 13%, 33%);
+    --color-heading: hsl(220, 26%, 15%);
+    --color-muted: hsl(220, 10%, 69%);
+    --color-bg: hsl(0, 0%, 100%);
+    --color-surface: hsl(220, 20%, 97%);
+    --color-border: hsl(220, 18%, 92%);
+    --color-accent: hsl(14, 73%, 55%);
+    --color-accent-hover: hsl(14, 65%, 45%);
+  }
+
+  .dark {
+    --color-body: hsl(220, 14%, 83%);
+    --color-heading: hsl(220, 20%, 97%);
+    --color-muted: hsl(220, 10%, 43%);
+    --color-bg: hsl(222, 37%, 7%);
+    --color-surface: hsl(220, 26%, 15%);
+    --color-border: hsl(220, 19%, 24%);
+    --color-accent: hsl(14, 82%, 65%);
+    --color-accent-hover: hsl(14, 73%, 55%);
   }
 
   html {
@@ -71,6 +95,7 @@
 
   .prose-ink {
     font-family: var(--font-body);
+    line-height: calc(.95 + .62rem);
     --tw-prose-body: theme('colors.ink.700');
     --tw-prose-headings: theme('colors.ink.900');
     --tw-prose-links: theme('colors.vermilion.500');
@@ -87,6 +112,11 @@
     --tw-prose-pre-code: theme('colors.ink.800');
     --tw-prose-th-borders: theme('colors.ink.300');
     --tw-prose-td-borders: theme('colors.ink.200');
+  }
+
+  .prose-ink em, .prose-ink i {
+    font-family: var(--font-accent);
+    font-size: 0.875em;
   }
 
   .dark .prose-ink {
@@ -146,6 +176,34 @@ pre:has(code) {
 @keyframes fade-in {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* View Transitions API */
+@layer base {
+  ::view-transition-old(root) {
+    animation: fade-out 200ms ease both;
+    pointer-events: none;
+  }
+  ::view-transition-new(root) {
+    animation: slide-up 300ms ease both;
+    pointer-events: none;
+  }
+  .dark::view-transition-old(root) {
+    animation: fade-out 200ms ease both;
+  }
+  .dark::view-transition-new(root) {
+    animation: fade-in 300ms ease both;
+  }
 }
 
 @layer utilities {

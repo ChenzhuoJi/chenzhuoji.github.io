@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import { forceSimulation, forceLink, forceManyBody, forceCenter, forceCollide } from 'd3-force'
 import type { GraphNode, GraphEdge } from '../types'
 
-const VIBE_COLOR = '#f17147'
-const MY_COLOR = '#aba082'
-const NODE_STROKE = '#fff'
-const EDGE_COLOR = '#c4bca9'
-const LABEL_COLOR_LIGHT = '#4e453b'
-const LABEL_COLOR_DARK = '#efede8'
+const VIBE_COLOR = 'var(--color-accent)'
+const MY_COLOR = 'var(--color-muted)'
+const NODE_STROKE = 'var(--color-bg)'
+const EDGE_COLOR = 'var(--color-border)'
+const LABEL_COLOR_LIGHT = 'var(--color-heading)'
+const LABEL_COLOR_DARK = 'var(--color-heading)'
 const MIN_RADIUS = 10
 const MAX_RADIUS = 28
 

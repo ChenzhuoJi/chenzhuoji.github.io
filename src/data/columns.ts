@@ -13,8 +13,13 @@ const columns: ColumnConfig[] = [
   {
     name: '深度学习的故事',
     slug: 'deep-learning-stories',
-    description: '智能如何在计算中涌现',
+    description: '计算，为了无法计算的价值',
   },
+    {
+    name: '掌上的互联网',
+    slug: 'mobile',
+    description: '十年人间',
+  }
 ]
 
 export default columns

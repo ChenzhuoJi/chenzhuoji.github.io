@@ -15,7 +15,7 @@ function slugFromPath(path: string): string {
   return path.split('/').pop()?.replace(/\.md$/, '') ?? ''
 }
 
-const GENRE_MAP: Record<string, Genre> = { vibe: 'vibe', my: 'my' }
+const GENRE_MAP: Record<string, Genre> = { vibe: 'vibe', my: 'my', tech: 'tech' }
 
 export function getAllPosts(): Post[] {
   const posts: Post[] = []

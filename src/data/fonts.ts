@@ -35,7 +35,7 @@ export const fonts = {
 
   /** 装饰：引用块、特殊强调 */
   accent:
-    '"Noto Serif CJK SC", "Noto Serif SC", "LXGW WenKai", "KaiTi", serif',
+    '"LXGW WenKai", "Noto Serif CJK SC", "Noto Serif SC", "KaiTi", serif',
 } as const
 
 /** Tailwind fontFamily 的 theme.extend 格式 */

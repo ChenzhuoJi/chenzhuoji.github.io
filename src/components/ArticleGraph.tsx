@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { forceSimulation, forceLink, forceManyBody, forceCenter, forceCollide } from 'd3-force'
-import type { GraphNode, GraphEdge } from '../types'
+import type { GraphNode, GraphEdge, Genre } from '../types'
 
-const VIBE_COLOR = 'var(--color-accent)'
-const MY_COLOR = 'var(--color-muted)'
+const GENRE_COLORS: Record<Genre, string> = {
+  vibe: 'var(--color-accent)',
+  my: 'var(--color-muted)',
+  tech: 'var(--color-vermilion-400)',
+}
 const NODE_STROKE = 'var(--color-bg)'
 const EDGE_COLOR = 'var(--color-border)'
 const LABEL_COLOR_LIGHT = 'var(--color-heading)'
@@ -174,8 +177,8 @@ export default function ArticleGraph({ nodes: rawNodes, edges: rawEdges }: Props
                   cx={p.x}
                   cy={p.y}
                   r={isHovered ? r + 3 : r}
-                  fill={n.genre === 'vibe' ? VIBE_COLOR : MY_COLOR}
-                  stroke={isHovered ? VIBE_COLOR : NODE_STROKE}
+                  fill={GENRE_COLORS[n.genre]}
+                  stroke={isHovered ? GENRE_COLORS[n.genre] : NODE_STROKE}
                   strokeWidth={isHovered ? 3 : 2}
                   className="transition-all duration-100 cursor-pointer"
                   style={{ filter: isHovered ? 'brightness(1.15)' : undefined }}
@@ -203,12 +206,16 @@ export default function ArticleGraph({ nodes: rawNodes, edges: rawEdges }: Props
       </svg>
       <div className="px-4 pb-3 flex items-center gap-4 text-xs text-ink-400 dark:text-ink-500">
         <div className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ backgroundColor: VIBE_COLOR }} />
+          <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ backgroundColor: GENRE_COLORS.vibe }} />
           Vibe Writing
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ backgroundColor: MY_COLOR }} />
+          <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ backgroundColor: GENRE_COLORS.my }} />
           My Writing
+        </div>
+        <div className="flex items-center gap-1.5">
+          <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ backgroundColor: GENRE_COLORS.tech }} />
+          Tech
         </div>
         <span className="ml-auto">{rawNodes.length} 篇文章 · {rawEdges.length} 条关联</span>
       </div>

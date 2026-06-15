@@ -4,7 +4,7 @@ export interface Column {
   description?: string
 }
 
-export type Genre = 'vibe' | 'my'
+export type Genre = 'vibe' | 'my' | 'tech'
 
 export interface PostMeta {
   slug: string
@@ -56,4 +56,13 @@ export interface GraphEdge {
   target: string
   weight: number
   sharedTags: string[]
+}
+
+export interface Book {
+  slug: string
+  title: string
+  author: string
+  cover: string
+  description: string
+  content: string
 }

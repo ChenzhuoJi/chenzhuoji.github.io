@@ -3,11 +3,11 @@ import ArticleList from '../components/ArticleList'
 import { usePostsByGenre } from '../hooks/usePosts'
 import type { Genre } from '../types'
 
-const GENRE_LABEL: Record<Genre, string> = { vibe: 'Vibe Writing', my: 'My Writing' }
+const GENRE_LABEL: Record<Genre, string> = { vibe: 'Vibe Writing', my: 'My Writing', tech: 'Tech' }
 
 export default function GenrePosts() {
   const { name } = useParams<{ name: string }>()
-  const genre = name === 'vibe' ? 'vibe' : 'my'
+  const genre: Genre = name === 'vibe' ? 'vibe' : name === 'tech' ? 'tech' : 'my'
   const posts = usePostsByGenre(genre)
 
   return (

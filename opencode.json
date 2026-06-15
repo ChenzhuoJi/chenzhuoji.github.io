@@ -10,6 +10,39 @@
           "name": "DeepSeek V4 Pro"
         }
       }
+    },
+    "moonshot": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Moonshot (Kimi)",
+      "options": {
+        "baseURL": "https://api.moonshot.cn/v1",
+        "apiKey": "sk-W3YzAsYVQxIJCga5dKQgc173JPJZjXwBlaT8drLWlf2zf7QJ"
+      },
+      "models": {
+        "kimi-k2.5": {
+          "name": "Kimi K2.5",
+          "reasoning": true,
+          "limit": {
+            "context": 262144,
+            "output": 65536
+          }
+        },
+        "kimi-k2.6": {
+          "name": "Kimi K2.6",
+          "reasoning": true,
+          "limit": {
+            "context": 262144,
+            "output": 65536
+          }
+        },
+        "moonshot-v1-auto": {
+          "name": "Moonshot V1 Auto",
+          "limit": {
+            "context": 131072,
+            "output": 65536
+          }
+        }
+      }
     }
   },
   "agent": {

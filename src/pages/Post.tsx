@@ -2,7 +2,10 @@ import { useParams, Link } from 'react-router-dom'
 import MarkdownRenderer from '../components/MarkdownRenderer'
 import { usePost, useColumnNav, useRelatedPosts } from '../hooks/usePosts'
 import { getColumnUrl } from '../utils/posts'
+import type { Genre } from '../types'
 import RelatedArticles from '../components/RelatedArticles'
+
+const GENRE_LABEL: Record<Genre, string> = { vibe: 'Vibe Writing', my: 'My Writing', tech: 'Tech' }
 
 export default function Post() {
   const { slug } = useParams<{ slug: string }>()
@@ -35,7 +38,7 @@ export default function Post() {
           to={`/genre/${post.meta.genre}`}
           className="hover:text-ink-600 dark:hover:text-ink-300 transition-colors"
         >
-          {post.meta.genre === 'vibe' ? 'Vibe Writing' : 'My Writing'}
+           {GENRE_LABEL[post.meta.genre]}
         </Link>
         {post.meta.column && (
           <>
@@ -68,7 +71,7 @@ export default function Post() {
                 to={`/genre/${post.meta.genre}`}
                 className="font-mono"
               >
-                {post.meta.genre === 'vibe' ? 'Vibe Writing' : 'My Writing'}
+                {GENRE_LABEL[post.meta.genre]}
               </Link>
               {post.meta.column && (
                 <>

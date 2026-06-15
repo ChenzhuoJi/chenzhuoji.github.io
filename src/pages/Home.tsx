@@ -2,11 +2,13 @@ import { Link } from 'react-router-dom'
 import { usePosts, usePinnedPosts, useColumns } from '../hooks/usePosts'
 import AnimatedSection from '../components/AnimatedSection'
 import artworks from '../data/artworks'
+import books from '../data/books'
 
 export default function Home() {
   const posts = usePosts()
   const pinned = usePinnedPosts()
   const columns = useColumns()
+  const techPosts = posts.filter((p) => p.meta.genre === 'tech')
 
   const totalChars = posts.reduce((s, p) => s + p.content.replace(/\s/g, '').length, 0)
 
@@ -62,6 +64,16 @@ export default function Home() {
               <div className="mt-2 w-12 h-0.5 bg-vermilion-500/50 group-hover:bg-vermilion-500 transition-colors mx-auto" />
             </Link>
             <Link
+              to="/genre/tech"
+              className="group block flex-1"
+            >
+              <h2 className="text-lg font-heading font-semibold text-ink-900 dark:text-ink-100 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors text-center">
+                Tech
+              </h2>
+              <p className="mt-1 font-accent text-sm text-ink-400 dark:text-ink-500 leading-relaxed text-center">论文与技术学习</p>
+              <div className="mt-2 w-12 h-0.5 bg-vermilion-500/50 group-hover:bg-vermilion-500 transition-colors mx-auto" />
+            </Link>
+            <Link
               to="/gallery"
               className="group block flex-1"
             >
@@ -77,8 +89,41 @@ export default function Home() {
         </section>
       </AnimatedSection>
 
-      {columns.length > 0 && (
+      {techPosts.length > 0 && (
         <AnimatedSection delay={0.3}>
+          <section className="mb-12">
+            <div className="divider mb-6" />
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-sm text-ink-400 dark:text-ink-500 tracking-wide">论文与技术学习</span>
+              <Link
+                to="/genre/tech"
+                className="text-xs text-vermilion-500 hover:text-vermilion-600 transition-colors"
+              >
+                全部 →
+              </Link>
+            </div>
+            <div className="space-y-2">
+              {techPosts.slice(0, 5).map((post) => (
+                <Link
+                  key={post.meta.slug}
+                  to={`/posts/${post.meta.slug}`}
+                  className="group flex items-center gap-3 py-2"
+                >
+                  <div className="min-w-0 flex-1">
+                    <div className="text-sm font-medium text-ink-900 dark:text-ink-100 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors truncate">
+                      {post.meta.title}
+                    </div>
+                  </div>
+                  <time className="text-xs text-ink-400 dark:text-ink-500 shrink-0 font-mono">{post.meta.date}</time>
+                </Link>
+              ))}
+            </div>
+          </section>
+        </AnimatedSection>
+      )}
+
+      {columns.length > 0 && (
+        <AnimatedSection delay={0.4}>
           <section className="mb-12">
             <div className="divider mb-6" />
             <div className="text-sm text-ink-400 dark:text-ink-500 mb-4 tracking-wide">栏目文章</div>
@@ -117,7 +162,46 @@ export default function Home() {
         </AnimatedSection>
       )}
 
-      <AnimatedSection delay={0.4}>
+      {books.length > 0 && (
+      <AnimatedSection delay={0.6}>
+          <section className="mb-12">
+            <div className="divider mb-6" />
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-sm text-ink-400 dark:text-ink-500 tracking-wide">My Reading</span>
+              <Link
+                to="/reading"
+                className="text-xs text-vermilion-500 hover:text-vermilion-600 transition-colors"
+              >
+                全部 →
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+              {books.map((book) => (
+                <Link
+                  key={book.slug}
+                  to={`/reading/${book.slug}`}
+                  className="group block"
+                >
+                  <div className="aspect-[3/4] overflow-hidden rounded-sm bg-ink-100 dark:bg-ink-800">
+                    <img
+                      src={book.cover}
+                      alt={book.title}
+                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  </div>
+                  <h3 className="mt-2 text-sm font-medium text-ink-900 dark:text-ink-100 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors truncate">
+                    {book.title}
+                  </h3>
+                  <p className="text-xs text-ink-400 dark:text-ink-500 truncate">{book.author}</p>
+                </Link>
+              ))}
+            </div>
+          </section>
+        </AnimatedSection>
+      )}
+
+      <AnimatedSection delay={0.5}>
         <div className="border-t border-ink-200 dark:border-ink-800 pt-8 text-center">
           <Link
             to="/posts"

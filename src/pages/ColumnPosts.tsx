@@ -12,8 +12,8 @@ export default function ColumnPosts() {
     return (
       <div className="text-center py-20">
         <p className="text-ink-400 dark:text-ink-500">栏目未找到</p>
-        <Link to="/explore" className="mt-4 inline-block text-sm text-vermilion-500 hover:text-vermilion-600 transition-colors">
-          ← 探索
+        <Link to="/" className="mt-4 inline-block text-sm text-vermilion-500 hover:text-vermilion-600 transition-colors">
+          ← 首页
         </Link>
       </div>
     )
@@ -28,13 +28,6 @@ export default function ColumnPosts() {
             className="hover:text-ink-600 dark:hover:text-ink-300 transition-colors"
           >
             首页
-          </Link>
-          <span className="text-ink-300 dark:text-ink-600">/</span>
-          <Link
-            to="/explore"
-            className="hover:text-ink-600 dark:hover:text-ink-300 transition-colors"
-          >
-            探索
           </Link>
         </div>
         <h1 className="text-2xl font-heading font-medium text-ink-900 dark:text-ink-100">{columnName}</h1>

@@ -1,3 +1,5 @@
+@import './fonts.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,17 +8,21 @@
   :root {
     /* ══════════════════════════════════════════════════════
        字体变量 — 修改 src/data/fonts.ts 后同步更新此处
+       英文字体自托管于 public/fonts/（见 src/fonts.css）
+       中文字体依赖系统字体
        ══════════════════════════════════════════════════════ */
-    --font-heading: 'Open Sans', 'Noto Sans CJK SC', 'Noto Sans SC',
-      'Noto Sans JP', system-ui, -apple-system, sans-serif;
-    --font-body: 'Noto Serif CJK SC', 'Noto Serif SC', 'Noto Serif JP',
-      'Source Han Serif SC', 'STSong', Georgia, serif;
-    --font-ui: 'Open Sans', 'Noto Sans CJK SC', 'Noto Sans SC',
-      'Noto Sans JP', system-ui, -apple-system, sans-serif;
-    --font-mono: 'JetBrains Mono', 'Noto Sans Mono SC', 'Fira Code',
+    --font-heading: 'Open Sans', 'PingFang SC', 'Hiragino Sans GB',
+      'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC',
+      'WenQuanYi Micro Hei', system-ui, -apple-system, sans-serif;
+    --font-body: 'Noto Serif CJK SC', 'Source Han Serif SC', 'Songti SC',
+      'STSong', 'SimSun', 'PingFang SC', 'Microsoft YaHei', Georgia, serif;
+    --font-ui: 'Open Sans', 'PingFang SC', 'Hiragino Sans GB',
+      'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC',
+      'WenQuanYi Micro Hei', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Menlo', 'Consolas', 'Noto Sans Mono CJK SC',
       ui-monospace, SFMono-Regular, monospace;
-    --font-accent: 'LXGW WenKai', 'Noto Serif CJK SC', 'Noto Serif SC',
-      'KaiTi', serif;
+    --font-accent: 'LXGW WenKai', 'Kaiti SC', 'STKaiti', 'KaiTi',
+      'Noto Serif CJK SC', 'Songti SC', serif;
 
 
     /* ══════════════════════════════════════════════════════
@@ -52,7 +58,7 @@
 
   body {
     font-family: var(--font-ui);
-    @apply bg-ink-50 dark:bg-ink-950 text-ink-700 dark:text-ink-300;
+    @apply bg-paper dark:bg-ink-950 text-ink-700 dark:text-ink-300;
     transition: background-color 350ms ease, color 350ms ease;
   }
 
@@ -87,6 +93,46 @@
 
   .divider {
     @apply border-t border-ink-200 dark:border-ink-800;
+  }
+
+  /* ── 报刊编辑体（方案 B） ── */
+  .rule-heavy {
+    @apply border-t-2 border-ink-900 dark:border-ink-100;
+  }
+
+  .rule-red {
+    @apply border-t-[3px] border-vermilion-600 dark:border-vermilion-500;
+  }
+
+  .rule-thin {
+    @apply border-t border-ink-200 dark:border-ink-800;
+  }
+
+  .kicker {
+    font-family: var(--font-ui);
+    @apply text-[0.6875rem] uppercase tracking-[0.22em] text-ink-400 dark:text-ink-500;
+  }
+
+  .kicker-red {
+    font-family: var(--font-ui);
+    @apply text-[0.6875rem] uppercase tracking-[0.22em] text-vermilion-600 dark:text-vermilion-400;
+  }
+
+  /* ── 胶片条装饰 ── */
+  .film-perf {
+    height: 12px;
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgba(251, 250, 247, 0.92) 0 12px,
+      transparent 12px 24px
+    );
+    border-radius: 2px;
+  }
+
+  .film-grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.14;
+    mix-blend-mode: overlay;
   }
 
   .article-row {

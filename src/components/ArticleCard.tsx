@@ -1,23 +1,14 @@
+import { Link } from 'react-router-dom'
 import type { PostMeta } from '../types'
-import { useInView } from '../hooks/useInView'
 
 interface Props {
   post: PostMeta
-  index?: number
 }
 
-export default function ArticleCard({ post, index = 0 }: Props) {
-  const { ref, inView } = useInView<HTMLElement>(0.1)
-
+export default function ArticleCard({ post }: Props) {
   return (
-    <article
-      ref={ref}
-      style={{ transitionDelay: `${index * 0.1}s` }}
-      className={`group transition-all duration-700 ease-out ${
-        inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-      }`}
-    >
-      <a href={`/posts/${post.slug}`} className="article-row">
+    <article className="group">
+      <Link to={`/posts/${post.slug}`} className="article-row">
         <div className="flex items-end gap-3">
           <h2 className="text-[1.2rem] font-normal text-ink-900 dark:text-ink-100 group-hover:text-vermilion-500 dark:group-hover:text-vermilion-400 transition-colors truncate">
             {post.title}
@@ -43,7 +34,7 @@ export default function ArticleCard({ post, index = 0 }: Props) {
             </>
           )}
         </div>
-      </a>
+      </Link>
     </article>
   )
 }

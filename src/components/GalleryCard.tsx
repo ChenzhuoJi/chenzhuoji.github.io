@@ -1,23 +1,13 @@
 import type { Artwork } from '../types'
-import { useInView } from '../hooks/useInView'
 
 interface Props {
   artwork: Artwork
-  index: number
   onSelect: (artwork: Artwork) => void
 }
 
-export default function GalleryCard({ artwork, index, onSelect }: Props) {
-  const { ref, inView } = useInView(0.1)
-
+export default function GalleryCard({ artwork, onSelect }: Props) {
   return (
-    <div
-      ref={ref}
-      style={{ transitionDelay: `${index * 0.08}s` }}
-      className={`mb-4 break-inside-avoid transition-all duration-700 ease-out ${
-        inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-      }`}
-    >
+    <div className="mb-4 break-inside-avoid">
       <button
         onClick={() => onSelect(artwork)}
         className="group relative overflow-hidden rounded-md w-full text-left"

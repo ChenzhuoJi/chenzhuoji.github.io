@@ -40,11 +40,10 @@ export default function Gallery() {
         </p>
       ) : (
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-4">
-          {artworks.map((art, i) => (
+          {artworks.map((art) => (
             <GalleryCard
               key={art.id}
               artwork={art}
-              index={i}
               onSelect={setSelected}
             />
           ))}

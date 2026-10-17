@@ -6,8 +6,6 @@ import Post from './pages/Post'
 import AllPosts from './pages/AllPosts'
 import TagList from './pages/TagList'
 import TagPosts from './pages/TagPosts'
-import About from './pages/About'
-import Explore from './pages/Explore'
 import GenrePosts from './pages/GenrePosts'
 import ColumnPosts from './pages/ColumnPosts'
 import Graph from './pages/Graph'
@@ -24,7 +22,6 @@ export default function App() {
             <Route index element={<Home />} />
             <Route path="posts" element={<AllPosts />} />
             <Route path="posts/:slug" element={<Post />} />
-            <Route path="explore" element={<Explore />} />
             <Route path="genre/:name" element={<GenrePosts />} />
             <Route path="columns/:name" element={<ColumnPosts />} />
             <Route path="tags" element={<TagList />} />
@@ -33,7 +30,6 @@ export default function App() {
             <Route path="gallery" element={<Gallery />} />
             <Route path="reading" element={<Reading />} />
             <Route path="reading/:slug" element={<BookNote />} />
-            <Route path="about" element={<About />} />
           </Route>
         </Routes>
       </BrowserRouter>

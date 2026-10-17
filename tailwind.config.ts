@@ -5,17 +5,20 @@ import type { Config } from 'tailwindcss'
  * 字体配置入口：src/data/fonts.ts
  * 修改字体后请同步更新：
  *   1. tailwind.config.ts  fontFamily  ↓  此处
- *   2. index.html           Google Fonts <link> 标签
+ *   2. src/index.css       --font-* CSS 变量
+ *   3. src/fonts.css       自托管英文字体 @font-face
  * ═══════════════════════════════════════════════════════════════
  *
+ * 英文自托管于 public/fonts/，中文使用系统字体，无 Google Fonts 外链。
+ *
  * 当前映射：
- *   font-heading → Open Sans（西文）+ 思源黑体（中文）
- *   font-body    → 思源宋体（正文阅读）
- *   font-sans    → Open Sans + 思源黑体（通用无衬线）
- *   font-serif   → 思源宋体（通用衬线）
- *   font-mono    → JetBrains Mono
- *   font-ui      → Open Sans + 思源黑体（界面元素）
- *   font-accent  → 思源宋体 + 霞鹜文楷（装饰）
+ *   font-heading → Open Sans（自托管西文）+ 系统黑体（中文）
+ *   font-body    → 系统宋体（正文阅读）
+ *   font-sans    → Open Sans + 系统黑体（通用无衬线）
+ *   font-serif   → 系统宋体（通用衬线）
+ *   font-mono    → JetBrains Mono（自托管）
+ *   font-ui      → Open Sans + 系统黑体（界面元素）
+ *   font-accent  → 系统楷体 + 霞鹜文楷（装饰）
  */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
@@ -37,17 +40,22 @@ export default {
           950: '#0C0F16',
         },
         vermilion: {
-          50: '#FEF3EE',
-          100: '#FDE4D7',
-          200: '#FAC5AE',
-          300: '#F69E7B',
-          400: '#F0805C',
-          500: '#E0603A',
-          600: '#C04A28',
-          700: '#B82D16',
-          800: '#932718',
-          900: '#772317',
-          950: '#400F0A',
+          50: '#FEF2F3',
+          100: '#FDE2E4',
+          200: '#FAC6CA',
+          300: '#F39AA1',
+          400: '#EA6572',
+          500: '#D8384C',
+          600: '#C8102E',
+          700: '#A60E27',
+          800: '#891023',
+          900: '#731122',
+          950: '#40060E',
+        },
+        paper: {
+          DEFAULT: '#FBFAF7',
+          100: '#FBFAF7',
+          200: '#F3F1EC',
         },
         frost: {
           50: '#F0F5FF',
@@ -64,46 +72,52 @@ export default {
         },
       },
       fontFamily: {
-        /** 通用无衬线: Open Sans + 思源黑体 */
+        /** 通用无衬线: Open Sans（自托管）+ 系统中文字体 */
         sans: [
-          '"Open Sans"', '"Noto Sans CJK SC"', '"Noto Sans SC"', '"Noto Sans JP"',
+          '"Open Sans"', '"PingFang SC"', '"Hiragino Sans GB"', '"Microsoft YaHei"',
+          '"Noto Sans CJK SC"', '"Source Han Sans SC"', '"WenQuanYi Micro Hei"',
           'system-ui', '-apple-system', 'sans-serif',
         ],
-        /** 通用衬线: 思源宋体 */
+        /** 通用衬线: 系统中文字体 */
         serif: [
-          '"Noto Serif CJK SC"', '"Noto Serif SC"', '"Noto Serif JP"',
-          '"Source Han Serif SC"', '"STSong"', 'Georgia', 'serif',
+          '"Noto Serif CJK SC"', '"Source Han Serif SC"', '"Songti SC"',
+          '"STSong"', '"SimSun"', '"PingFang SC"', '"Microsoft YaHei"',
+          'Georgia', 'serif',
         ],
-        /** 标题: Open Sans + 思源黑体（用于文章标题 h1–h4） */
+        /** 标题: Open Sans（自托管）+ 系统中文字体 */
         heading: [
-          '"Open Sans"', '"Noto Sans CJK SC"', '"Noto Sans SC"', '"Noto Sans JP"',
+          '"Open Sans"', '"PingFang SC"', '"Hiragino Sans GB"', '"Microsoft YaHei"',
+          '"Noto Sans CJK SC"', '"Source Han Sans SC"', '"WenQuanYi Micro Hei"',
           'system-ui', '-apple-system', 'sans-serif',
         ],
-        /** 正文: 思源宋体（用于文章内容区） */
+        /** 正文: 系统中文字体 */
         body: [
-          '"Noto Serif CJK SC"', '"Noto Serif SC"', '"Noto Serif JP"',
-          '"Source Han Serif SC"', '"STSong"', 'Georgia', 'serif',
+          '"Noto Serif CJK SC"', '"Source Han Serif SC"', '"Songti SC"',
+          '"STSong"', '"SimSun"', '"PingFang SC"', '"Microsoft YaHei"',
+          'Georgia', 'serif',
         ],
-        /** UI 元素: Open Sans + 思源黑体 */
+        /** UI 元素: Open Sans（自托管）+ 系统中文字体 */
         ui: [
-          '"Open Sans"', '"Noto Sans CJK SC"', '"Noto Sans SC"', '"Noto Sans JP"',
+          '"Open Sans"', '"PingFang SC"', '"Hiragino Sans GB"', '"Microsoft YaHei"',
+          '"Noto Sans CJK SC"', '"Source Han Sans SC"', '"WenQuanYi Micro Hei"',
           'system-ui', '-apple-system', 'sans-serif',
         ],
-        /** 等宽: JetBrains Mono */
+        /** 等宽: JetBrains Mono（自托管） */
         mono: [
-          '"JetBrains Mono"', '"Noto Sans Mono SC"', '"Fira Code"',
+          '"JetBrains Mono"', '"Menlo"', '"Consolas"', '"Noto Sans Mono CJK SC"',
           'ui-monospace', 'SFMono-Regular', 'monospace',
         ],
-        /** 装饰/引用/描述: 霞鹜文楷 + 思源宋体 */
+        /** 装饰/引用/描述: 系统楷体 */
         accent: [
-          '"LXGW WenKai"', '"Noto Serif CJK SC"', '"Noto Serif SC"', '"KaiTi"',
-          'serif',
+          '"LXGW WenKai"', '"Kaiti SC"', '"STKaiti"', '"KaiTi"',
+          '"Noto Serif CJK SC"', '"Songti SC"', 'serif',
         ],
       },
       typography: {
         DEFAULT: {
           css: {
             maxWidth: 'none',
+            fontSize: '1.4rem',
             fontFamily: 'var(--font-body)',
             h1: { fontFamily: 'var(--font-heading)' },
             h2: { fontFamily: 'var(--font-heading)' },

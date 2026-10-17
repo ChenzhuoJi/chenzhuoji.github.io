@@ -19,7 +19,7 @@ export default function BaseLayout() {
   }, [pathname])
 
   return (
-    <div className="min-h-screen flex flex-col bg-ink-50 dark:bg-ink-950 text-ink-900 dark:text-ink-100 transition-colors">
+    <div className="min-h-screen flex flex-col bg-paper dark:bg-ink-950 text-ink-900 dark:text-ink-100 transition-colors">
       <Header />
       <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
         <Outlet />

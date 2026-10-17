@@ -1,8 +1,9 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-ink-200 dark:border-ink-800 mt-16">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 text-center text-sm text-ink-400 dark:text-ink-500">
-        <p>© {new Date().getFullYear()} Chenzhuo's Blog</p>
+    <footer className="border-t-2 border-ink-900 dark:border-ink-100 mt-16">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 flex flex-col items-center gap-2 text-ink-400 dark:text-ink-500">
+        <span className="kicker">Chenzhuo's Blog</span>
+        <p className="font-mono text-xs tracking-wider">© {new Date().getFullYear()} · All rights reserved</p>
       </div>
     </footer>
   )

@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import PwaPrompts from '../components/PwaPrompts'
 
 export default function BaseLayout() {
   const { pathname } = useLocation()
@@ -19,12 +20,13 @@ export default function BaseLayout() {
   }, [pathname])
 
   return (
-    <div className="min-h-screen flex flex-col bg-paper dark:bg-ink-950 text-ink-900 dark:text-ink-100 transition-colors">
+    <div className="min-h-dvh flex flex-col bg-paper dark:bg-ink-950 text-ink-900 dark:text-ink-100 transition-colors">
       <Header />
       <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
         <Outlet />
       </main>
       <Footer />
+      <PwaPrompts />
     </div>
   )
 }

@@ -4,8 +4,11 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/optimize-images.mjs",
     "dev": "vite",
-    "build": "tsc && vite build && node scripts/generate-rss.mjs",
+    "prebuild": "node scripts/optimize-images.mjs",
+    "build": "tsc && vite build && node scripts/optimize-images.mjs --prune && node scripts/generate-rss.mjs",
+    "images": "node scripts/optimize-images.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -32,6 +35,7 @@
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.18",
     "postcss": "^8.4.40",
+    "sharp": "^0.35.5",
     "tailwindcss": "^3.4.7",
     "typescript": "^5.5.3",
     "vite": "^5.4.0",

@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import books from '../data/books'
 import MarkdownRenderer from '../components/MarkdownRenderer'
+import ResponsiveImage from '../components/ResponsiveImage'
 
 export default function BookNote() {
   const { slug } = useParams<{ slug: string }>()
@@ -39,9 +40,10 @@ export default function BookNote() {
         <div className="flex flex-col sm:flex-row gap-6 items-start">
           <div className="w-40 shrink-0">
             <div className="aspect-[3/4] overflow-hidden rounded-sm bg-ink-100 dark:bg-ink-800">
-              <img
+              <ResponsiveImage
                 src={book.cover}
                 alt={book.title}
+                sizes="160px"
                 className="w-full h-full object-cover"
               />
             </div>

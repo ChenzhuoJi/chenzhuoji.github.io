@@ -25,20 +25,20 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-paper/95 backdrop-blur-sm dark:bg-ink-950/95 border-b border-ink-200 dark:border-ink-800">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <header className="safe-top sticky top-0 z-40 bg-paper/95 backdrop-blur-sm dark:bg-ink-950/95 border-b border-ink-200 dark:border-ink-800">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
           <Link to="/" className="flex flex-col leading-tight">
-            <span className="text-[1.6rem] font-serif font-semibold text-ink-900 dark:text-ink-50 tracking-tight">
+            <span className="whitespace-nowrap text-[1.25rem] sm:text-[1.6rem] font-serif font-semibold text-ink-900 dark:text-ink-50 tracking-tight">
               Chenzhuo's Blog
             </span>
           </Link>
 
-          <nav className="flex items-center gap-1">
+          <nav className="flex items-center gap-0.5 sm:gap-1">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`px-4 py-2 text-base tracking-[0.12em] transition-colors ${
+                className={`whitespace-nowrap px-2 py-2 text-sm tracking-[0.12em] transition-colors sm:px-4 sm:text-base ${
                   location.pathname === item.path
                     ? 'text-vermilion-600 dark:text-vermilion-400'
                     : 'text-ink-600 dark:text-ink-400 hover:text-ink-900 dark:hover:text-ink-200'

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import ResponsiveImage from './ResponsiveImage'
 
 export interface FilmstripImage {
   src: string
@@ -61,7 +62,7 @@ export default function Filmstrip({ images }: Props) {
 
         <div
           ref={scrollRef}
-          className="scrollbar-thin overscroll-x-contain flex gap-3 overflow-x-auto"
+          className="scrollbar-thin overscroll-x-contain flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-px-2"
         >
           {images.map((img, i) => (
             <button
@@ -69,13 +70,13 @@ export default function Filmstrip({ images }: Props) {
               data-frame
               type="button"
               onClick={() => setOpen(i)}
-              className="group w-[80%] shrink-0 text-left sm:w-[46%] md:w-[32%]"
+              className="group w-[80%] shrink-0 snap-start text-left sm:w-[46%] md:w-[32%]"
             >
               <div className="overflow-hidden rounded-sm ring-1 ring-paper/15">
-                <img
+                <ResponsiveImage
                   src={img.src}
                   alt={img.alt ?? ''}
-                  loading="lazy"
+                  sizes="(min-width: 768px) 30vw, (min-width: 640px) 44vw, 78vw"
                   className="aspect-[3/2] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
               </div>
@@ -125,11 +126,13 @@ export default function Filmstrip({ images }: Props) {
           onClick={() => setOpen(null)}
           className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-ink-950/95 p-4"
         >
-          <img
+          <ResponsiveImage
             src={images[open].src}
             alt={images[open].alt ?? ''}
             onClick={(e) => e.stopPropagation()}
-            className="max-h-[85vh] max-w-[92vw] rounded-md object-contain"
+            sizes="92vw"
+            loading="eager"
+            className="max-h-[85dvh] max-w-[92vw] rounded-md object-contain"
           />
           {images[open].alt && (
             <div className="mt-4 font-accent text-sm text-paper/70">{images[open].alt}</div>
@@ -138,7 +141,7 @@ export default function Filmstrip({ images }: Props) {
             type="button"
             aria-label="关闭"
             onClick={() => setOpen(null)}
-            className="absolute right-5 top-5 rounded-full bg-paper/10 p-2 text-paper/80 transition hover:bg-paper/20"
+            className="absolute right-4 top-[max(1rem,env(safe-area-inset-top))] rounded-full bg-paper/10 p-2 text-paper/80 transition hover:bg-paper/20"
           >
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />

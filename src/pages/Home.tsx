@@ -1,8 +1,19 @@
 import { Link } from 'react-router-dom'
+// 获取全部文章和指定文章，它们内部用useMemo缓存getAllPosts()等结果，避免每次渲染都重新解析Markdown。
 import { usePosts, usePinnedPosts } from '../hooks/usePosts'
+// 包裹各板块（头条、门类入口、Tech列表。），利用useInView做进入视口时淡入上移的动画，delay控制错峰出现
 import AnimatedSection from '../components/AnimatedSection'
+// 用于显示画廊作品数量
 import artworks from '../data/artworks'
 
+// 参数d类型为string,?表示可选参数。
+// =>表示返回值就是后面的三元表达式
+// d ? ... : ''，三元判断，走的是真值判断，:/undefined/''都会得到''
+// /-/g是正则，-匹配连字符，g表示全局替换。
+// fmtDate('2026-05-13')  // '2026.05.13'
+// fmtDate('2026-05')     // '2026.05'
+// fmtDate(undefined)     // ''
+// fmtDate('')            // ''
 const fmtDate = (d?: string) => (d ? d.replace(/-/g, '.') : '')
 
 export default function Home() {
@@ -10,23 +21,25 @@ export default function Home() {
   const pinned = usePinnedPosts()
   const techPosts = posts.filter((p) => p.meta.genre === 'tech')
 
+// 用一个数组描述三个入口卡片，然后在 JSX 里 map 循环渲染。
   const sections = [
     {
-      to: '/genre/my', en: 'My Writing', cn: '我的原创写作', count: posts.filter((p) => p.meta.genre === 'my').length, unit: '篇',
-      panel: 'bg-ink-900',
+      // to：点击跳转的路由；en：英文小标题，cn：中文大字体
+      to: '/genre/my', en: 'My Writing', cn: '无用', count: posts.filter((p) => p.meta.genre === 'my').length, unit: '篇',
+      panel: 'bg-ink-900', // panel等并不是React的特殊属性，真正的效果来自后面的模板字符串拼接
       title: 'text-paper',
       kicker: 'text-ink-400',
       meta: 'text-ink-500',
     },
     {
-      to: '/genre/tech', en: 'Tech', cn: '论文与技术学习', count: techPosts.length, unit: '篇',
+      to: '/genre/tech', en: 'Tech', cn: '有用', count: techPosts.length, unit: '篇',
       panel: 'bg-vermilion-600',
       title: 'text-white',
       kicker: 'text-white/70',
       meta: 'text-white/60',
     },
     {
-      to: '/gallery', en: 'Gallery', cn: '绘画练习与实验', count: artworks.length, unit: '幅',
+      to: '/gallery', en: 'Gallery', cn: '切片', count: artworks.length, unit: '幅',
       panel: 'bg-frost-800 dark:bg-frost-900',
       title: 'text-white',
       kicker: 'text-white/60',
@@ -37,13 +50,13 @@ export default function Home() {
   return (
     <div>
       {/* ── 刊头 ── */}
-      <AnimatedSection delay={0}>
+      {/*<AnimatedSection delay={0}>
         <header className="pt-6 pb-8">
           <h1 className="mt-8 font-serif text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight leading-[0.98] text-ink-900 dark:text-ink-50">
             乐高玩具
           </h1>
         </header>
-      </AnimatedSection>
+      </AnimatedSection>*/}
 
       {/* ── 头条 ── */}
       {pinned.length > 0 && (
@@ -72,21 +85,16 @@ export default function Home() {
       <AnimatedSection delay={0.2}>
         <section className="rule-heavy">
           <div className="grid grid-cols-1 sm:grid-cols-3">
+            {/*section的每个属性都在这里有引用，消费端*/}
             {sections.map((s) => (
               <Link
                 key={s.to}
                 to={s.to}
-                className={`group flex flex-col items-center justify-between gap-6 px-6 py-12 min-h-[15rem] transition-opacity hover:opacity-90 ${s.panel}`}
+                className={`group flex flex-col items-center justify-center gap-6 px-6 py-12 min-h-[15rem] transition-opacity hover:opacity-90 ${s.panel}`}
               >
                 <h3 className={`font-serif text-2xl font-semibold leading-[1.1] tracking-[0.12em] [writing-mode:vertical-rl] [text-orientation:upright] ${s.title}`}>
                   {s.cn}
                 </h3>
-                <div className="flex flex-col items-center gap-1">
-                  <span className={`kicker ${s.kicker}`}>{s.en}</span>
-                  <span className={`font-mono text-xs ${s.meta}`}>
-                    {s.count} {s.unit}
-                  </span>
-                </div>
               </Link>
             ))}
           </div>

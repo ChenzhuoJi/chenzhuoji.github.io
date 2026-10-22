@@ -54,6 +54,9 @@
     scrollbar-gutter: stable;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
@@ -163,6 +166,7 @@
   .prose-ink em, .prose-ink i {
     font-family: var(--font-accent);
     font-size: 0.875em;
+    font-style: normal;
   }
 
   .dark .prose-ink {
@@ -253,6 +257,15 @@ pre:has(code) {
 }
 
 @layer utilities {
+  /* 刘海屏 / 全面屏安全区（viewport-fit=cover 时生效） */
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;

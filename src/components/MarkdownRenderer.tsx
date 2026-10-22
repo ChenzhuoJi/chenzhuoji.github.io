@@ -6,6 +6,7 @@ import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw'
 import rehypeHighlight from 'rehype-highlight'
 import Filmstrip, { type FilmstripImage } from './Filmstrip'
+import ResponsiveImage from './ResponsiveImage'
 
 import 'katex/dist/katex.min.css'
 
@@ -78,7 +79,12 @@ export default function MarkdownRenderer({ content }: Props) {
           ),
           img: ({ alt, src }) => (
             <figure className="my-8">
-              <img src={src} alt={alt} className="rounded-md mx-auto w-full max-w-full h-auto" loading="lazy" />
+              <ResponsiveImage
+                src={src ?? ''}
+                alt={alt ?? ''}
+                className="rounded-md mx-auto w-full max-w-full h-auto"
+                sizes="(min-width: 768px) 768px, 100vw"
+              />
               {alt && <figcaption className="text-center text-[1.5rem] text-ink-400 mt-3 font-accent">{alt}</figcaption>}
             </figure>
           ),

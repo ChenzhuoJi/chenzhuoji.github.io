@@ -1,5 +1,6 @@
 import { useEffect, useCallback } from 'react'
 import type { Artwork } from '../types'
+import ResponsiveImage from './ResponsiveImage'
 
 interface Props {
   artwork: Artwork | null
@@ -49,7 +50,7 @@ export default function GalleryLightbox({ artwork, artworks, onClose, onSelect }
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-ink-900/60 text-white/80 hover:bg-ink-900 hover:text-white transition-colors"
+          className="absolute top-[max(1rem,env(safe-area-inset-top))] right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-ink-900/60 text-white/80 hover:bg-ink-900 hover:text-white transition-colors"
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -78,13 +79,15 @@ export default function GalleryLightbox({ artwork, artworks, onClose, onSelect }
           </button>
         )}
 
-        <img
+        <ResponsiveImage
           src={artwork.image}
           alt={artwork.title}
-          className="max-h-[85vh] max-w-full object-contain rounded-md animate-[scale-in_0.3s_ease-out]"
+          sizes="90vw"
+          loading="eager"
+          className="max-h-[85dvh] max-w-full object-contain rounded-md animate-[scale-in_0.3s_ease-out]"
         />
 
-        <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
+        <div className="absolute bottom-0 left-0 right-0 p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] text-center">
           <div className="inline-block px-4 py-2 rounded-full bg-ink-950/60 backdrop-blur-sm border border-ink-700/30">
             <span className="text-white text-sm font-medium">{artwork.title}</span>
             <span className="text-white/50 mx-2">·</span>

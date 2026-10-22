@@ -1,10 +1,10 @@
 ---
-title: Why Vibe
+title: 来自过去
 date: 2026-05-14
 genre: my
 description: 这个博客的由来，对 vibe coding 与 vibe writing 的极简思考
 ---
-## Vibe 是一种趋势
+## 来自过去
 
 现在部署 openclaw，配置 python 环境，追随这些新闻媒体狂热推销的事情，个人认为最简单的方法也许不是打开官网下载，或者打开终端输入 npm，而是上浏览器上搜opencode，下载它的桌面版，用它的默认免费模型开始对话，说一句："在我电脑上配置 xxx"。
 

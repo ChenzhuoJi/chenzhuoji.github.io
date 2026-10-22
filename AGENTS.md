@@ -5,9 +5,10 @@
 ```zsh
 git submodule update --init --recursive  # 首次克隆后拉主题子模块
 npm install                              # 安装前端依赖
-npm run dev                              # 开发服务器 http://localhost:5173
-npm run build                            # 构建：tsc -> vite build -> 生成 RSS
+npm run dev                              # 开发服务器 http://localhost:5173（自动优化图片）
+npm run build                            # 构建：优化图片 -> tsc -> vite build -> 生成 RSS
 npm run preview                          # 预览生产构建
+npm run images                           # 手动重跑图片优化
 ```
 
 ## 项目构成
@@ -98,7 +99,7 @@ pin: true               # 可选，置顶文章
 
 ## 图片与胶片条
 
-- 图片放在 `public/images/`，Markdown 中用 `/images/xxx.jpg` 引用
+- 图片放在 `public/images/`，Markdown 中用 `/images/xxx.jpg` 引用（写原图路径，渲染时自动换成 WebP 变体）
 - 文章配图统一放 `public/images/original/`，画廊配图放 `public/images/art/`
 - 所有图片格式（jpg/jpeg/png/gif/webp/svg）由 Git LFS 管理（见 `.gitattributes`），克隆后需 `git lfs pull`
 - 多图并排使用 `.filmstrip` 容器，`MarkdownRenderer` 会将其渲染为可横向滑动、点击放大的胶片条：
@@ -109,6 +110,39 @@ pin: true               # 可选，置顶文章
   <img src="/images/original/IMG_7525.JPG" alt="图注">
 </div>
 ```
+
+## PWA / 手机安装
+
+站点本身就是一个完整 PWA：手机上「添加到主屏幕」即得到独立窗口 App，内容与网页共用同一份构建产物，发文章后两端自动同步，无需单独维护 App 版本。
+
+- Service Worker 由 `vite-plugin-pwa` 生成（`registerType: 'prompt'`），配置在 `vite.config.ts`
+- 注册、更新提示、安装引导在 `src/components/PwaPrompts.tsx`，安装状态管理在 `src/utils/pwa.ts`
+- 更新策略：发现新版本时底部弹出「有新版本」，点击后 `skipWaiting` + 刷新，避免阅读中途被静默刷新；页面重新可见时检查更新（10 分钟节流）
+- 安装入口：移动端首次访问 4 秒后提示一次，拒绝后 30 天内不再提示；页脚始终保留「安装 App」。iOS 没有 `beforeinstallprompt`，改为展示 Safari「分享 → 添加到主屏幕」步骤
+- 缓存：构建产物与图标预缓存（`globPatterns` 不含 jpg，`globIgnores` 排除 `images/**`），`/images/` 图片走 `CacheFirst` 运行时缓存（120 条 / 60 天），RSS 走 `StaleWhileRevalidate`
+- 导航回退：`navigateFallback: '/index.html'` 让深层链接离线可开，`navigateFallbackDenylist` 放行 RSS、manifest、图片等非页面请求
+- 图标：`pwa-192x192.png`、`pwa-512x512.png`、`pwa-maskable-512.png`（安全区内缩，用于安卓自适应图标）、`apple-touch-icon.png`（180）
+- 手机适配：`.safe-top` / `.safe-bottom` 处理刘海屏安全区；Header 在 360px 宽度下保持单行；胶片条使用 `snap-x` 横滑；灯箱用 `dvh` 而非 `vh`
+
+## 图片优化
+
+原图（常是 10MB+ 的手机照片）不直接发给浏览器。`scripts/optimize-images.mjs` 会在 `npm run dev` / `npm run build` 前自动执行：
+
+- 扫描 `public/images/`（跳过 `opt/`），生成 480 / 960 / 1600 / 2048 宽的 WebP 到 `public/images/opt/`
+- 只生成比原图小的尺寸（不放大）；按 EXIF 方向摆正；默认剥除元数据（含 GPS）
+- 文件名带内容哈希（`<路径>-<hash>-<宽>.webp`），换图即换名，浏览器缓存自然失效
+- 生成 `src/data/image-manifest.json`（需提交入库），记录原图尺寸与可用变体
+- `ResponsiveImage` 组件查清单输出 `srcset` / `sizes`，并按需懒加载；清单里没有的外链或 SVG 原样输出
+- 构建完成后 `--prune` 从 `dist/` 删除已被替换的原图，`dist` 从约 78MB 降到约 10MB
+- `public/images/opt/` 是生成产物（已 `.gitignore`），原图仍由 Git LFS 管理并在 CI 中还原
+
+Markdown 和 `artworks.ts` / `books.ts` 里继续写原图路径即可：
+
+```md
+![图注](/images/original/IMG_7502.JPG)
+```
+
+渲染时自动换成变体。新增或替换图片后重启 dev（或手动 `npm run images`）；CI 每次构建都会重新扫描，只处理有变化的图片。
 
 ## 字体与排版
 
@@ -152,6 +186,8 @@ feat: add dark mode toggle
 - **构建产物** —— `dist/` 和 `node_modules/` 已被 `.gitignore` 排除，不要手动提交。
 - **React Router 警告** —— 控制台可能出现 `v7_startTransition` / `v7_relativeSplatPath` 未来标志警告，不影响运行。
 - **主题子模块脏状态** —— `themes/PaperMod` 有大量本地修改，**不要** `git submodule update` 覆盖。
+- **手机上文章没更新** —— Service Worker 的导航回退会优先返回缓存的 `index.html`，新内容要等新版本激活。页面重新可见时会自动检查并弹出「有新版本」；也可以关掉 App 重开，或在浏览器里刷新一次。
+- **新加的图片页面里 404 / 不显示** —— 变体是构建期生成的，新增图片后需重启 `npm run dev` 或手动 `npm run images`；`npm run build` 会通过 `prebuild` 自动重扫，不会漏。
 
 ## 配置参考
 
@@ -161,3 +197,4 @@ feat: add dark mode toggle
 - `src/data/columns.ts` —— 栏目别名配置，新栏目默认无 slug，写完后可添加英文别名
 - `hugo.toml` —— Hugo 配置（仅用于 Hugo 构建路径）
 - `scripts/generate-rss.mjs` —— 构建后生成 `dist/rss.xml`
+- `scripts/optimize-images.mjs` —— 生成 WebP 变体与 `src/data/image-manifest.json`，`--prune` 清理 dist 原图

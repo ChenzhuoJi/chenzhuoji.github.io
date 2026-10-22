@@ -1,0 +1,476 @@
+{
+  "/images/art/pendrawing-01machine.jpg": {
+    "width": 4080,
+    "height": 3060,
+    "variants": [
+      {
+        "w": 480,
+        "h": 360,
+        "src": "/images/opt/art-pendrawing-01machine-e5959501-480.webp"
+      },
+      {
+        "w": 960,
+        "h": 720,
+        "src": "/images/opt/art-pendrawing-01machine-e5959501-960.webp"
+      },
+      {
+        "w": 1600,
+        "h": 1200,
+        "src": "/images/opt/art-pendrawing-01machine-e5959501-1600.webp"
+      },
+      {
+        "w": 2048,
+        "h": 1536,
+        "src": "/images/opt/art-pendrawing-01machine-e5959501-2048.webp"
+      }
+    ]
+  },
+  "/images/art/pendrawing-chatgpt-cat.png": {
+    "width": 1122,
+    "height": 1402,
+    "variants": [
+      {
+        "w": 480,
+        "h": 600,
+        "src": "/images/opt/art-pendrawing-chatgpt-cat-247ac898-480.webp"
+      },
+      {
+        "w": 960,
+        "h": 1200,
+        "src": "/images/opt/art-pendrawing-chatgpt-cat-247ac898-960.webp"
+      },
+      {
+        "w": 1122,
+        "h": 1402,
+        "src": "/images/opt/art-pendrawing-chatgpt-cat-247ac898-1122.webp"
+      }
+    ]
+  },
+  "/images/art/pendrawing-crabapple.jpg": {
+    "width": 1706,
+    "height": 1279,
+    "variants": [
+      {
+        "w": 480,
+        "h": 360,
+        "src": "/images/opt/art-pendrawing-crabapple-0092bf73-480.webp"
+      },
+      {
+        "w": 960,
+        "h": 720,
+        "src": "/images/opt/art-pendrawing-crabapple-0092bf73-960.webp"
+      },
+      {
+        "w": 1600,
+        "h": 1200,
+        "src": "/images/opt/art-pendrawing-crabapple-0092bf73-1600.webp"
+      },
+      {
+        "w": 1706,
+        "h": 1279,
+        "src": "/images/opt/art-pendrawing-crabapple-0092bf73-1706.webp"
+      }
+    ]
+  },
+  "/images/art/pendrawing-sea_and_reef.jpg": {
+    "width": 4080,
+    "height": 3060,
+    "variants": [
+      {
+        "w": 480,
+        "h": 360,
+        "src": "/images/opt/art-pendrawing-sea_and_reef-2b9fbb4e-480.webp"
+      },
+      {
+        "w": 960,
+        "h": 720,
+        "src": "/images/opt/art-pendrawing-sea_and_reef-2b9fbb4e-960.webp"
+      },
+      {
+        "w": 1600,
+        "h": 1200,
+        "src": "/images/opt/art-pendrawing-sea_and_reef-2b9fbb4e-1600.webp"
+      },
+      {
+        "w": 2048,
+        "h": 1536,
+        "src": "/images/opt/art-pendrawing-sea_and_reef-2b9fbb4e-2048.webp"
+      }
+    ]
+  },
+  "/images/art/sketch-jaychou.jpg": {
+    "width": 4080,
+    "height": 3060,
+    "variants": [
+      {
+        "w": 480,
+        "h": 360,
+        "src": "/images/opt/art-sketch-jaychou-e7402a76-480.webp"
+      },
+      {
+        "w": 960,
+        "h": 720,
+        "src": "/images/opt/art-sketch-jaychou-e7402a76-960.webp"
+      },
+      {
+        "w": 1600,
+        "h": 1200,
+        "src": "/images/opt/art-sketch-jaychou-e7402a76-1600.webp"
+      },
+      {
+        "w": 2048,
+        "h": 1536,
+        "src": "/images/opt/art-sketch-jaychou-e7402a76-2048.webp"
+      }
+    ]
+  },
+  "/images/opencode-wsl.png": {
+    "width": 2821,
+    "height": 1567,
+    "variants": [
+      {
+        "w": 480,
+        "h": 267,
+        "src": "/images/opt/opencode-wsl-730e76a2-480.webp"
+      },
+      {
+        "w": 960,
+        "h": 533,
+        "src": "/images/opt/opencode-wsl-730e76a2-960.webp"
+      },
+      {
+        "w": 1600,
+        "h": 889,
+        "src": "/images/opt/opencode-wsl-730e76a2-1600.webp"
+      },
+      {
+        "w": 2048,
+        "h": 1138,
+        "src": "/images/opt/opencode-wsl-730e76a2-2048.webp"
+      }
+    ]
+  },
+  "/images/original/IMG_7502.JPG": {
+    "width": 6000,
+    "height": 4000,
+    "variants": [
+      {
+        "w": 480,
+        "h": 320,
+        "src": "/images/opt/original-IMG_7502-af42f5ac-480.webp"
+      },
+      {
+        "w": 960,
+        "h": 640,
+        "src": "/images/opt/original-IMG_7502-af42f5ac-960.webp"
+      },
+      {
+        "w": 1600,
+        "h": 1067,
+        "src": "/images/opt/original-IMG_7502-af42f5ac-1600.webp"
+      },
+      {
+        "w": 2048,
+        "h": 1365,
+        "src": "/images/opt/original-IMG_7502-af42f5ac-2048.webp"
+      }
+    ]
+  },
+  "/images/original/IMG_7525.JPG": {
+    "width": 6000,
+    "height": 4000,
+    "variants": [
+      {
+        "w": 480,
+        "h": 320,
+        "src": "/images/opt/original-IMG_7525-4cab28f4-480.webp"
+      },
+      {
+        "w": 960,
+        "h": 640,
+        "src": "/images/opt/original-IMG_7525-4cab28f4-960.webp"
+      },
+      {
+        "w": 1600,
+        "h": 1067,
+        "src": "/images/opt/original-IMG_7525-4cab28f4-1600.webp"
+      },
+      {
+        "w": 2048,
+        "h": 1365,
+        "src": "/images/opt/original-IMG_7525-4cab28f4-2048.webp"
+      }
+    ]
+  },
+  "/images/original/IMG_7535.JPG": {
+    "width": 6000,
+    "height": 4000,
+    "variants": [
+      {
+        "w": 480,
+        "h": 320,
+        "src": "/images/opt/original-IMG_7535-63d3e457-480.webp"
+      },
+      {
+        "w": 960,
+        "h": 640,
+        "src": "/images/opt/original-IMG_7535-63d3e457-960.webp"
+      },
+      {
+        "w": 1600,
+        "h": 1067,
+        "src": "/images/opt/original-IMG_7535-63d3e457-1600.webp"
+      },
+      {
+        "w": 2048,
+        "h": 1365,
+        "src": "/images/opt/original-IMG_7535-63d3e457-2048.webp"
+      }
+    ]
+  },
+  "/images/original/IMG_7538.JPG": {
+    "width": 6000,
+    "height": 4000,
+    "variants": [
+      {
+        "w": 480,
+        "h": 320,
+        "src": "/images/opt/original-IMG_7538-cb8c7a2c-480.webp"
+      },
+      {
+        "w": 960,
+        "h": 640,
+        "src": "/images/opt/original-IMG_7538-cb8c7a2c-960.webp"
+      },
+      {
+        "w": 1600,
+        "h": 1067,
+        "src": "/images/opt/original-IMG_7538-cb8c7a2c-1600.webp"
+      },
+      {
+        "w": 2048,
+        "h": 1365,
+        "src": "/images/opt/original-IMG_7538-cb8c7a2c-2048.webp"
+      }
+    ]
+  },
+  "/images/original/IMG_7595.JPG": {
+    "width": 6000,
+    "height": 4000,
+    "variants": [
+      {
+        "w": 480,
+        "h": 320,
+        "src": "/images/opt/original-IMG_7595-7f6be453-480.webp"
+      },
+      {
+        "w": 960,
+        "h": 640,
+        "src": "/images/opt/original-IMG_7595-7f6be453-960.webp"
+      },
+      {
+        "w": 1600,
+        "h": 1067,
+        "src": "/images/opt/original-IMG_7595-7f6be453-1600.webp"
+      },
+      {
+        "w": 2048,
+        "h": 1365,
+        "src": "/images/opt/original-IMG_7595-7f6be453-2048.webp"
+      }
+    ]
+  },
+  "/images/original/IMG_7604.JPG": {
+    "width": 5328,
+    "height": 4000,
+    "variants": [
+      {
+        "w": 480,
+        "h": 360,
+        "src": "/images/opt/original-IMG_7604-9380672c-480.webp"
+      },
+      {
+        "w": 960,
+        "h": 721,
+        "src": "/images/opt/original-IMG_7604-9380672c-960.webp"
+      },
+      {
+        "w": 1600,
+        "h": 1201,
+        "src": "/images/opt/original-IMG_7604-9380672c-1600.webp"
+      },
+      {
+        "w": 2048,
+        "h": 1538,
+        "src": "/images/opt/original-IMG_7604-9380672c-2048.webp"
+      }
+    ]
+  },
+  "/images/original/opencode-wsl.png": {
+    "width": 2821,
+    "height": 1567,
+    "variants": [
+      {
+        "w": 480,
+        "h": 267,
+        "src": "/images/opt/original-opencode-wsl-730e76a2-480.webp"
+      },
+      {
+        "w": 960,
+        "h": 533,
+        "src": "/images/opt/original-opencode-wsl-730e76a2-960.webp"
+      },
+      {
+        "w": 1600,
+        "h": 889,
+        "src": "/images/opt/original-opencode-wsl-730e76a2-1600.webp"
+      },
+      {
+        "w": 2048,
+        "h": 1138,
+        "src": "/images/opt/original-opencode-wsl-730e76a2-2048.webp"
+      }
+    ]
+  },
+  "/images/pendrawing-01machine.jpg": {
+    "width": 4080,
+    "height": 3060,
+    "variants": [
+      {
+        "w": 480,
+        "h": 360,
+        "src": "/images/opt/pendrawing-01machine-e5959501-480.webp"
+      },
+      {
+        "w": 960,
+        "h": 720,
+        "src": "/images/opt/pendrawing-01machine-e5959501-960.webp"
+      },
+      {
+        "w": 1600,
+        "h": 1200,
+        "src": "/images/opt/pendrawing-01machine-e5959501-1600.webp"
+      },
+      {
+        "w": 2048,
+        "h": 1536,
+        "src": "/images/opt/pendrawing-01machine-e5959501-2048.webp"
+      }
+    ]
+  },
+  "/images/pendrawing-chatgpt-cat.png": {
+    "width": 1122,
+    "height": 1402,
+    "variants": [
+      {
+        "w": 480,
+        "h": 600,
+        "src": "/images/opt/pendrawing-chatgpt-cat-247ac898-480.webp"
+      },
+      {
+        "w": 960,
+        "h": 1200,
+        "src": "/images/opt/pendrawing-chatgpt-cat-247ac898-960.webp"
+      },
+      {
+        "w": 1122,
+        "h": 1402,
+        "src": "/images/opt/pendrawing-chatgpt-cat-247ac898-1122.webp"
+      }
+    ]
+  },
+  "/images/pendrawing-crabapple.jpg": {
+    "width": 1706,
+    "height": 1279,
+    "variants": [
+      {
+        "w": 480,
+        "h": 360,
+        "src": "/images/opt/pendrawing-crabapple-0092bf73-480.webp"
+      },
+      {
+        "w": 960,
+        "h": 720,
+        "src": "/images/opt/pendrawing-crabapple-0092bf73-960.webp"
+      },
+      {
+        "w": 1600,
+        "h": 1200,
+        "src": "/images/opt/pendrawing-crabapple-0092bf73-1600.webp"
+      },
+      {
+        "w": 1706,
+        "h": 1279,
+        "src": "/images/opt/pendrawing-crabapple-0092bf73-1706.webp"
+      }
+    ]
+  },
+  "/images/pendrawing-sea_and_reef.jpg": {
+    "width": 4080,
+    "height": 3060,
+    "variants": [
+      {
+        "w": 480,
+        "h": 360,
+        "src": "/images/opt/pendrawing-sea_and_reef-2b9fbb4e-480.webp"
+      },
+      {
+        "w": 960,
+        "h": 720,
+        "src": "/images/opt/pendrawing-sea_and_reef-2b9fbb4e-960.webp"
+      },
+      {
+        "w": 1600,
+        "h": 1200,
+        "src": "/images/opt/pendrawing-sea_and_reef-2b9fbb4e-1600.webp"
+      },
+      {
+        "w": 2048,
+        "h": 1536,
+        "src": "/images/opt/pendrawing-sea_and_reef-2b9fbb4e-2048.webp"
+      }
+    ]
+  },
+  "/images/refactoring-ui-cover.png": {
+    "width": 758,
+    "height": 1014,
+    "variants": [
+      {
+        "w": 480,
+        "h": 642,
+        "src": "/images/opt/refactoring-ui-cover-72404b13-480.webp"
+      },
+      {
+        "w": 758,
+        "h": 1014,
+        "src": "/images/opt/refactoring-ui-cover-72404b13-758.webp"
+      }
+    ]
+  },
+  "/images/sketch-jaychou.jpg": {
+    "width": 4080,
+    "height": 3060,
+    "variants": [
+      {
+        "w": 480,
+        "h": 360,
+        "src": "/images/opt/sketch-jaychou-e7402a76-480.webp"
+      },
+      {
+        "w": 960,
+        "h": 720,
+        "src": "/images/opt/sketch-jaychou-e7402a76-960.webp"
+      },
+      {
+        "w": 1600,
+        "h": 1200,
+        "src": "/images/opt/sketch-jaychou-e7402a76-1600.webp"
+      },
+      {
+        "w": 2048,
+        "h": 1536,
+        "src": "/images/opt/sketch-jaychou-e7402a76-2048.webp"
+      }
+    ]
+  }
+}

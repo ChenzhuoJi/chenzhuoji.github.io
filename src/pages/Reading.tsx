@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import books from '../data/books'
+import ResponsiveImage from '../components/ResponsiveImage'
 
 export default function Reading() {
   return (
@@ -43,11 +44,11 @@ export default function Reading() {
               style={{ animationDelay: `${i * 0.1}s` }}
             >
               <div className="aspect-[3/4] overflow-hidden rounded-sm bg-ink-100 dark:bg-ink-800">
-                <img
+                <ResponsiveImage
                   src={book.cover}
                   alt={book.title}
+                  sizes="(min-width: 1024px) 220px, (min-width: 640px) 30vw, 45vw"
                   className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                  loading="lazy"
                 />
               </div>
               <h3 className="mt-3 text-sm font-medium text-ink-900 dark:text-ink-100 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors">

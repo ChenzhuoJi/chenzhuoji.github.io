@@ -1,5 +1,5 @@
 ---
-title: 大老板的快乐
+title: AI畅想时代
 date: 2026-05-16
 genre: my
 tags: [opencode, AI, 写作, 编辑社]

@@ -7,6 +7,7 @@ import rehypeRaw from 'rehype-raw'
 import rehypeHighlight from 'rehype-highlight'
 import Filmstrip, { type FilmstripImage } from './Filmstrip'
 import ResponsiveImage from './ResponsiveImage'
+import { addCjkSpacing } from '../utils/cjkSpacing'
 
 import 'katex/dist/katex.min.css'
 
@@ -44,6 +45,8 @@ export default function MarkdownRenderer({ content }: Props) {
 
   useEffect(() => {
     if (!ref.current) return
+    addCjkSpacing(ref.current)
+
     const hash = window.location.hash
     if (hash) {
       const id = hash.slice(1)
@@ -85,7 +88,7 @@ export default function MarkdownRenderer({ content }: Props) {
                 className="rounded-md mx-auto w-full max-w-full h-auto"
                 sizes="(min-width: 768px) 768px, 100vw"
               />
-              {alt && <figcaption className="text-center text-[1.5rem] text-ink-400 mt-3 font-accent">{alt}</figcaption>}
+              {alt && <figcaption className="mt-3 text-center font-accent text-sm text-ink-400">{alt}</figcaption>}
             </figure>
           ),
           table: ({ children, ...props }) => (

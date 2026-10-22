@@ -7,7 +7,7 @@ export default function TagPosts() {
   const posts = usePostsByTag(tag ?? '')
 
   return (
-    <div>
+    <div className="mx-auto w-full max-w-[50rem]">
       <section className="mb-12">
         <Link
           to="/tags"

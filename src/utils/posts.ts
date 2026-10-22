@@ -11,6 +11,22 @@ function estimateReadingTime(text: string): number {
   return Math.max(1, Math.ceil(chars / READING_SPEED))
 }
 
+/** 粗略统计正文字数：汉字按字算，英文/数字按词算，跳过代码和公式 */
+export function countChars(text: string): number {
+  const plain = text
+    .replace(/```[\s\S]*?```/g, ' ')
+    .replace(/`[^`]*`/g, ' ')
+    .replace(/\$\$[\s\S]*?\$\$/g, ' ')
+    .replace(/\$[^$]*\$/g, ' ')
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/<[^>]+>/g, ' ')
+
+  const cjk = plain.match(/[\u3400-\u9fff]/g)?.length ?? 0
+  const words = plain.match(/[A-Za-z0-9]+/g)?.length ?? 0
+  return cjk + words
+}
+
 function slugFromPath(path: string): string {
   return path.split('/').pop()?.replace(/\.md$/, '') ?? ''
 }

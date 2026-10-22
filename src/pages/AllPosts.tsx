@@ -6,7 +6,7 @@ export default function AllPosts() {
   const posts = usePosts()
 
   return (
-    <div>
+    <div className="mx-auto w-full max-w-[50rem]">
       <section className="mb-12">
         <Link
           to="/"

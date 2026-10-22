@@ -41,9 +41,12 @@ src/
 │   ├── SearchDialog.tsx     # Cmd+K / Ctrl+K 搜索弹窗
 │   ├── ArticleGraph.tsx     # 标签关系图谱
 │   ├── GalleryLightbox.tsx  # 画廊灯箱
+│   ├── BubbleCircle.tsx     # 首页手绘气泡入口（弹动 + 水泡动效）
+│   ├── ThoughtCloud.tsx     # 从门缝里冒出来的三团思绪（缓慢上浮 + 弯曲烟迹）
+│   ├── HandDrawnDoor.tsx    # 首页手绘门入口（悬停开门，露出「全部文章」）
 │   └── ThemeToggle.tsx
 ├── pages/                   # 路由页面
-│   ├── Home.tsx             # / — 刊头 + 头条 + 三门类入口 + Tech 精选 + 全部文章
+│   ├── Home.tsx             # / — 从门缝里冒出的思绪气泡 + 手绘的门
 │   ├── AllPosts.tsx         # /posts — 全部文章
 │   ├── Post.tsx             # /posts/:slug — 文末连载导航
 │   ├── GenrePosts.tsx       # /genre/:name — 按门类过滤
@@ -94,7 +97,7 @@ pin: true               # 可选，置顶文章
 - 栏目 URL 默认使用中文名（如 `/columns/代码的故事`），栏目完结后在 `src/data/columns.ts` 中配置 `slug` 可切换为英文 URL（如 `code-stories`），页面显示名不受影响
 - 系列是栏目内的子分组，一个栏目可含多个系列
 - 标签是扁平的，跨门类/栏目/系列自由组合
-- 首页显示：刊头 → 头条（pin）→ 门类入口（my / tech / gallery）→ Tech 精选 5 篇 → 全部文章入口
+- 首页显示：三个半透明的思绪气泡从门缝里缓缓冒出，沿弯曲烟迹上浮，边缘轻微扭曲并带玻璃高光 → 手绘的门（悬停打开，露出「全部文章」）
 - 画廊 (`/gallery`) 数据在 `src/data/artworks.ts`，读书 (`/reading`) 数据在 `src/data/books.ts`，均不在 Markdown 中管理
 
 ## 图片与胶片条

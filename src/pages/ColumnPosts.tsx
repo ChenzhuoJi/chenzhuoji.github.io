@@ -20,7 +20,7 @@ export default function ColumnPosts() {
   }
 
   return (
-    <div>
+    <div className="mx-auto w-full max-w-[50rem]">
       <section className="mb-12">
         <div className="flex items-center gap-2 text-xs text-ink-400 dark:text-ink-500 mb-4">
           <Link

@@ -75,12 +75,12 @@ export default {
         /** 通用无衬线: Open Sans（自托管）+ 系统中文字体 */
         sans: [
           '"Open Sans"', '"PingFang SC"', '"Hiragino Sans GB"', '"Microsoft YaHei"',
-          '"Noto Sans CJK SC"', '"Source Han Sans SC"', '"WenQuanYi Micro Hei"',
+          '"Noto Sans SC"', '"Source Han Sans SC"', '"WenQuanYi Micro Hei"',
           'system-ui', '-apple-system', 'sans-serif',
         ],
         /** 通用衬线: 系统中文字体 */
         serif: [
-          '"Noto Serif CJK SC"', '"Source Han Serif SC"', '"Songti SC"',
+          '"Noto Serif SC"', '"Source Han Serif SC"', '"Songti SC"',
           '"STSong"', '"SimSun"', '"PingFang SC"', '"Microsoft YaHei"',
           'Georgia', 'serif',
         ],
@@ -99,25 +99,25 @@ export default {
         /** UI 元素: Open Sans（自托管）+ 系统中文字体 */
         ui: [
           '"Open Sans"', '"PingFang SC"', '"Hiragino Sans GB"', '"Microsoft YaHei"',
-          '"Noto Sans CJK SC"', '"Source Han Sans SC"', '"WenQuanYi Micro Hei"',
+          '"Noto Sans SC"', '"Source Han Sans SC"', '"WenQuanYi Micro Hei"',
           'system-ui', '-apple-system', 'sans-serif',
         ],
         /** 等宽: JetBrains Mono（自托管） */
         mono: [
-          '"JetBrains Mono"', '"Menlo"', '"Consolas"', '"Noto Sans Mono CJK SC"',
+          '"JetBrains Mono"', '"Menlo"', '"Consolas"', '"Noto Sans Mono SC"',
           'ui-monospace', 'SFMono-Regular', 'monospace',
         ],
         /** 装饰/引用/描述: 系统楷体 */
         accent: [
           '"LXGW WenKai"', '"Kaiti SC"', '"STKaiti"', '"KaiTi"',
-          '"Noto Serif CJK SC"', '"Songti SC"', 'serif',
+          '"Noto Serif SC"', '"Songti SC"', 'serif',
         ],
       },
       typography: {
         DEFAULT: {
           css: {
             maxWidth: 'none',
-            fontSize: '1.4rem',
+            fontSize: '1.3rem',
             fontFamily: 'var(--font-body)',
             h1: { fontFamily: 'var(--font-heading)' },
             h2: { fontFamily: 'var(--font-heading)' },

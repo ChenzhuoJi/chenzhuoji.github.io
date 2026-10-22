@@ -2,8 +2,7 @@
 title: AI畅想时代
 date: 2026-05-16
 genre: my
-tags: [opencode, AI, 写作, 编辑社]
-description: 我也当大老板了，成为资本。
+description: 那时候很好奇
 ---
 ## 主编和组织
 

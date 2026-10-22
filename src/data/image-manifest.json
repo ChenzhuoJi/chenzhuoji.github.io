@@ -306,6 +306,32 @@
       }
     ]
   },
+  "/images/original/fu-li-de-li-xi-01.jpg": {
+    "width": 2048,
+    "height": 1571,
+    "variants": [
+      {
+        "w": 480,
+        "h": 368,
+        "src": "/images/opt/original-fu-li-de-li-xi-01-a2cd1819-480.webp"
+      },
+      {
+        "w": 960,
+        "h": 736,
+        "src": "/images/opt/original-fu-li-de-li-xi-01-a2cd1819-960.webp"
+      },
+      {
+        "w": 1600,
+        "h": 1227,
+        "src": "/images/opt/original-fu-li-de-li-xi-01-a2cd1819-1600.webp"
+      },
+      {
+        "w": 2048,
+        "h": 1571,
+        "src": "/images/opt/original-fu-li-de-li-xi-01-a2cd1819-2048.webp"
+      }
+    ]
+  },
   "/images/original/opencode-wsl.png": {
     "width": 2821,
     "height": 1567,

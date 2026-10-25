@@ -1,5 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import books from '../data/books'
+import { site } from '../data/site'
 import MarkdownRenderer from '../components/MarkdownRenderer'
 import ResponsiveImage from '../components/ResponsiveImage'
 
@@ -9,63 +11,55 @@ export default function BookNote() {
 
   if (!book) {
     return (
-      <div className="text-center py-20">
-        <p className="text-ink-400 dark:text-ink-500">书籍未找到</p>
-        <Link to="/reading" className="mt-4 inline-block text-sm text-vermilion-500 hover:text-vermilion-600 transition-colors">
-          ← 返回读书频道
+      <div className="page">
+        <p className="empty">书籍未找到。</p>
+        <Link to="/reading" className="back-link">
+          ← 读
         </Link>
       </div>
     )
   }
 
   return (
-    <article>
-      <div className="flex items-center gap-2 text-xs text-ink-400 dark:text-ink-500 mb-8">
-        <Link
-          to="/"
-          className="hover:text-ink-600 dark:hover:text-ink-300 transition-colors"
-        >
-          首页
-        </Link>
-        <span>/</span>
-        <Link
-          to="/reading"
-          className="hover:text-ink-600 dark:hover:text-ink-300 transition-colors"
-        >
-          My Reading
-        </Link>
-      </div>
+    <article className="article-page">
+      <Helmet>
+        <title>{`${book.title} · 读 · ${site.name}`}</title>
+        <meta name="description" content={book.description} />
+      </Helmet>
 
-      <header className="mb-10">
-        <div className="flex flex-col sm:flex-row gap-6 items-start">
-          <div className="w-40 shrink-0">
-            <div className="aspect-[3/4] overflow-hidden rounded-sm bg-ink-100 dark:bg-ink-800">
-              <ResponsiveImage
-                src={book.cover}
-                alt={book.title}
-                sizes="160px"
-                className="w-full h-full object-cover"
-              />
+      <div className="spread">
+        <aside className="rail post-rail">
+          <Link to="/reading" className="back-link">
+            ← 读
+          </Link>
+          <div className="rail-block">
+            <span className="rail-key">作者</span>
+            <span className="rail-value">{book.author}</span>
+          </div>
+        </aside>
+
+        <div className="spread-main">
+          <header className="post-head book-note-head">
+            <div className="book-cover">
+              <ResponsiveImage src={book.cover} alt={book.title} sizes="120px" />
             </div>
-          </div>
-          <div className="flex-1 min-w-0">
-            <h1 className="text-2xl font-heading font-medium text-ink-900 dark:text-ink-100 leading-tight">
-              {book.title}
-            </h1>
-            <p className="mt-1 text-sm text-ink-400 dark:text-ink-500">
-              {book.author}
-            </p>
-            {book.description && (
-              <p className="mt-3 text-sm text-ink-600 dark:text-ink-300 leading-relaxed">
-                {book.description}
-              </p>
-            )}
-          </div>
-        </div>
-      </header>
+            <div>
+              <h1 className="post-title">{book.title}</h1>
+              <p className="book-author">{book.author}</p>
+              {book.description && <p className="post-dek">{book.description}</p>}
+            </div>
+          </header>
 
-      <div className="max-w-2xl mx-auto">
-        <MarkdownRenderer content={book.content} />
+          <div className="post-body">
+            <MarkdownRenderer content={book.content} />
+          </div>
+
+          <footer className="post-foot">
+            <Link to="/reading" className="back-link">
+              ← 回读
+            </Link>
+          </footer>
+        </div>
       </div>
     </article>
   )

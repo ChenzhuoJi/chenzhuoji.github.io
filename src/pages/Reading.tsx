@@ -1,71 +1,61 @@
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import books from '../data/books'
+import { site } from '../data/site'
+import { chineseNumber } from '../utils/format'
 import ResponsiveImage from '../components/ResponsiveImage'
 
 export default function Reading() {
   return (
-    <div>
-      <section className="mb-10 animate-[fade-up_0.6s_ease-out]">
-        <Link
-          to="/"
-          className="inline-flex items-center text-sm text-ink-400 dark:text-ink-500 hover:text-ink-600 dark:hover:text-ink-300 transition-colors mb-4"
-        >
-          <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-          首页
-        </Link>
-        <h1 className="text-2xl font-heading font-semibold text-ink-900 dark:text-ink-100">
-          My Reading
-        </h1>
-        <div className="mt-3 flex items-center gap-3">
-          <div className="flex-grow border-t border-ink-200 dark:border-ink-700" />
-          <span className="text-[10px] uppercase tracking-[0.2em] text-vermilion-500 dark:text-vermilion-400">
-            READING
-          </span>
-          <div className="flex-grow border-t border-ink-200 dark:border-ink-700" />
-        </div>
-        <p className="mt-4 text-sm text-ink-400 dark:text-ink-500 leading-relaxed">
-          读书笔记与思考
-        </p>
-      </section>
+    <div className="page">
+      <Helmet>
+        <title>{`读 · ${site.name}`}</title>
+        <meta name="description" content="读过的书，写下的笔记。" />
+      </Helmet>
 
-      {books.length === 0 ? (
-        <p className="text-center py-16 text-ink-400 dark:text-ink-500 text-sm">
-          暂无记录
-        </p>
-      ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-          {books.map((book, i) => (
-            <Link
-              key={book.slug}
-              to={`/reading/${book.slug}`}
-              className="group block"
-              style={{ animationDelay: `${i * 0.1}s` }}
-            >
-              <div className="aspect-[3/4] overflow-hidden rounded-sm bg-ink-100 dark:bg-ink-800">
-                <ResponsiveImage
-                  src={book.cover}
-                  alt={book.title}
-                  sizes="(min-width: 1024px) 220px, (min-width: 640px) 30vw, 45vw"
-                  className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                />
-              </div>
-              <h3 className="mt-3 text-sm font-medium text-ink-900 dark:text-ink-100 group-hover:text-vermilion-600 dark:group-hover:text-vermilion-400 transition-colors">
-                {book.title}
-              </h3>
-              <p className="mt-0.5 text-xs text-ink-400 dark:text-ink-500">
-                {book.author}
-              </p>
-              {book.description && (
-                <p className="mt-1 text-xs text-ink-500 dark:text-ink-400 line-clamp-2 leading-relaxed">
-                  {book.description}
-                </p>
-              )}
-            </Link>
-          ))}
+      <div className="spread">
+        <aside className="rail">
+          <span className="rail-label">读</span>
+          <span className="rail-date">
+            <span>{chineseNumber(books.length)}册</span>
+          </span>
+        </aside>
+
+        <div className="spread-main">
+          <header className="page-head">
+            <h1 className="page-title">读</h1>
+            <p className="page-dek">读过的书，写下的笔记。</p>
+          </header>
+
+          {books.length === 0 ? (
+            <p className="empty">还没有读书笔记。</p>
+          ) : (
+            books.map((book) => (
+              <Link key={book.slug} to={`/reading/${book.slug}`} className="book-row">
+                <div className="book-cover">
+                  <ResponsiveImage
+                    src={book.cover}
+                    alt={book.title}
+                    sizes="120px"
+                    loading="lazy"
+                  />
+                </div>
+                <div>
+                  <span className="book-title">{book.title}</span>
+                  <span className="book-author">{book.author}</span>
+                  {book.description && <span className="book-desc">{book.description}</span>}
+                  <span className="book-link">读笔记 →</span>
+                </div>
+              </Link>
+            ))
+          )}
+
+          <div className="section-link-row">
+            <Link to="/posts">记</Link>
+            <Link to="/gallery">影</Link>
+          </div>
         </div>
-      )}
+      </div>
     </div>
   )
 }

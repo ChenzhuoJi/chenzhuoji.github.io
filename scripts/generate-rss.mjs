@@ -17,13 +17,20 @@ for (const file of readdirSync(contentDir).filter((f) => f.endsWith('.md'))) {
     slug,
     description: data.description || '',
     date: data.date ? new Date(data.date).toISOString() : '',
+    order: typeof data.order === 'number' ? data.order : Number.POSITIVE_INFINITY,
   })
 }
 
-posts.sort((a, b) => b.date.localeCompare(a.date))
+posts.sort((a, b) => {
+  const byDate = b.date.localeCompare(a.date)
+  if (byDate !== 0) return byDate
+  if (a.order !== b.order) return a.order - b.order
+  return a.slug.localeCompare(b.slug)
+})
 
 const siteUrl = 'https://chenzhuoji.github.io'
-const title = "Chenzhuo's Blog"
+const title = 'ChenzhuoJi'
+const description = 'ChenzhuoJi：文章与照片。'
 
 const items = posts
   .map(
@@ -42,7 +49,7 @@ const rss = `<?xml version="1.0" encoding="UTF-8"?>
   <channel>
     <title>${escapeXml(title)}</title>
     <link>${siteUrl}</link>
-    <description>${escapeXml(title)}</description>
+    <description>${escapeXml(description)}</description>
     <atom:link href="${siteUrl}/rss.xml" rel="self" type="application/rss+xml"/>
 ${items}
   </channel>

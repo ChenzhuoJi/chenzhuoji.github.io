@@ -1,129 +1,136 @@
+import { useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import MarkdownRenderer from '../components/MarkdownRenderer'
-import { usePost, useColumnNav, useRelatedPosts } from '../hooks/usePosts'
-import { getColumnUrl, countChars } from '../utils/posts'
-import type { Genre } from '../types'
-import RelatedArticles from '../components/RelatedArticles'
-
-const GENRE_LABEL: Record<Genre, string> = { vibe: 'Vibe', my: '随笔', tech: '有用' }
-const GENRE_DOT: Record<Genre, string> = {
-  my: 'bg-ink-800/60 dark:bg-ink-200/50',
-  vibe: 'bg-vermilion-500/80',
-  tech: 'bg-frost-600/80 dark:bg-frost-300/80',
-}
+import TOC from '../components/TOC'
+import { usePost, usePosts } from '../hooks/usePosts'
+import { site } from '../data/site'
+import { chineseDate } from '../utils/format'
+import { countChars, getColumnUrl, sortPostsByDate } from '../utils/posts'
+import { GENRE_LABEL } from '../data/genres'
 
 export default function Post() {
   const { slug } = useParams<{ slug: string }>()
   const post = usePost(slug ?? '')
-  const nav = useColumnNav(slug ?? '')
-  const related = useRelatedPosts(slug ?? '')
+  const posts = usePosts()
+
+  const sorted = useMemo(() => sortPostsByDate(posts), [posts])
 
   if (!post) {
     return (
-      <div className="text-center py-20">
-        <p className="text-ink-400 dark:text-ink-500">文章未找到</p>
-        <Link to="/" className="mt-4 inline-block text-sm text-vermilion-500 hover:text-vermilion-600 transition-colors">
-          ← 返回首页
+      <div className="page">
+        <p className="empty">文章未找到。</p>
+        <Link to="/posts" className="back-link">
+          ← 回记
         </Link>
       </div>
     )
   }
 
-  const genre = post.meta.genre
-  const date = post.meta.date.replace(/-/g, '.')
+  const date = chineseDate(post.meta.date)
+  const chars = countChars(post.content)
+  const index = sorted.findIndex((p) => p.meta.slug === post.meta.slug)
+  const newer = index > 0 ? sorted[index - 1] : null
+  const older = index >= 0 && index < sorted.length - 1 ? sorted[index + 1] : null
 
   return (
-    <article className="mx-auto w-full max-w-[45rem]">
-      <nav className="mb-10 flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.7rem] tracking-[0.12em] text-ink-500 dark:text-ink-400">
-        <Link to="/" className="transition-colors hover:text-vermilion-600 dark:hover:text-vermilion-400">
-          首页
-        </Link>
-        <span className="text-ink-300 dark:text-ink-600">/</span>
-        <Link
-          to={`/genre/${genre}`}
-          className="transition-colors hover:text-vermilion-600 dark:hover:text-vermilion-400"
-        >
-          {GENRE_LABEL[genre]}
-        </Link>
-        <span className="hidden text-ink-300 dark:text-ink-600 sm:inline">/</span>
-        <span
-          className="hidden max-w-[20rem] truncate text-ink-400 dark:text-ink-500 sm:inline"
-          aria-current="page"
-        >
-          {post.meta.title}
-        </span>
-      </nav>
+    <article className="article-page">
+      <Helmet>
+        <title>{`${post.meta.title} · ${site.name}`}</title>
+        {post.meta.description && <meta name="description" content={post.meta.description} />}
+      </Helmet>
 
-      <header className="mb-12">
-        <h1 className="font-heading text-[2.15rem] font-semibold leading-[1.25] tracking-[0.035em] text-ink-900 dark:text-ink-50 sm:text-[2.6rem]">
-          {post.meta.title}
-        </h1>
+      <div className="spread">
+        <aside className="rail post-rail-wrap">
+          <div className="post-rail">
+            <Link to="/posts" className="back-link">
+              ← 记
+            </Link>
 
-        <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[0.7rem] text-ink-400 dark:text-ink-500">
-          <span className={`h-1.5 w-1.5 rounded-full ${GENRE_DOT[genre]}`} aria-hidden="true" />
-          <time className="font-mono tracking-wider">{date}</time>
+            {date.valid && (
+              <div className="rail-block">
+                <span className="rail-key">日期</span>
+                <time className="rail-value" dateTime={post.meta.date}>
+                  <span>{date.year}年</span>
+                  <span>{date.monthDay}</span>
+                </time>
+              </div>
+            )}
 
-          <span className="text-ink-300 dark:text-ink-600">·</span>
-          <Link
-            to={`/genre/${genre}`}
-            className="transition-colors hover:text-vermilion-600 dark:hover:text-vermilion-400"
-          >
-            {GENRE_LABEL[genre]}
-          </Link>
-
-          {post.meta.column && (
-            <>
-              <span className="text-ink-300 dark:text-ink-600">·</span>
-              <Link
-                to={`/columns/${getColumnUrl(post.meta.column)}`}
-                className="transition-colors hover:text-vermilion-600 dark:hover:text-vermilion-400"
-              >
-                {post.meta.column}
-                {post.meta.order != null && ` · 第 ${post.meta.order} 篇`}
+            <div className="rail-block">
+              <span className="rail-key">类别</span>
+              <Link to={`/genre/${post.meta.genre}`} className="rail-value">
+                {GENRE_LABEL[post.meta.genre]}
               </Link>
-            </>
-          )}
-
-          <span className="text-ink-300 dark:text-ink-600">·</span>
-          <span>共 {countChars(post.content).toLocaleString('zh-CN')} 字</span>
-        </div>
-      </header>
-
-      <MarkdownRenderer content={post.content} />
-
-      {(nav.prev || nav.next) && (
-        <nav className="mt-14 border-t border-dashed border-ink-300/80 pt-6 dark:border-ink-700">
-          <div className="mb-4 font-accent text-sm text-ink-400 dark:text-ink-500">{post.meta.column}</div>
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex-1 min-w-0">
-              {nav.prev ? (
-                <Link to={`/posts/${nav.prev.meta.slug}`} className="group block">
-                  <span className="text-sm text-ink-400 dark:text-ink-500">← 上一篇</span>
-                  <div className="mt-1 truncate font-heading text-base font-medium text-ink-700 transition-colors group-hover:text-vermilion-600 dark:text-ink-300 dark:group-hover:text-vermilion-400">
-                    {nav.prev.meta.title}
-                  </div>
-                </Link>
-              ) : (
-                <div />
-              )}
             </div>
-            <div className="flex-1 min-w-0 text-right">
-              {nav.next ? (
-                <Link to={`/posts/${nav.next.meta.slug}`} className="group block">
-                  <span className="text-sm text-ink-400 dark:text-ink-500">下一篇 →</span>
-                  <div className="mt-1 truncate font-heading text-base font-medium text-ink-700 transition-colors group-hover:text-vermilion-600 dark:text-ink-300 dark:group-hover:text-vermilion-400">
-                    {nav.next.meta.title}
-                  </div>
-                </Link>
-              ) : (
-                <div />
-              )}
+
+            <div className="rail-block">
+              <span className="rail-key">篇幅</span>
+              <span className="rail-value">
+                {chars.toLocaleString('zh-CN')} 字
+                <br />
+                约 {post.readingTime} 分钟
+              </span>
             </div>
+
+            {post.meta.column && (
+              <div className="rail-block">
+                <span className="rail-key">栏目</span>
+                <Link to={`/columns/${getColumnUrl(post.meta.column)}`} className="rail-value">
+                  {post.meta.column}
+                </Link>
+              </div>
+            )}
+
+            <TOC post={post} />
           </div>
-        </nav>
-      )}
+        </aside>
 
-      <RelatedArticles articles={related} />
+        <div className="spread-main">
+          <header className="post-head">
+            <h1 className="post-title">{post.meta.title}</h1>
+            {post.meta.description && <p className="post-dek">{post.meta.description}</p>}
+          </header>
+
+          <div className="post-body">
+            <MarkdownRenderer content={post.content} />
+          </div>
+
+          <footer className="post-foot">
+            {post.meta.tags.length > 0 && (
+              <div className="post-tags">
+                <span className="rail-key">标签</span>
+                {post.meta.tags.map((tag) => (
+                  <Link key={tag} to={`/tags/${tag}`}>
+                    {tag}
+                  </Link>
+                ))}
+              </div>
+            )}
+
+            {(older || newer) && (
+              <nav className="post-nav" aria-label="前后文章">
+                <div>
+                  {older && (
+                    <Link to={`/posts/${older.meta.slug}`}>
+                      <span className="post-nav-label">前一篇</span>
+                      {older.meta.title}
+                    </Link>
+                  )}
+                </div>
+                <div className="next">
+                  {newer && (
+                    <Link to={`/posts/${newer.meta.slug}`}>
+                      <span className="post-nav-label">后一篇</span>
+                      {newer.meta.title}
+                    </Link>
+                  )}
+                </div>
+              </nav>
+            )}
+          </footer>
+        </div>
+      </div>
     </article>
   )
 }

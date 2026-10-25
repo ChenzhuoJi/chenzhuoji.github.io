@@ -8,10 +8,10 @@ import TagList from './pages/TagList'
 import TagPosts from './pages/TagPosts'
 import GenrePosts from './pages/GenrePosts'
 import ColumnPosts from './pages/ColumnPosts'
-import Graph from './pages/Graph'
 import Gallery from './pages/Gallery'
 import Reading from './pages/Reading'
 import BookNote from './pages/BookNote'
+import NotFound from './pages/NotFound'
 
 export default function App() {
   return (
@@ -26,10 +26,10 @@ export default function App() {
             <Route path="columns/:name" element={<ColumnPosts />} />
             <Route path="tags" element={<TagList />} />
             <Route path="tags/:tag" element={<TagPosts />} />
-            <Route path="graph" element={<Graph />} />
             <Route path="gallery" element={<Gallery />} />
             <Route path="reading" element={<Reading />} />
             <Route path="reading/:slug" element={<BookNote />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>

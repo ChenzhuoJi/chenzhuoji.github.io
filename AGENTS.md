@@ -13,146 +13,189 @@ npm run images                           # 手动重跑图片优化
 
 ## 项目构成
 
-双框架并存：
-
 - **React + Vite + TypeScript**（主）—— 博客前端 SPA
 - **Hugo + PaperMod**（次）—— `themes/PaperMod` 是 git 子模块，保持脏状态，有大量本地修改
+
+站点名：**ChenzhuoJi**。它是一册按时间编排的个人记录，不是作品集，也不是知识库。
+
+## 设计原则
+
+改版后的页面只保留四件事：纸、墨、一色冷翠、字。
+
+- **纸墨色**：纸 `#F6F3EB`、墨 `#1E1D19`、次要文字 `#6F695D`、线 `#DDD6C6`、强调色冷翠 `#435B4D`。
+  暗色是暖黑 `#141512`，不另起一套彩色。
+- **字为主角**：标题和正文用宋体，引用/按语用仿宋（缺字退回黑体，不倾斜），
+  导航/小标签用 Open Sans，日期/编号/代码用 JetBrains Mono。
+  不再使用楷体、手写体、英文装饰衬线或夸张字重。
+- **页边版式**：左侧一条 8.75rem 的页边（日期、类别、目次），右侧是正文；
+  页面右侧刻意留白。宽度 ≤860px 时页边折叠为一行元信息。
+- **克制**：不要卡片、圆角、投影、渐变、emoji、手绘插画、漂浮气泡。
+  分隔只用 1px 细线；图片不使用圆角。只有搜索弹窗与灯箱允许极轻的阴影/模糊。
+- **文案**：首页题记、摘句只用作者自己的句子；界面文案要短、要平实。
+  不要写「欢迎来到我的数字花园」「在这里，遇见更好的自己」这类 AI 腔。
+- **动效**：只保留 hover 下划线、颜色过渡和滚动。尊重 `prefers-reduced-motion`。
 
 ## 前端架构
 
 ```
 src/
-├── fonts.css               # 自托管英文字体 @font-face（public/fonts/）
-├── index.css               # Tailwind 入口 + CSS 变量 + 报刊/胶片样式
+├── fonts.css                 # 自托管英文字体 @font-face（public/fonts/）
+├── index.css                 # 设计变量、版式、prose、灯箱、搜索、响应式
 ├── data/
-│   ├── columns.ts          # 栏目别名配置（可选英文 URL slug）
-│   ├── fonts.ts            # 字体栈（Tailwind / CSS 变量共用）
-│   ├── artworks.ts         # 画廊作品数据
-│   └── books.ts            # 读书频道数据
-├── utils/posts.ts          # import.meta.glob 读取 content/posts/*.md
+│   ├── site.ts               # 站点名、题记、摄影引句、时区
+│   ├── photos.ts             # 首页与「影」使用的照片
+│   ├── lines.ts              # 首页「摘」的句子
+│   ├── artworks.ts           # 画
+│   ├── books.ts              # 读
+│   ├── genres.ts             # 门类中文名
+│   ├── columns.ts            # 栏目别名配置
+│   └── fonts.ts              # 字体栈（与 index.css / tailwind.config.ts 同步）
+├── utils/
+│   ├── posts.ts              # import.meta.glob 读取 content/posts/*.md
+│   ├── format.ts             # 中文日期、时辰、纯文本摘要
+│   └── cjkSpacing.ts         # 中英混排补空格
 ├── hooks/
-│   ├── useTheme.ts         # localStorage + prefers-color-scheme 持久化主题
-│   ├── usePosts.ts         # 文章数据（memo 缓存）
-│   └── useSearch.ts        # Fuse.js 全文搜索
+│   ├── useTheme.ts           # localStorage + prefers-color-scheme
+│   ├── usePosts.ts           # 文章数据（memo）
+│   └── useSearch.ts          # Fuse.js 全文搜索
 ├── components/
-│   ├── MarkdownRenderer.tsx # react-markdown + KaTeX + 代码高亮 + 胶片条
-│   ├── Filmstrip.tsx        # .filmstrip 图组 → 可横向滑动的胶片条
-│   ├── TOC.tsx              # 桌面端固定侧边目录
-│   ├── SearchDialog.tsx     # Cmd+K / Ctrl+K 搜索弹窗
-│   ├── ArticleGraph.tsx     # 标签关系图谱
-│   ├── GalleryLightbox.tsx  # 画廊灯箱
-│   ├── BubbleCircle.tsx     # 首页手绘气泡入口（弹动 + 水泡动效）
-│   ├── ThoughtCloud.tsx     # 从门缝里冒出来的三团思绪（缓慢上浮 + 弯曲烟迹）
-│   ├── HandDrawnDoor.tsx    # 首页手绘门入口（悬停开门，露出「全部文章」）
-│   └── ThemeToggle.tsx
-├── pages/                   # 路由页面
-│   ├── Home.tsx             # / — 从门缝里冒出的思绪气泡 + 手绘的门
-│   ├── AllPosts.tsx         # /posts — 全部文章
-│   ├── Post.tsx             # /posts/:slug — 文末连载导航
-│   ├── GenrePosts.tsx       # /genre/:name — 按门类过滤
-│   ├── ColumnPosts.tsx      # /columns/:name — 栏目文章列表
-│   ├── TagList.tsx          # /tags
-│   ├── TagPosts.tsx         # /tags/:tag
-│   ├── Graph.tsx            # /graph — 标签关系图谱
-│   ├── Gallery.tsx          # /gallery — 绘画作品
-│   ├── Reading.tsx          # /reading — 读书清单
-│   └── BookNote.tsx         # /reading/:slug — 单本书笔记
-└── App.tsx                  # React Router v6 路由定义
+│   ├── Header.tsx            # ChenzhuoJi / 记 影 读 / 搜 夜
+│   ├── Footer.tsx            # 版权、索引、RSS、GitHub、安装 App
+│   ├── ArchiveRows.tsx       # 日期 + 标题 + 门类的文章行
+│   ├── MarkdownRenderer.tsx  # react-markdown + KaTeX + 代码高亮 + 图组
+│   ├── Filmstrip.tsx         # 正文里的横向照片条与灯箱
+│   ├── TOC.tsx               # 桌面端固定页边目次（只取 h2）
+│   ├── SearchDialog.tsx      # Cmd+K / Ctrl+K
+│   ├── GalleryLightbox.tsx   # 「影」的灯箱
+│   ├── ResponsiveImage.tsx   # 按清单输出 srcset
+│   ├── PwaPrompts.tsx        # 安装与更新提示
+│   └── ThemeToggle.tsx       # 夜 / 日
+├── pages/
+│   ├── Home.tsx              # / — 题记 + 记 + 一张照片 + 摘句
+│   ├── AllPosts.tsx          # /posts — 记，按年份
+│   ├── Post.tsx              # /posts/:slug — 页边 + 正文 + 目次 + 前后篇
+│   ├── GenrePosts.tsx        # /genre/:name
+│   ├── ColumnPosts.tsx       # /columns/:name
+│   ├── TagList.tsx           # /tags — 索引
+│   ├── TagPosts.tsx          # /tags/:tag
+│   ├── Gallery.tsx           # /gallery — 照片 + 画
+│   ├── Reading.tsx           # /reading
+│   ├── BookNote.tsx          # /reading/:slug
+│   └── NotFound.tsx          # * — 404
+├── layouts/BaseLayout.tsx
+├── types/index.ts
+└── App.tsx
 ```
 
-## 内容组织层级
+旧的关系图谱 `/graph`、手绘首页组件、ArticleCard / ArticleList / GalleryCard 已移除，不要恢复。
 
-文章内容分四个维度组织，前三级为树状层级，标签为扁平交叉：
+## 页面结构
+
+### 首页 `/`
+
+1. **页眉**：ChenzhuoJi + 天津 · 二〇二六；导航 `记 / 影 / 读`；搜索与夜/日切换。
+2. **题记**：`在白塔倾颓之前，留住安静等候某某的它。` 来源《一段惬意的时光》。
+   左页边显示「此刻」的天津日期、时辰、时间，例如「日影偏西 · 17:06」。
+3. **记**：取最近一篇 `genre: my` 的文章作为领读，下面按日期列 3 篇，末尾「全部 N 篇」。
+   首页不由技术笔记领读；这是刻意的编辑选择。
+4. **影**：一张照片 + 编号、图注、地点；链接到 `/gallery`。
+5. **摘**：3 句来自正文的句子，链接回原文章。
+6. **页脚**：原创声明、索引、RSS、GitHub、安装 App。
+
+### 记 `/posts`
+
+按年份分组，日期 + 标题 + 门类。全部文章按时间倒序，不再按门类分区。
+
+### 文章 `/posts/:slug`
+
+左侧粘性页边：返回、中文日期、类别、字数/阅读时间、栏目（可选）、h2 目次。
+右侧：标题、摘要、正文。文末是标签与「前一篇 / 后一篇」。
+正文阅读宽度 40rem，字号约 18.7px，行高 2.02。
+
+### 影 `/gallery`
+
+照片与画分两段。照片为两列 contact sheet，图注只写看见的东西；
+画使用 CSS 混合：亮色 `multiply` 让纸融入页面，暗色反相后 `lighten`。
+所有照片/画共用灯箱，键盘 ← → Esc。
+
+### 读 `/reading`
+
+书的列表（封面 + 书名 + 作者 + 一句介绍），单本笔记页沿用文章版式。
+
+### 索引 `/tags`
+
+按标签计数，两列索引；正文里仍可点击标签进入。
+
+## 内容组织
 
 ```
-门类 (genre)          vibe / my / tech         # 最顶级，首页展示 my / tech / gallery 入口
-  └─ 栏目 (column)     栏目名                   # 连载栏目，文末自动导航
-       └─ 系列 (series) 系列名                  # 栏目内的子分组（可选）
-
-标签 (tags)           [标签1, 标签2]            # 扁平，跨门类/栏目/系列
+门类 (genre)          my / tech / vibe
+  └─ 栏目 (column)     可选，连载容器
+       └─ 系列 (series) 可选
+标签 (tags)            扁平，可交叉
 ```
 
-文章存放在 `content/posts/*.md`，每个文件格式：
+文章存放在 `content/posts/*.md`：
 
 ```markdown
 ---
 title: 文章标题
-date: 2026-05-13
-genre: vibe             # vibe / my / tech，必填。首页据此分栏
-column: 栏目名           # 可选，归属连载栏目。文末自动生成上下篇导航
-series: 系列名           # 可选，栏目内子分组
-order: 1                # 可选，column 内排序依据。不设则按 date 排
-tags: [标签1, 标签2]    # 可选，扁平标签
+date: 2026-10-24
+genre: my              # my / tech / vibe
+column: 栏目名           # 可选
+series: 系列名           # 可选
+order: 1               # 可选；同一天内的先后（升序，未写的排后）
+tags: [标签1, 标签2]     # 可选
 description: 摘要
-draft: true             # 草稿，不出现在首页和搜索中
-pin: true               # 可选，置顶文章
+draft: true            # 可选，草稿不出现
+pin: true              # 可选，当前页面不依赖
 ---
 
-正文内容，支持 Markdown、数学公式（$...$ / $$...$$）、代码高亮。
+正文，支持 Markdown、$...$ / $$...$$、代码高亮、`.filmstrip` 图组。
 ```
 
-- 新文章直接在 `content/posts/` 下创建 `.md` 文件即可，无需注册路由
-- 门类有三个：`vibe`（AI 辅助写作）、`my`（纯手写）、`tech`（论文与技术学习）
-- 栏目是连载容器，同栏目文章按 order 排序（不设则按 date 排），文末自动生成上下篇导航
-- 栏目 URL 默认使用中文名（如 `/columns/代码的故事`），栏目完结后在 `src/data/columns.ts` 中配置 `slug` 可切换为英文 URL（如 `code-stories`），页面显示名不受影响
-- 系列是栏目内的子分组，一个栏目可含多个系列
-- 标签是扁平的，跨门类/栏目/系列自由组合
-- 首页显示：三个半透明的思绪气泡从门缝里缓缓冒出，沿弯曲烟迹上浮，边缘轻微扭曲并带玻璃高光 → 手绘的门（悬停打开，露出「全部文章」）
-- 画廊 (`/gallery`) 数据在 `src/data/artworks.ts`，读书 (`/reading`) 数据在 `src/data/books.ts`，均不在 Markdown 中管理
+- `content/posts/` 新增 `.md` 即自动进入构建，无需注册路由。
+- 文章先按日期倒序；同一天的多篇按 `order` 升序（数字小的在前），没写 `order` 的排在同日已编号文章之后。调换同日顺序只需改 `order`。
+- 首页领读固定取「最近一篇 `my`」，所以生活记录始终比技术笔记先出现。
+- 首页 `摘` 的句子在 `src/data/lines.ts` 手工维护，不要自动抓取。
+- 照片在 `src/data/photos.ts` 手工维护，首页只用 `photos[0]`。
+- 未完成、非文章的笔记请加 `draft: true`，不要发布半句话。
 
 ## 图片与胶片条
 
-- 图片放在 `public/images/`，Markdown 中用 `/images/xxx.jpg` 引用（写原图路径，渲染时自动换成 WebP 变体）
-- 文章配图统一放 `public/images/original/`，画廊配图放 `public/images/art/`
-- 所有图片格式（jpg/jpeg/png/gif/webp/svg）由 Git LFS 管理（见 `.gitattributes`），克隆后需 `git lfs pull`
-- 多图并排使用 `.filmstrip` 容器，`MarkdownRenderer` 会将其渲染为可横向滑动、点击放大的胶片条：
+- 原图放 `public/images/`；文章图 `public/images/original/`，画 `public/images/art/`。
+- 所有图片格式由 Git LFS 管理；克隆后 `git lfs pull`。
+- `npm run dev` / `npm run build` 前自动生成 WebP 变体与 `src/data/image-manifest.json`。
+- Markdown 写原图路径即可：
 
 ```html
 <div class="filmstrip">
-  <img src="/images/original/IMG_7502.JPG" alt="图注">
-  <img src="/images/original/IMG_7525.JPG" alt="图注">
+  <img src="/images/original/IMG_7502.JPG" alt="羞羞的猫咪">
+  <img src="/images/original/IMG_7525.JPG" alt="物美超市">
 </div>
 ```
 
-## PWA / 手机安装
+`MarkdownRenderer` 会把 `.filmstrip` 交给 `Filmstrip`，渲染成横向可滑的照片条与灯箱。
+新增图片后重启 dev 或 `npm run images`。
 
-站点本身就是一个完整 PWA：手机上「添加到主屏幕」即得到独立窗口 App，内容与网页共用同一份构建产物，发文章后两端自动同步，无需单独维护 App 版本。
+## 字体与主题
 
-- Service Worker 由 `vite-plugin-pwa` 生成（`registerType: 'prompt'`），配置在 `vite.config.ts`
-- 注册、更新提示、安装引导在 `src/components/PwaPrompts.tsx`，安装状态管理在 `src/utils/pwa.ts`
-- 更新策略：发现新版本时底部弹出「有新版本」，点击后 `skipWaiting` + 刷新，避免阅读中途被静默刷新；页面重新可见时检查更新（10 分钟节流）
-- 安装入口：移动端首次访问 4 秒后提示一次，拒绝后 30 天内不再提示；页脚始终保留「安装 App」。iOS 没有 `beforeinstallprompt`，改为展示 Safari「分享 → 添加到主屏幕」步骤
-- 缓存：构建产物与图标预缓存（`globPatterns` 不含 jpg，`globIgnores` 排除 `images/**`），`/images/` 图片走 `CacheFirst` 运行时缓存（120 条 / 60 天），RSS 走 `StaleWhileRevalidate`
-- 导航回退：`navigateFallback: '/index.html'` 让深层链接离线可开，`navigateFallbackDenylist` 放行 RSS、manifest、图片等非页面请求
-- 图标：`pwa-192x192.png`、`pwa-512x512.png`、`pwa-maskable-512.png`（安全区内缩，用于安卓自适应图标）、`apple-touch-icon.png`（180）
-- 手机适配：`.safe-top` / `.safe-bottom` 处理刘海屏安全区；Header 在 360px 宽度下保持单行；胶片条使用 `snap-x` 横滑；灯箱用 `dvh` 而非 `vh`
+- 宋体：`Noto Serif SC / Songti SC / STSong / SimSun`
+- UI：`Open Sans` + 系统黑体
+- 引用/按语（`_..._`）：`FangSong / STFangsong` 优先，系统没有仿宋时退到黑体；始终不倾斜
+- 等宽：`JetBrains Mono`
+- 字体变量在 `src/index.css`，字体栈在 `src/data/fonts.ts`，Tailwind 映射在 `tailwind.config.ts`，需同步。
+- 主题：`blog-theme` localStorage；`index.html` 有内联脚本在首屏前加 `.dark`，避免闪白。
+- 切换按钮显示「夜」/「日」；同时更新 `meta[name=theme-color]`。
+- 暗色不要加滤镜到照片；只有「画」使用反相混合。
 
-## 图片优化
+## PWA
 
-原图（常是 10MB+ 的手机照片）不直接发给浏览器。`scripts/optimize-images.mjs` 会在 `npm run dev` / `npm run build` 前自动执行：
-
-- 扫描 `public/images/`（跳过 `opt/`），生成 480 / 960 / 1600 / 2048 宽的 WebP 到 `public/images/opt/`
-- 只生成比原图小的尺寸（不放大）；按 EXIF 方向摆正；默认剥除元数据（含 GPS）
-- 文件名带内容哈希（`<路径>-<hash>-<宽>.webp`），换图即换名，浏览器缓存自然失效
-- 生成 `src/data/image-manifest.json`（需提交入库），记录原图尺寸与可用变体
-- `ResponsiveImage` 组件查清单输出 `srcset` / `sizes`，并按需懒加载；清单里没有的外链或 SVG 原样输出
-- 构建完成后 `--prune` 从 `dist/` 删除已被替换的原图，`dist` 从约 78MB 降到约 10MB
-- `public/images/opt/` 是生成产物（已 `.gitignore`），原图仍由 Git LFS 管理并在 CI 中还原
-
-Markdown 和 `artworks.ts` / `books.ts` 里继续写原图路径即可：
-
-```md
-![图注](/images/original/IMG_7502.JPG)
-```
-
-渲染时自动换成变体。新增或替换图片后重启 dev（或手动 `npm run images`）；CI 每次构建都会重新扫描，只处理有变化的图片。
-
-## 字体与排版
-
-- 英文（Open Sans / JetBrains Mono）**自托管**于 `public/fonts/`，`@font-face` 声明在 `src/fonts.css`
-- 中文使用系统字体回退（PingFang SC / 微软雅黑 / 思源宋体等），**无 Google Fonts 外链**
-- 字体栈定义在 `src/data/fonts.ts`，需同步三处：`tailwind.config.ts`、`src/index.css` 的 `--font-*` 变量、`src/fonts.css`
-- 排版为报刊编辑风格：`paper` 纸白底色、`ink` 墨色正文、`vermilion` 朱红强调，配合 `.kicker` / `.rule-heavy` / `.filmstrip` 等工具类
+- `vite-plugin-pwa`，`registerType: 'prompt'`；更新提示在 `src/components/PwaPrompts.tsx`。
+- 名称「ChenzhuoJi」，主题纸色 `#F6F3EB`，图标由 `public/favicon.svg`（墨底「记」，取「记录」之意，不是名字）生成。
+- 快捷方式：记 `/posts`、影 `/gallery`、读 `/reading`。
+- 图片走运行时 CacheFirst，构建产物预缓存；导航回退 `index.html`。
+- 手机适配：`.safe-top` / `.safe-bottom`，灯箱与搜索用 `dvh`。
 
 ## Git 提交约定
 
@@ -164,40 +207,35 @@ Markdown 和 `artworks.ts` / `books.ts` 里继续写原图路径即可：
 
 | Type | 使用场景 |
 |------|---------|
-| `feat` | 新功能 |
-| `fix` | 修 bug |
-| `refactor` | 重构，无功能变化 |
-| `style` | 样式/排版变更，不影响逻辑 |
-| `docs` | 文档（含 AGENTS.md） |
-| `chore` | 构建、依赖、配置等杂项 |
+| feat | 新功能 |
+| fix | 修 bug |
+| refactor | 重构，无功能变化 |
+| style | 样式/排版变更，不影响逻辑 |
+| docs | 文档 |
+| chore | 构建、依赖、配置等 |
 
-示例：
-
-```
-feat: add dark mode toggle
-
-新增深色/亮色主题切换，通过 localStorage 持久化用户偏好。
-```
-
-- 不提交 `dist/`、`node_modules/`（已 `.gitignore`）
-- 不提交 `themes/PaperMod` 子模块的脏修改
-- 推送前确保 `npm run build` 通过
-
-## 常见问题
-
-- **`Buffer is not defined`** —— `gray-matter` 依赖 Node.js Buffer，已通过 `vite-plugin-node-polyfills` 在 `vite.config.ts` 中注入 polyfill。如果遇到类似问题，检查 `vite.config.ts` 中的 `nodePolyfills()` 配置。
-- **构建产物** —— `dist/` 和 `node_modules/` 已被 `.gitignore` 排除，不要手动提交。
-- **React Router 警告** —— 控制台可能出现 `v7_startTransition` / `v7_relativeSplatPath` 未来标志警告，不影响运行。
-- **主题子模块脏状态** —— `themes/PaperMod` 有大量本地修改，**不要** `git submodule update` 覆盖。
-- **手机上文章没更新** —— Service Worker 的导航回退会优先返回缓存的 `index.html`，新内容要等新版本激活。页面重新可见时会自动检查并弹出「有新版本」；也可以关掉 App 重开，或在浏览器里刷新一次。
-- **新加的图片页面里 404 / 不显示** —— 变体是构建期生成的，新增图片后需重启 `npm run dev` 或手动 `npm run images`；`npm run build` 会通过 `prebuild` 自动重扫，不会漏。
+- 不提交 `dist/`、`node_modules/`、`.shots/`、`.npm-cache/`。
+- 不提交 `themes/PaperMod` 子模块的脏修改。
+- 推送前确保 `npm run build` 通过。
 
 ## 配置参考
 
-- `vite.config.ts` —— Vite 构建配置 + node polyfills
-- `tailwind.config.ts` —— 报刊配色（ink 墨色 / vermilion 朱红 / paper 纸白 / frost）+ 字体栈
-- `src/data/fonts.ts` —— 字体栈定义，与 `tailwind.config.ts`、`src/index.css`、`src/fonts.css` 同步
-- `src/data/columns.ts` —— 栏目别名配置，新栏目默认无 slug，写完后可添加英文别名
-- `hugo.toml` —— Hugo 配置（仅用于 Hugo 构建路径）
-- `scripts/generate-rss.mjs` —— 构建后生成 `dist/rss.xml`
-- `scripts/optimize-images.mjs` —— 生成 WebP 变体与 `src/data/image-manifest.json`，`--prune` 清理 dist 原图
+- `src/index.css` —— 设计变量、版式、prose、灯箱、搜索、响应式
+- `tailwind.config.ts` —— 旧组件的色阶别名；新页面主要用 CSS 变量
+- `src/data/fonts.ts` —— 字体栈
+- `src/data/site.ts` —— 站名、题记、摄影引句、时区
+- `src/data/columns.ts` —— 栏目英文别名
+- `index.html` —— 初始 title、meta、主题色、防闪白脚本
+- `vite.config.ts` —— Vite + PWA manifest
+- `scripts/generate-rss.mjs` —— RSS 标题「ChenzhuoJi」、描述「ChenzhuoJi：文章与照片。」
+- `scripts/optimize-images.mjs` —— WebP 变体与图片清单
+
+## 常见问题
+
+- **`Buffer is not defined`** —— `gray-matter` 需要 Node Buffer，已由 `vite-plugin-node-polyfills` 注入。
+- **构建产物** —— `dist/`、`node_modules/` 已忽略。
+- **主题子模块脏状态** —— 不要 `git submodule update` 覆盖 `themes/PaperMod`。
+- **新增图片 404** —— 变体是构建期生成的，重启 dev 或 `npm run images`。
+- **手机上看不到新文章** —— Service Worker 缓存了 `index.html`；页面重新可见时会检查更新，也可手动刷新。
+- **React Router 警告** —— `v7_startTransition` / `v7_relativeSplatPath` 未来标志警告不影响运行。
+- **旧页面** —— `/graph` 已移除，会由 `NotFound` 接住；不要重新加入导航。

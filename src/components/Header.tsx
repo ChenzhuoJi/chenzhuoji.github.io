@@ -2,22 +2,28 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle'
 import SearchDialog from './SearchDialog'
+import { site } from '../data/site'
 
 const navItems = [
-  { path: '/', label: '首页' },
+  { path: '/posts', label: '记', match: ['/posts', '/genre', '/tags', '/columns'] },
+  { path: '/gallery', label: '影', match: ['/gallery'] },
+  { path: '/reading', label: '读', match: ['/reading'] },
 ]
+
+function isActive(pathname: string, match: string[]) {
+  return match.some((m) => (m === '/' ? pathname === '/' : pathname === m || pathname.startsWith(`${m}/`)))
+}
 
 export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false)
-  const location = useLocation()
+  const { pathname } = useLocation()
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault()
         setSearchOpen(true)
       }
-      if (e.key === 'Escape') setSearchOpen(false)
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
@@ -25,41 +31,43 @@ export default function Header() {
 
   return (
     <>
-      <header className="safe-top sticky top-0 z-40 bg-paper/95 backdrop-blur-sm dark:bg-ink-950/95 border-b border-ink-200 dark:border-ink-800">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
-          <Link to="/" className="flex flex-col leading-tight">
-            <span className="whitespace-nowrap text-[1.25rem] sm:text-[1.6rem] font-serif font-semibold text-ink-900 dark:text-ink-50 tracking-tight">
-              Chenzhuo's Blog
+      <header className="masthead">
+        <div className="shell masthead-inner">
+          <div className="masthead-left">
+            <Link to="/" className="wordmark" aria-label={`${site.name}，回到首页`}>
+              {site.name}
+            </Link>
+            <span className="masthead-note">
+              {site.place} · 二〇二六
             </span>
-          </Link>
+          </div>
 
-          <nav className="flex items-center gap-0.5 sm:gap-1">
+          <nav className="site-nav" aria-label="主导航">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`whitespace-nowrap px-2 py-2 text-sm tracking-[0.12em] transition-colors sm:px-4 sm:text-base ${
-                  location.pathname === item.path
-                    ? 'text-vermilion-600 dark:text-vermilion-400'
-                    : 'text-ink-600 dark:text-ink-400 hover:text-ink-900 dark:hover:text-ink-200'
-                }`}
+                aria-current={isActive(pathname, item.match) ? 'page' : undefined}
               >
                 {item.label}
               </Link>
             ))}
+
+            <span className="nav-sep" aria-hidden="true" />
+
             <button
+              type="button"
               onClick={() => setSearchOpen(true)}
-              className="p-2 text-ink-600 dark:text-ink-400 hover:text-ink-900 dark:hover:text-ink-200 transition-colors"
-              aria-label="搜索"
+              className="nav-button"
+              aria-label="搜索文章"
             >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
+              搜
             </button>
             <ThemeToggle />
           </nav>
         </div>
       </header>
+
       <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   )

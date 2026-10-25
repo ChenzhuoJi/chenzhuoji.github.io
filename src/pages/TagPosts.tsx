@@ -1,24 +1,46 @@
+import { useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import ArticleList from '../components/ArticleList'
+import { Helmet } from 'react-helmet-async'
 import { usePostsByTag } from '../hooks/usePosts'
+import { sortPostsByDate } from '../utils/posts'
+import { site } from '../data/site'
+import ArchiveRows from '../components/ArchiveRows'
+import { chineseNumber } from '../utils/format'
 
 export default function TagPosts() {
   const { tag } = useParams<{ tag: string }>()
   const posts = usePostsByTag(tag ?? '')
 
+  const sorted = useMemo(() => sortPostsByDate(posts), [posts])
+
   return (
-    <div className="mx-auto w-full max-w-[50rem]">
-      <section className="mb-12">
-        <Link
-          to="/tags"
-          className="inline-block text-sm text-ink-400 dark:text-ink-500 hover:text-ink-600 dark:hover:text-ink-300 transition-colors mb-4"
-        >
-          ← 所有标签
-        </Link>
-        <h1 className="text-2xl font-heading font-semibold text-ink-900 dark:text-ink-100">#{tag}</h1>
-        <p className="mt-1 text-sm text-ink-400 dark:text-ink-500">共 {posts.length} 篇</p>
-      </section>
-      <ArticleList posts={posts} />
+    <div className="page">
+      <Helmet>
+        <title>{`${tag} · 索引 · ${site.name}`}</title>
+      </Helmet>
+
+      <div className="spread">
+        <aside className="rail">
+          <span className="rail-label">标签</span>
+          <span className="rail-date">
+            <span>{chineseNumber(sorted.length)}篇</span>
+          </span>
+        </aside>
+
+        <div className="spread-main">
+          <header className="page-head">
+            <h1 className="page-title">{tag}</h1>
+            <p className="page-meta">共 {sorted.length} 篇</p>
+          </header>
+
+          <ArchiveRows posts={sorted} />
+
+          <div className="section-link-row">
+            <Link to="/tags">所有标签</Link>
+            <Link to="/posts">全部文章</Link>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

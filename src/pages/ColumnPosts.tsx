@@ -1,7 +1,10 @@
 import { useParams, Link } from 'react-router-dom'
-import ArticleList from '../components/ArticleList'
+import { Helmet } from 'react-helmet-async'
+import ArchiveRows from '../components/ArchiveRows'
 import { usePostsByColumn } from '../hooks/usePosts'
+import { site } from '../data/site'
 import { resolveColumnName } from '../utils/posts'
+import { chineseNumber } from '../utils/format'
 
 export default function ColumnPosts() {
   const { name: identifier } = useParams<{ name: string }>()
@@ -10,30 +13,45 @@ export default function ColumnPosts() {
 
   if (!columnName || posts.length === 0) {
     return (
-      <div className="text-center py-20">
-        <p className="text-ink-400 dark:text-ink-500">栏目未找到</p>
-        <Link to="/" className="mt-4 inline-block text-sm text-vermilion-500 hover:text-vermilion-600 transition-colors">
-          ← 首页
+      <div className="page">
+        <p className="empty">栏目未找到。</p>
+        <Link to="/posts" className="back-link">
+          ← 记
         </Link>
       </div>
     )
   }
 
   return (
-    <div className="mx-auto w-full max-w-[50rem]">
-      <section className="mb-12">
-        <div className="flex items-center gap-2 text-xs text-ink-400 dark:text-ink-500 mb-4">
-          <Link
-            to="/"
-            className="hover:text-ink-600 dark:hover:text-ink-300 transition-colors"
-          >
-            首页
-          </Link>
+    <div className="page">
+      <Helmet>
+        <title>{`${columnName} · ${site.name}`}</title>
+      </Helmet>
+
+      <div className="spread">
+        <aside className="rail">
+          <span className="rail-label">栏目</span>
+          <span className="rail-date">
+            <span>{chineseNumber(posts.length)}篇</span>
+          </span>
+        </aside>
+
+        <div className="spread-main">
+          <header className="page-head">
+            <h1 className="page-title">{columnName}</h1>
+            <p className="page-meta">
+              共 {posts.length} 篇 · {posts.some((p) => p.meta.series === '后记') ? '完结' : '连载'}
+            </p>
+          </header>
+
+          <ArchiveRows posts={posts} />
+
+          <div className="section-link-row">
+            <Link to="/posts">全部文章</Link>
+            <Link to="/tags">索引</Link>
+          </div>
         </div>
-        <h1 className="text-2xl font-heading font-medium text-ink-900 dark:text-ink-100">{columnName}</h1>
-        <p className="mt-1 text-sm text-ink-400 dark:text-ink-500">共 {posts.length} 篇 · {posts.some(p => p.meta.series === '后记') ? '完结' : '连载'}</p>
-      </section>
-      <ArticleList posts={posts} />
+      </div>
     </div>
   )
 }

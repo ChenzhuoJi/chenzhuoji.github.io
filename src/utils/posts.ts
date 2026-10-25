@@ -1,5 +1,5 @@
 import matter from 'gray-matter'
-import type { Post, PostMeta, Genre, SearchIndex, GraphNode, GraphEdge, Column } from '../types'
+import type { Post, PostMeta, Genre, SearchIndex } from '../types'
 import columnsConfig from '../data/columns'
 
 const modules = import.meta.glob('/content/posts/**/*.md', { query: '?raw', import: 'default', eager: true })
@@ -33,6 +33,32 @@ function slugFromPath(path: string): string {
 
 const GENRE_MAP: Record<string, Genre> = { vibe: 'vibe', my: 'my', tech: 'tech' }
 
+/** 没写 order 的文章，排在同一天已编号的文章之后。 */
+function orderValue(post: Post): number {
+  return typeof post.meta.order === 'number' ? post.meta.order : Number.POSITIVE_INFINITY
+}
+
+/**
+ * 站点统一的「从近到远」顺序。
+ * 日期仍是最主要的依据；同一天再由 order 升序决定先后，
+ * 没写 order 的排在后面，最后以 slug 兜底，保证每次构建一致。
+ */
+export function comparePostsByDateDesc(a: Post, b: Post): number {
+  const byDate = b.meta.date.localeCompare(a.meta.date)
+  if (byDate !== 0) return byDate
+
+  const aOrder = orderValue(a)
+  const bOrder = orderValue(b)
+  if (aOrder !== bOrder) return aOrder < bOrder ? -1 : 1
+
+  return a.meta.slug.localeCompare(b.meta.slug)
+}
+
+/** 按日期与同日 order 排序，返回新数组。 */
+export function sortPostsByDate(posts: Post[]): Post[] {
+  return [...posts].sort(comparePostsByDateDesc)
+}
+
 export function getAllPosts(): Post[] {
   const posts: Post[] = []
 
@@ -59,23 +85,13 @@ export function getAllPosts(): Post[] {
 
   posts.sort((a, b) => {
     if (a.meta.pin !== b.meta.pin) return a.meta.pin ? -1 : 1
-    return b.meta.date.localeCompare(a.meta.date)
+    return comparePostsByDateDesc(a, b)
   })
   return posts
 }
 
 export function getPostBySlug(slug: string): Post | undefined {
   return getAllPosts().find((p) => p.meta.slug === slug)
-}
-
-export function getAllTags(): string[] {
-  const tags = new Set<string>()
-  for (const post of getAllPosts()) {
-    for (const tag of post.meta.tags) {
-      tags.add(tag)
-    }
-  }
-  return [...tags].sort()
 }
 
 export function getPostsByTag(tag: string): Post[] {
@@ -87,14 +103,12 @@ export function getPostsByGenre(genre: Genre): Post[] {
 }
 
 const slugMap = new Map<string, string>()
-const descriptionMap = new Map<string, string>()
 const nameBySlug = new Map<string, string>()
 for (const col of columnsConfig) {
   if (col.slug) {
     slugMap.set(col.name, col.slug)
     nameBySlug.set(col.slug, col.name)
   }
-  if (col.description) descriptionMap.set(col.name, col.description)
 }
 
 function getColumnSlug(name: string): string | undefined {
@@ -109,18 +123,6 @@ export function resolveColumnName(identifier: string): string | undefined {
   return nameBySlug.get(identifier) ?? identifier
 }
 
-export function getAllColumns(): Column[] {
-  const cols = new Set<string>()
-  for (const post of getAllPosts()) {
-    if (post.meta.column) cols.add(post.meta.column)
-  }
-  return [...cols].sort().map(name => ({
-    name,
-    slug: slugMap.get(name),
-    description: descriptionMap.get(name),
-  }))
-}
-
 export function getPostsByColumn(column: string): Post[] {
   return getAllPosts().filter((p) => p.meta.column === column).sort((a, b) => {
     const ao = a.meta.order ?? 9999
@@ -130,82 +132,11 @@ export function getPostsByColumn(column: string): Post[] {
   })
 }
 
-export function getColumnNav(slug: string): { prev: Post | null; next: Post | null } {
-  const post = getPostBySlug(slug)
-  if (!post?.meta.column) return { prev: null, next: null }
-  const siblings = getPostsByColumn(post.meta.column)
-  const idx = siblings.findIndex((p) => p.meta.slug === slug)
-  return {
-    prev: idx > 0 ? siblings[idx - 1] : null,
-    next: idx < siblings.length - 1 ? siblings[idx + 1] : null,
-  }
-}
-
-export function getPinnedPosts(): Post[] {
-  return getAllPosts().filter((p) => p.meta.pin)
-}
-
-export function getRecentPosts(count: number = 10): Post[] {
-  return getAllPosts().filter((p) => !p.meta.pin).slice(0, count)
-}
-
-export function getRelatedPosts(slug: string, limit = 3): Array<{ post: Post; sharedTags: string[] }> {
-  const all = getAllPosts()
-  const post = all.find((p) => p.meta.slug === slug)
-  if (!post) return []
-
-  return all
-    .filter((p) => p.meta.slug !== slug)
-    .map((p) => ({
-      post: p,
-      sharedTags: p.meta.tags.filter((t) => post.meta.tags.includes(t)),
-    }))
-    .filter((p) => p.sharedTags.length > 0)
-    .sort((a, b) => b.sharedTags.length - a.sharedTags.length)
-    .slice(0, limit)
-}
-
-export function getGraphData(): { nodes: GraphNode[]; edges: GraphEdge[] } {
-  const posts = getAllPosts()
-  const nodes: GraphNode[] = posts.map((p) => ({
-    id: p.meta.slug,
-    title: p.meta.title,
-    genre: p.meta.genre,
-    tagCount: p.meta.tags.length,
-    connectionCount: 0,
-  }))
-
-  const edgeMap = new Map<string, { count: number; tags: string[] }>()
-  for (let i = 0; i < posts.length; i++) {
-    for (let j = i + 1; j < posts.length; j++) {
-      const shared = posts[i].meta.tags.filter((t) => posts[j].meta.tags.includes(t))
-      if (shared.length > 0) {
-        edgeMap.set(`${posts[i].meta.slug}::${posts[j].meta.slug}`, { count: shared.length, tags: shared })
-      }
-    }
-  }
-
-  const edges: GraphEdge[] = [...edgeMap].map(([key, val]) => {
-    const [source, target] = key.split('::')
-    return { source, target, weight: val.count, sharedTags: val.tags }
-  })
-
-  const connCount = new Map<string, number>()
-  for (const e of edges) {
-    connCount.set(e.source, (connCount.get(e.source) ?? 0) + 1)
-    connCount.set(e.target, (connCount.get(e.target) ?? 0) + 1)
-  }
-  for (const n of nodes) {
-    n.connectionCount = connCount.get(n.id) ?? 0
-  }
-
-  return { nodes, edges }
-}
-
 export function buildSearchIndex(): SearchIndex[] {
   return getAllPosts().map((p) => ({
     slug: p.meta.slug,
     title: p.meta.title,
+    date: p.meta.date,
     description: p.meta.description ?? '',
     tags: p.meta.tags,
     content: p.content.slice(0, 2000),

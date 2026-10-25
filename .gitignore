@@ -2,3 +2,5 @@ node_modules/
 dist/
 work-docs/
 public/images/opt/
+.shots/
+.npm-cache/

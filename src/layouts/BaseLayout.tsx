@@ -11,18 +11,17 @@ export default function BaseLayout() {
   useEffect(() => {
     if (pathname !== prevPath.current) {
       prevPath.current = pathname
-      if (document.startViewTransition) {
-        document.startViewTransition(() => window.scrollTo(0, 0))
-      } else {
-        window.scrollTo(0, 0)
-      }
+      window.scrollTo(0, 0)
     }
   }, [pathname])
 
   return (
-    <div className="min-h-dvh flex flex-col bg-paper dark:bg-ink-950 text-ink-900 dark:text-ink-100 transition-colors">
+    <div className="page-shell">
+      <a className="skip-link" href="#main">
+        跳到正文
+      </a>
       <Header />
-      <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <main id="main" className="shell">
         <Outlet />
       </main>
       <Footer />

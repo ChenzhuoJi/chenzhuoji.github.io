@@ -1,9 +1,3 @@
-export interface Column {
-  name: string
-  slug?: string
-  description?: string
-}
-
 export type Genre = 'vibe' | 'my' | 'tech'
 
 export interface PostMeta {
@@ -29,17 +23,10 @@ export interface Post {
 export interface SearchIndex {
   slug: string
   title: string
+  date: string
   description: string
   tags: string[]
   content: string
-}
-
-export interface GraphNode {
-  id: string
-  title: string
-  genre: Genre
-  tagCount: number
-  connectionCount: number
 }
 
 export interface Artwork {
@@ -49,13 +36,6 @@ export interface Artwork {
   medium: string
   date: string
   description?: string
-}
-
-export interface GraphEdge {
-  source: string
-  target: string
-  weight: number
-  sharedTags: string[]
 }
 
 export interface Book {

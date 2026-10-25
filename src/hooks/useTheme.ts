@@ -14,8 +14,12 @@ export function useTheme() {
 
   useEffect(() => {
     const root = document.documentElement
-    root.classList.toggle('dark', theme === 'dark')
+    const isDark = theme === 'dark'
+    root.classList.toggle('dark', isDark)
     localStorage.setItem(STORAGE_KEY, theme)
+
+    const meta = document.querySelector('meta[name="theme-color"]')
+    meta?.setAttribute('content', isDark ? '#141512' : '#F6F3EB')
   }, [theme])
 
   const toggle = useCallback(() => {

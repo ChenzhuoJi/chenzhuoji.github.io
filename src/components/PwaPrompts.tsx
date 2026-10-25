@@ -36,7 +36,7 @@ function Sheet({ label, children }: { label: string; children: ReactNode }) {
         role="dialog"
         aria-label={label}
         aria-live="polite"
-        className="pointer-events-auto w-full max-w-sm border-t-2 border-ink-900 bg-paper px-4 py-3.5 shadow-[0_-10px_40px_-14px_rgba(12,15,22,0.4)] animate-[slide-up_260ms_cubic-bezier(0.22,1,0.36,1)] dark:border-ink-100 dark:bg-ink-900"
+        className="pointer-events-auto w-full max-w-sm border-t border-ink bg-paper px-4 py-4 dark:bg-ink-950 animate-[slide-up_260ms_cubic-bezier(0.22,1,0.36,1)]"
       >
         {children}
       </div>
@@ -106,11 +106,11 @@ export default function PwaPrompts() {
       <Sheet label="有新版本">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <div className="kicker-red">Update</div>
-            <h2 className="mt-1 font-heading text-[1.05rem] font-medium text-ink-900 dark:text-ink-100">
+            <div className="kicker">新版</div>
+            <h2 className="mt-1.5 font-heading text-[1.05rem] leading-relaxed text-ink-900 dark:text-ink-100">
               有新版本可以阅读
             </h2>
-            <p className="mt-1 text-xs leading-relaxed text-ink-500 dark:text-ink-400">
+            <p className="mt-1 text-xs leading-relaxed text-ink-600 dark:text-ink-400">
               更新后即可看到最新文章，当前阅读进度不受影响。
             </p>
           </div>
@@ -127,14 +127,14 @@ export default function PwaPrompts() {
           <button
             type="button"
             onClick={() => void applyUpdate?.(true)}
-            className="bg-vermilion-500 px-4 py-1.5 text-xs font-medium tracking-wide text-white transition-colors hover:bg-vermilion-600"
+            className="border-b border-ink pb-0.5 text-xs tracking-wide text-ink transition-colors hover:text-pine-600 dark:hover:text-pine-300"
           >
             立即更新
           </button>
           <button
             type="button"
             onClick={() => setUpdateLater(true)}
-            className="px-3 py-1.5 text-xs text-ink-500 transition-colors hover:text-ink-900 dark:text-ink-400 dark:hover:text-ink-100"
+            className="px-1 py-1 text-xs text-ink-500 transition-colors hover:text-ink-900 dark:text-ink-400 dark:hover:text-ink-100"
           >
             稍后
           </button>
@@ -151,8 +151,8 @@ export default function PwaPrompts() {
     <Sheet label="安装 App">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <div className="kicker-red">Install</div>
-          <h2 className="mt-1 font-heading text-[1.05rem] font-medium text-ink-900 dark:text-ink-100">
+          <div className="kicker">安装</div>
+          <h2 className="mt-1.5 font-heading text-[1.05rem] leading-relaxed text-ink-900 dark:text-ink-100">
             把博客装到手机桌面
           </h2>
           {showIOSSteps ? (
@@ -182,7 +182,7 @@ export default function PwaPrompts() {
             type="button"
             onClick={handleInstall}
             disabled={busy}
-            className="bg-vermilion-500 px-4 py-1.5 text-xs font-medium tracking-wide text-white transition-colors hover:bg-vermilion-600 disabled:opacity-60"
+            className="border-b border-ink pb-0.5 text-xs tracking-wide text-ink transition-colors hover:text-pine-600 dark:hover:text-pine-300 disabled:opacity-60"
           >
             {busy ? '正在安装…' : '立即安装'}
           </button>
@@ -212,7 +212,7 @@ export function PwaInstallLink() {
     <button
       type="button"
       onClick={showInstallBanner}
-      className="mt-5 inline-flex items-center gap-1.5 border border-ink-300 px-3 py-1.5 text-[0.6875rem] uppercase tracking-[0.18em] text-ink-500 transition-colors hover:border-ink-900 hover:text-ink-900 dark:border-ink-700 dark:text-ink-400 dark:hover:border-ink-100 dark:hover:text-ink-100"
+      className="inline-flex items-center gap-1.5 text-[inherit] tracking-[inherit] text-inherit transition-colors hover:text-ink-900 dark:hover:text-ink-100"
     >
       <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v11m0 0l-4-4m4 4l4-4M5 19h14" />

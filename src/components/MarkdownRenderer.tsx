@@ -56,7 +56,7 @@ export default function MarkdownRenderer({ content }: Props) {
   }, [content])
 
   return (
-    <div ref={ref} className="prose prose-ink dark:prose-invert max-w-none">
+    <div ref={ref} className="prose-ink">
       <ReactMarkdown
         remarkPlugins={[remarkGfm, remarkMath]}
         rehypePlugins={[rehypeKatex, rehypeRaw, rehypeHighlight]}
@@ -76,23 +76,27 @@ export default function MarkdownRenderer({ content }: Props) {
             return <h3 id={headingId(text)} {...props}>{children}</h3>
           },
           a: ({ href, children, ...props }) => (
-            <a href={href} target={href?.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" {...props}>
+            <a
+              href={href}
+              target={href?.startsWith('http') ? '_blank' : undefined}
+              rel="noopener noreferrer"
+              {...props}
+            >
               {children}
             </a>
           ),
           img: ({ alt, src }) => (
-            <figure className="my-8">
+            <figure>
               <ResponsiveImage
                 src={src ?? ''}
                 alt={alt ?? ''}
-                className="rounded-md mx-auto w-full max-w-full h-auto"
-                sizes="(min-width: 768px) 768px, 100vw"
+                sizes="(min-width: 760px) 640px, 100vw"
               />
-              {alt && <figcaption className="mt-3 text-center font-accent text-sm text-ink-400">{alt}</figcaption>}
+              {alt && <figcaption>{alt}</figcaption>}
             </figure>
           ),
           table: ({ children, ...props }) => (
-            <div className="overflow-x-auto">
+            <div className="table-wrap">
               <table {...props}>{children}</table>
             </div>
           ),

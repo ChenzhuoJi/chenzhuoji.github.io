@@ -5,7 +5,6 @@ import { usePosts } from '../hooks/usePosts'
 import { sortPostsByDate } from '../utils/posts'
 import ResponsiveImage from '../components/ResponsiveImage'
 import photos from '../data/photos'
-import lines from '../data/lines'
 import { site } from '../data/site'
 import {
   chineseNumber,
@@ -57,7 +56,6 @@ export default function Home() {
       <section className="home-hero">
         <div className="spread">
           <div className="rail">
-            <span className="rail-label">此刻</span>
             <time className="rail-date" dateTime={clock.iso}>
               <span>{clock.yearLabel}</span>
               <span>{clock.monthDayLabel}</span>
@@ -83,7 +81,7 @@ export default function Home() {
       <section className="section">
         <div className="spread">
           <aside className="rail section-rail">
-            <h2>记</h2>
+            <h2>笔记</h2>
             <p>{chineseNumber(count)}篇</p>
           </aside>
 
@@ -129,8 +127,8 @@ export default function Home() {
       <section className="section">
         <div className="spread">
           <aside className="rail section-rail">
-            <h2>影</h2>
-            <p>{chineseNumber(photos.length)}帧 · {photo.place}</p>
+            <h2>Gallery</h2>
+            <p>{chineseNumber(photos.length)}帧</p>
           </aside>
 
           <div className="spread-main">
@@ -151,26 +149,6 @@ export default function Home() {
                 </Link>
               </figcaption>
             </figure>
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="spread">
-          <aside className="rail section-rail">
-            <h2>摘</h2>
-            <p>{chineseNumber(lines.length)}则</p>
-          </aside>
-
-          <div className="spread-main quote-list">
-            {lines.map((line) => (
-              <blockquote className="quote" key={line.text}>
-                <p className="quote-text">{line.text}</p>
-                <p className="quote-source">
-                  <Link to={`/posts/${line.slug}`}>{line.source}</Link>
-                </p>
-              </blockquote>
-            ))}
           </div>
         </div>
       </section>

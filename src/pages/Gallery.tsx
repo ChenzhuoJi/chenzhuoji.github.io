@@ -27,13 +27,13 @@ export default function Gallery() {
   return (
     <div className="page">
       <Helmet>
-        <title>{`影 · ${site.name}`}</title>
+        <title>{`Gallery · ${site.name}`}</title>
         <meta name="description" content="照片与画。摄影也许有两个目的，一个是捕捉瞬间，一个是记录日常。" />
       </Helmet>
 
       <div className="spread">
         <aside className="rail">
-          <span className="rail-label">影</span>
+          <span className="rail-label">Gallery</span>
           <span className="rail-date">
             <span>照片{chineseNumber(photoCount)}帧</span>
             <span>画{chineseNumber(artCount)}幅</span>
@@ -42,7 +42,7 @@ export default function Gallery() {
 
         <div className="spread-main">
           <header className="page-head">
-            <h1 className="page-title">影</h1>
+            <h1 className="page-title">Gallery</h1>
             <p className="page-dek">{site.photography.text}</p>
             <p className="page-meta">
               ——
@@ -119,8 +119,8 @@ export default function Gallery() {
           </section>
 
           <div className="section-link-row">
-            <Link to="/posts">记</Link>
-            <Link to="/reading">读</Link>
+            <Link to="/posts">笔记</Link>
+            <Link to="/reading">阅读</Link>
           </div>
         </div>
       </div>

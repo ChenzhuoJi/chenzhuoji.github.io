@@ -5,9 +5,9 @@ import SearchDialog from './SearchDialog'
 import { site } from '../data/site'
 
 const navItems = [
-  { path: '/posts', label: '记', match: ['/posts', '/genre', '/tags', '/columns'] },
-  { path: '/gallery', label: '影', match: ['/gallery'] },
-  { path: '/reading', label: '读', match: ['/reading'] },
+  { path: '/posts', label: '笔记', match: ['/posts', '/genre', '/tags', '/columns'] },
+  { path: '/gallery', label: 'Gallery', match: ['/gallery'] },
+  { path: '/reading', label: '阅读', match: ['/reading'] },
 ]
 
 function isActive(pathname: string, match: string[]) {
@@ -61,7 +61,7 @@ export default function Header() {
               className="nav-button"
               aria-label="搜索文章"
             >
-              搜
+              搜索
             </button>
             <ThemeToggle />
           </nav>

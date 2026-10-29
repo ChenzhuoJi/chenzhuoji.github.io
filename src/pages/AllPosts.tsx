@@ -43,8 +43,7 @@ export default function AllPosts() {
 
         <div className="spread-main">
           <header className="page-head">
-            <h1 className="page-title">记</h1>
-            <p className="page-dek">按时间，从近到远。</p>
+            <h1 className="page-title">笔记</h1>
           </header>
 
           {years.map(([year, list]) => (
@@ -67,8 +66,8 @@ export default function AllPosts() {
           {posts.length === 0 && <p className="empty">还没有文章。</p>}
 
           <div className="section-link-row">
-            <Link to="/gallery">影</Link>
-            <Link to="/reading">读</Link>
+            <Link to="/gallery">Gallery</Link>
+            <Link to="/reading">阅读</Link>
             <Link to="/tags">索引</Link>
           </div>
         </div>

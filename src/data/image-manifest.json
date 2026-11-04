@@ -124,32 +124,6 @@
       }
     ]
   },
-  "/images/opencode-wsl.png": {
-    "width": 2821,
-    "height": 1567,
-    "variants": [
-      {
-        "w": 480,
-        "h": 267,
-        "src": "/images/opt/opencode-wsl-730e76a2-480.webp"
-      },
-      {
-        "w": 960,
-        "h": 533,
-        "src": "/images/opt/opencode-wsl-730e76a2-960.webp"
-      },
-      {
-        "w": 1600,
-        "h": 889,
-        "src": "/images/opt/opencode-wsl-730e76a2-1600.webp"
-      },
-      {
-        "w": 2048,
-        "h": 1138,
-        "src": "/images/opt/opencode-wsl-730e76a2-2048.webp"
-      }
-    ]
-  },
   "/images/original/IMG_7502.JPG": {
     "width": 6000,
     "height": 4000,
@@ -332,6 +306,32 @@
       }
     ]
   },
+  "/images/original/love-life-benjaming-button.jpeg": {
+    "width": 2703,
+    "height": 1725,
+    "variants": [
+      {
+        "w": 480,
+        "h": 306,
+        "src": "/images/opt/original-love-life-benjaming-button-343d6c5f-480.webp"
+      },
+      {
+        "w": 960,
+        "h": 613,
+        "src": "/images/opt/original-love-life-benjaming-button-343d6c5f-960.webp"
+      },
+      {
+        "w": 1600,
+        "h": 1021,
+        "src": "/images/opt/original-love-life-benjaming-button-343d6c5f-1600.webp"
+      },
+      {
+        "w": 2048,
+        "h": 1307,
+        "src": "/images/opt/original-love-life-benjaming-button-343d6c5f-2048.webp"
+      }
+    ]
+  },
   "/images/original/opencode-wsl.png": {
     "width": 2821,
     "height": 1567,
@@ -358,102 +358,29 @@
       }
     ]
   },
-  "/images/pendrawing-01machine.jpg": {
-    "width": 4080,
-    "height": 3060,
+  "/images/original/tiger-in-me.png": {
+    "width": 2048,
+    "height": 2048,
     "variants": [
       {
         "w": 480,
-        "h": 360,
-        "src": "/images/opt/pendrawing-01machine-e5959501-480.webp"
+        "h": 480,
+        "src": "/images/opt/original-tiger-in-me-bbf80d42-480.webp"
       },
       {
         "w": 960,
-        "h": 720,
-        "src": "/images/opt/pendrawing-01machine-e5959501-960.webp"
+        "h": 960,
+        "src": "/images/opt/original-tiger-in-me-bbf80d42-960.webp"
       },
       {
         "w": 1600,
-        "h": 1200,
-        "src": "/images/opt/pendrawing-01machine-e5959501-1600.webp"
+        "h": 1600,
+        "src": "/images/opt/original-tiger-in-me-bbf80d42-1600.webp"
       },
       {
         "w": 2048,
-        "h": 1536,
-        "src": "/images/opt/pendrawing-01machine-e5959501-2048.webp"
-      }
-    ]
-  },
-  "/images/pendrawing-chatgpt-cat.png": {
-    "width": 1122,
-    "height": 1402,
-    "variants": [
-      {
-        "w": 480,
-        "h": 600,
-        "src": "/images/opt/pendrawing-chatgpt-cat-247ac898-480.webp"
-      },
-      {
-        "w": 960,
-        "h": 1200,
-        "src": "/images/opt/pendrawing-chatgpt-cat-247ac898-960.webp"
-      },
-      {
-        "w": 1122,
-        "h": 1402,
-        "src": "/images/opt/pendrawing-chatgpt-cat-247ac898-1122.webp"
-      }
-    ]
-  },
-  "/images/pendrawing-crabapple.jpg": {
-    "width": 1706,
-    "height": 1279,
-    "variants": [
-      {
-        "w": 480,
-        "h": 360,
-        "src": "/images/opt/pendrawing-crabapple-0092bf73-480.webp"
-      },
-      {
-        "w": 960,
-        "h": 720,
-        "src": "/images/opt/pendrawing-crabapple-0092bf73-960.webp"
-      },
-      {
-        "w": 1600,
-        "h": 1200,
-        "src": "/images/opt/pendrawing-crabapple-0092bf73-1600.webp"
-      },
-      {
-        "w": 1706,
-        "h": 1279,
-        "src": "/images/opt/pendrawing-crabapple-0092bf73-1706.webp"
-      }
-    ]
-  },
-  "/images/pendrawing-sea_and_reef.jpg": {
-    "width": 4080,
-    "height": 3060,
-    "variants": [
-      {
-        "w": 480,
-        "h": 360,
-        "src": "/images/opt/pendrawing-sea_and_reef-2b9fbb4e-480.webp"
-      },
-      {
-        "w": 960,
-        "h": 720,
-        "src": "/images/opt/pendrawing-sea_and_reef-2b9fbb4e-960.webp"
-      },
-      {
-        "w": 1600,
-        "h": 1200,
-        "src": "/images/opt/pendrawing-sea_and_reef-2b9fbb4e-1600.webp"
-      },
-      {
-        "w": 2048,
-        "h": 1536,
-        "src": "/images/opt/pendrawing-sea_and_reef-2b9fbb4e-2048.webp"
+        "h": 2048,
+        "src": "/images/opt/original-tiger-in-me-bbf80d42-2048.webp"
       }
     ]
   },
@@ -470,32 +397,6 @@
         "w": 758,
         "h": 1014,
         "src": "/images/opt/refactoring-ui-cover-72404b13-758.webp"
-      }
-    ]
-  },
-  "/images/sketch-jaychou.jpg": {
-    "width": 4080,
-    "height": 3060,
-    "variants": [
-      {
-        "w": 480,
-        "h": 360,
-        "src": "/images/opt/sketch-jaychou-e7402a76-480.webp"
-      },
-      {
-        "w": 960,
-        "h": 720,
-        "src": "/images/opt/sketch-jaychou-e7402a76-960.webp"
-      },
-      {
-        "w": 1600,
-        "h": 1200,
-        "src": "/images/opt/sketch-jaychou-e7402a76-1600.webp"
-      },
-      {
-        "w": 2048,
-        "h": 1536,
-        "src": "/images/opt/sketch-jaychou-e7402a76-2048.webp"
       }
     ]
   }

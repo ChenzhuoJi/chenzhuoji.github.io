@@ -142,7 +142,7 @@ description: 那时候很好奇
 
 致谢技术服务商：[OpenCode | 开源 AI 编程代理](https://opencode.ai/zh)
 
-![](/images/opencode-wsl.png)
+![](/images/original/opencode-wsl.png)
 
 ## 后记
 

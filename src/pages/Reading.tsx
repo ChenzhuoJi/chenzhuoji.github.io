@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import books from '../data/books'
 import { site } from '../data/site'
-import { chineseNumber } from '../utils/format'
 import ResponsiveImage from '../components/ResponsiveImage'
 
 export default function Reading() {
@@ -13,17 +12,9 @@ export default function Reading() {
         <meta name="description" content="读过的书，写下的笔记。" />
       </Helmet>
 
-      <div className="spread">
-        <aside className="rail">
-          <span className="rail-label">读</span>
-          <span className="rail-date">
-            <span>{chineseNumber(books.length)}册</span>
-          </span>
-        </aside>
-
-        <div className="spread-main">
+      <div className="page-body">
           <header className="page-head">
-            <h1 className="page-title">读</h1>
+            <h1 className="page-title">阅读</h1>
             <p className="page-dek">读过的书，写下的笔记。</p>
           </header>
 
@@ -51,10 +42,9 @@ export default function Reading() {
           )}
 
           <div className="section-link-row">
-            <Link to="/posts">记</Link>
-            <Link to="/gallery">影</Link>
+            <Link to="/posts">笔记</Link>
+            <Link to="/gallery">Gallery</Link>
           </div>
-        </div>
       </div>
     </div>
   )

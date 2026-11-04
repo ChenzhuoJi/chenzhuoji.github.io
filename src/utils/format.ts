@@ -110,6 +110,8 @@ export function toPlainText(markdown: string): string {
     .replace(/^\s*[-:| ]{3,}\s*$/gm, ' ')
     .replace(/^#{1,6}\s+/gm, '')
     .replace(/^>\s?/gm, '')
+    /* 定制引用块的标记行（> [!axolotl] 标题）不进摘要 */
+    .replace(/^\[!(?:axolotl|gpt)\][^\n]*$/gm, ' ')
     .replace(/[*_~`]/g, '')
     .replace(/\s+/g, ' ')
     .trim()

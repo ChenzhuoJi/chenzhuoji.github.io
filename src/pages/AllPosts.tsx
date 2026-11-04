@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { usePosts } from '../hooks/usePosts'
 import { sortPostsByDate } from '../utils/posts'
 import { site } from '../data/site'
-import { chineseNumber, chineseYear, shortDate } from '../utils/format'
+import { shortDate } from '../utils/format'
 import { GENRE_LABEL } from '../data/genres'
 
 export default function AllPosts() {
@@ -23,8 +23,6 @@ export default function AllPosts() {
     return [...groups.entries()]
   }, [sorted])
 
-  const firstYear = sorted[sorted.length - 1]?.meta.date.slice(0, 4)
-
   return (
     <div className="page">
       <Helmet>
@@ -32,16 +30,7 @@ export default function AllPosts() {
         <meta name="description" content={`${site.name} 的全部文章，按时间排列。`} />
       </Helmet>
 
-      <div className="spread">
-        <aside className="rail">
-          <span className="rail-label">全部</span>
-          <span className="rail-date">
-            <span>{chineseNumber(posts.length)}篇</span>
-            {firstYear && <span>始于{chineseYear(Number(firstYear))}</span>}
-          </span>
-        </aside>
-
-        <div className="spread-main">
+      <div className="page-body">
           <header className="page-head">
             <h1 className="page-title">笔记</h1>
           </header>
@@ -49,8 +38,8 @@ export default function AllPosts() {
           {years.map(([year, list]) => (
             <section className="year-block" key={year}>
               <div className="year-head">
-                <h2>{chineseYear(Number(year))}</h2>
-                <span>{chineseNumber(list.length)}篇</span>
+                <h2>{year}</h2>
+                <span>{list.length} 篇</span>
               </div>
 
               {list.map((post) => (
@@ -70,7 +59,6 @@ export default function AllPosts() {
             <Link to="/reading">阅读</Link>
             <Link to="/tags">索引</Link>
           </div>
-        </div>
       </div>
     </div>
   )

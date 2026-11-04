@@ -5,7 +5,6 @@ import { usePostsByTag } from '../hooks/usePosts'
 import { sortPostsByDate } from '../utils/posts'
 import { site } from '../data/site'
 import ArchiveRows from '../components/ArchiveRows'
-import { chineseNumber } from '../utils/format'
 
 export default function TagPosts() {
   const { tag } = useParams<{ tag: string }>()
@@ -19,15 +18,7 @@ export default function TagPosts() {
         <title>{`${tag} · 索引 · ${site.name}`}</title>
       </Helmet>
 
-      <div className="spread">
-        <aside className="rail">
-          <span className="rail-label">标签</span>
-          <span className="rail-date">
-            <span>{chineseNumber(sorted.length)}篇</span>
-          </span>
-        </aside>
-
-        <div className="spread-main">
+      <div className="page-body">
           <header className="page-head">
             <h1 className="page-title">{tag}</h1>
             <p className="page-meta">共 {sorted.length} 篇</p>
@@ -39,7 +30,6 @@ export default function TagPosts() {
             <Link to="/tags">所有标签</Link>
             <Link to="/posts">全部文章</Link>
           </div>
-        </div>
       </div>
     </div>
   )

@@ -18,23 +18,6 @@ npm run images                           # 手动重跑图片优化
 
 站点名：**ChenzhuoJi**。它是一册按时间编排的个人记录，不是作品集，也不是知识库。
 
-## 设计原则
-
-改版后的页面只保留四件事：纸、墨、一色冷翠、字。
-
-- **纸墨色**：纸 `#F6F3EB`、墨 `#1E1D19`、次要文字 `#6F695D`、线 `#DDD6C6`、强调色冷翠 `#435B4D`。
-  暗色是暖黑 `#141512`，不另起一套彩色。
-- **字为主角**：标题和正文用宋体，引用/按语用仿宋（缺字退回黑体，不倾斜），
-  导航/小标签用 Open Sans，日期/编号/代码用 JetBrains Mono。
-  不再使用楷体、手写体、英文装饰衬线或夸张字重。
-- **页边版式**：左侧一条 8.75rem 的页边（日期、类别、目次），右侧是正文；
-  页面右侧刻意留白。宽度 ≤860px 时页边折叠为一行元信息。
-- **克制**：不要卡片、圆角、投影、渐变、emoji、手绘插画、漂浮气泡。
-  分隔只用 1px 细线；图片不使用圆角。只有搜索弹窗与灯箱允许极轻的阴影/模糊。
-- **文案**：首页题记、摘句只用作者自己的句子；界面文案要短、要平实。
-  不要写「欢迎来到我的数字花园」「在这里，遇见更好的自己」这类 AI 腔。
-- **动效**：只保留 hover 下划线、颜色过渡和滚动。尊重 `prefers-reduced-motion`。
-
 ## 前端架构
 
 ```
@@ -42,8 +25,8 @@ src/
 ├── fonts.css                 # 自托管英文字体 @font-face（public/fonts/）
 ├── index.css                 # 设计变量、版式、prose、灯箱、搜索、响应式
 ├── data/
-│   ├── site.ts               # 站点名、题记、摄影引句、时区
-│   ├── photos.ts             # 首页与「影」使用的照片
+│   ├── site.ts               # 站点名、时区、首页头像与社交链接
+│   ├── photos.ts             # 「影」使用的照片
 │   ├── lines.ts              # 首页「摘」的句子
 │   ├── artworks.ts           # 画
 │   ├── books.ts              # 读
@@ -64,16 +47,21 @@ src/
 │   ├── ArchiveRows.tsx       # 日期 + 标题 + 门类的文章行
 │   ├── MarkdownRenderer.tsx  # react-markdown + KaTeX + 代码高亮 + 图组
 │   ├── Filmstrip.tsx         # 正文里的横向照片条与灯箱
-│   ├── TOC.tsx               # 桌面端固定页边目次（只取 h2）
+│   ├── TOC.tsx               # 正文上方的「目录」窄卡（只取 h2）
+│   ├── PostTimeline.tsx      # 文末「修改记录」，可纵向 / 横向
+│   ├── PostEndnote.tsx       # 文章尾注：最后更新日期
+│   ├── Callout.tsx           # 正文定制引用块：美西螈（粉）/ GPT 回复（灰）
+│   ├── TopDoodles.tsx        # 首页 top 的手绘笔触
+│   ├── WaveEdge.tsx          # 首页 / 文章页 hero 的波浪下缘
 │   ├── SearchDialog.tsx      # Cmd+K / Ctrl+K
 │   ├── GalleryLightbox.tsx   # 「影」的灯箱
 │   ├── ResponsiveImage.tsx   # 按清单输出 srcset
 │   ├── PwaPrompts.tsx        # 安装与更新提示
 │   └── ThemeToggle.tsx       # 夜 / 日
 ├── pages/
-│   ├── Home.tsx              # / — 题记 + 记 + 一张照片 + 摘句
+│   ├── Home.tsx              # / — top（标题+头像+链接）+ body（筛选+文章卡）
 │   ├── AllPosts.tsx          # /posts — 记，按年份
-│   ├── Post.tsx              # /posts/:slug — 页边 + 正文 + 目次 + 前后篇
+│   ├── Post.tsx              # /posts/:slug — hero + 窄栏正文 + 目录 + 尾注 + 时间线
 │   ├── GenrePosts.tsx        # /genre/:name
 │   ├── ColumnPosts.tsx       # /columns/:name
 │   ├── TagList.tsx           # /tags — 索引
@@ -93,14 +81,22 @@ src/
 
 ### 首页 `/`
 
-1. **页眉**：ChenzhuoJi + 天津 · 二〇二六；导航 `记 / 影 / 读`；搜索与夜/日切换。
-2. **题记**：`在白塔倾颓之前，留住安静等候某某的它。` 来源《一段惬意的时光》。
-   左页边显示「此刻」的天津日期、时辰、时间，例如「日影偏西 · 17:06」。
-3. **记**：取最近一篇 `genre: my` 的文章作为领读，下面按日期列 3 篇，末尾「全部 N 篇」。
-   首页不由技术笔记领读；这是刻意的编辑选择。
-4. **影**：一张照片 + 编号、图注、地点；链接到 `/gallery`。
-5. **摘**：3 句来自正文的句子，链接回原文章。
-6. **页脚**：原创声明、索引、RSS、GitHub、安装 App。
+整页按 `top` / `body` 两段组织，首屏只有 top：
+
+1. **页眉**：ChenzhuoJi；导航 `笔记 / Gallery / 阅读`；搜索与夜/日切换。
+   窄屏（≤720px）时导航另起一行。
+2. **top（粉底 `--pink`，占满首屏）**：居中大标题 `ChenzhuoJi`（`Ji` 走砖红，下面一条红色手绘横线）、
+   头像（`site.avatar`）、`site.social` 的链接胶囊、底部「向下看笔记 ↓」。
+   装饰是黑 / 黄两色的手绘笔触（弧线、短划、四角星、十字），见 `src/components/TopDoodles.tsx`；
+   只在大字两侧和页面四边点几笔，窄屏自动收起只为星与大字旁两笔。
+   `min-height: calc(100svh - 页眉高度)`，向下滚动才看得到 body。
+3. **body（纯白 `--body-bg`）**：居中「最新笔记」+ 左上角一道手绘短线、门类筛选 tab
+   （全部 / 随笔 / 技术 / 共写，纯前端过滤）、两栏文章卡（2px 黑边 + 蓝色偏移阴影 + 砖红日期与标题 +
+   摘要 + 门类胶囊）、末尾「全部 N 篇」。
+4. **页脚**。
+
+首页不再有题记、轮播按钮和 Gallery；Gallery 只从导航进入。
+「摘」的句子仍手写在 `src/data/lines.ts`，别自动抓取。
 
 ### 记 `/posts`
 
@@ -108,9 +104,55 @@ src/
 
 ### 文章 `/posts/:slug`
 
-左侧粘性页边：返回、中文日期、类别、字数/阅读时间、栏目（可选）、h2 目次。
-右侧：标题、摘要、正文。文末是标签与「前一篇 / 后一篇」。
-正文阅读宽度 40rem，字号约 18.7px，行高 2.02。
+整页分 hero 与正文两段，居中窄栏，不再有左侧页边：
+
+1. **hero（粉底 `--pink`，通栏）**：居中的返回胶囊（栏目存在时并排一个）、居中标题
+   （`max-width: 22ch`）、摘要、元信息行（门类链接 · `2026.10.24` · 字数 / 阅读时间）。
+   底部由 `WaveEdge` 画两层波浪，把粉底收进 `--body-bg`。
+2. **正文**：`.post-main` 46rem 居中；有 ≥2 个 h2 时，目录以「目录」窄卡（上下细线）出现在正文之前，
+   不再是页边小字。
+3. **文末**：先是尾注（英文标签 `Last updated` + 日期，不带分隔线），再是标签胶囊，最后是横向的「Revision history」
+   （只在文章 frontmatter 有 `timeline` 时出现）。前后篇卡片与本机阅读次数都已移除。
+
+#### 定制引用块（美西螈 / GPT）
+
+正文里两种彩色引用块。直接写一个 div 就行，里面照常用 Markdown（列表、代码都行）：
+
+```html
+<div class="callout callout--axolotl" data-title="世上无完美恋人">
+
+正文，可以有多段。
+
+</div>
+
+<div class="callout--gpt" title="幻灭 · 内省 · 启示">
+一句话的短引用可以写成一行。
+</div>
+```
+
+- `callout--axolotl` / `callout--gpt` 决定配色；只写 `class="callout--gpt"` 也可以，不必带 `callout`。
+- 标题用 `data-title` 或 `title`，省略则默认「美西螈说」「GPT 回复」。
+- 属性写法宽松：`class = "..."`（等号两边有空格）、单引号都认；万一没被认出来，
+  也会按 class 里的 `callout--gpt` / `callout--axolotl` 上色，不至于全变成美西螈。
+- 开标签单独一行、`</div>` 也单独一行；中间的空行就是分段。写成一行也行（内容里不能换行）。
+- 仍然兼容原来的块引用写法：`> [!axolotl] 标题` 加 `> 正文`。
+- 代码块（``` / ~~~）里的 `<div class="callout...">` 不会被当引用块处理，可以放心写示例。
+- 美西螈是粉色（砖红左色边），GPT 是灰色（灰左色边）；图标装在一枚奶油底、黑边、
+  带硬阴影的圆角方牌里，骑在卡片左上角（`.callout__icon`），窄屏时改为静态排在标题上方。
+- 图标：美西螈是手绘 SVG（圆脸 + 六片腮，和首页头像同款），
+  GPT 用 OpenAI 的结形标志（来自 svgl 的官方路径，viewBox 裁到 `80 80 451 451` 以免贴边）。
+- 解析在 `MarkdownRenderer.tsx` 的 `remarkCallout`（块引用 → 带 class 的 div），
+  渲染在 `src/components/Callout.tsx`，样式在 `src/index.css` 末尾「文章定制引用块」一段。
+- 只认 `axolotl` / `gpt` 两种；div 的标签和标题不会进首页摘要（`toPlainText` 会去掉）。
+- 颜色走 `--callout-*` 变量（亮暗各一套），别在组件里写死。
+- 字号只认四个变量（写在 `.callout` 上，都相对正文）：`--callout-size`（默认 `1em`，跟正文同号）、
+  `--callout-leading`（默认 `1.85`）、`--callout-font`（默认正文字）、`--callout-title-size`（默认 `0.8em`）。
+  想只把某一块缩小，class 里加 `callout--small`（`0.9em` / `1.72`）；想改全局就改 `:root` 或 `.callout` 那几行。
+
+正文类名是 `.prose-ink`（不是 `.prose`）。阅读字号走变量：`--read-size`
+（桌面 24px / 窄屏 18.4px）、`--read-leading 1.85`、`--quote-size`（约 17px）；
+标题阶梯比正文大一档（h2 ≈ 37px、h3 ≈ 28px）。
+书笔记 `/reading/:slug` 复用同一套 hero：封面与书名并排，其余相同。
 
 ### 影 `/gallery`
 
@@ -149,6 +191,9 @@ tags: [标签1, 标签2]     # 可选
 description: 摘要
 draft: true            # 可选，草稿不出现
 pin: true              # 可选，当前页面不依赖
+timeline:              # 可选，修改记录；一行一条，按日期升序显示
+  - 2026-10-24：初稿
+  - 2026-10-26：补写第二节，改正几处措辞
 ---
 
 正文，支持 Markdown、$...$ / $$...$$、代码高亮、`.filmstrip` 图组。
@@ -156,10 +201,13 @@ pin: true              # 可选，当前页面不依赖
 
 - `content/posts/` 新增 `.md` 即自动进入构建，无需注册路由。
 - 文章先按日期倒序；同一天的多篇按 `order` 升序（数字小的在前），没写 `order` 的排在同日已编号文章之后。调换同日顺序只需改 `order`。
-- 首页领读固定取「最近一篇 `my`」，所以生活记录始终比技术笔记先出现。
 - 首页 `摘` 的句子在 `src/data/lines.ts` 手工维护，不要自动抓取。
-- 照片在 `src/data/photos.ts` 手工维护，首页只用 `photos[0]`。
+- 照片在 `src/data/photos.ts` 手工维护，「影」按数组顺序展示。
 - 未完成、非文章的笔记请加 `draft: true`，不要发布半句话。
+- `timeline` 只记录「日期 + 一句概要」，不存版本、不存正文快照；一行一条，日期与概要之间用「：」或空格隔开。文章页脚按日期升序横向排列成一条线：粉底黑边的圆点 + 竖排说明，最后一稿的圆点与日期用砖红标出。
+圆点和连线都套了 SVG `feTurbulence + feDisplacementMap` 滤镜（`#revision-rough`），做出手绘笔触感。
+尾注与修改记录的样式**只在 `src/index.css` 末尾定义一份**（`.post-endnote` / `.post-timeline*`），
+改字号直接改那里；之前重复定义过两遍，改前面的会被后面的覆盖。不需要修改记录的文章不要写这个字段。想写得更明确时，也可以用 `- { date: 2026-10-24, note: 初稿 }`。
 
 ## 图片与胶片条
 
@@ -180,19 +228,37 @@ pin: true              # 可选，当前页面不依赖
 
 ## 字体与主题
 
-- 宋体：`Noto Serif SC / Songti SC / STSong / SimSun`
-- UI：`Open Sans` + 系统黑体
-- 引用/按语（`_..._`）：`FangSong / STFangsong` 优先，系统没有仿宋时退到黑体；始终不倾斜
-- 等宽：`JetBrains Mono`
-- 字体变量在 `src/index.css`，字体栈在 `src/data/fonts.ts`，Tailwind 映射在 `tailwind.config.ts`，需同步。
+全站黑体，设计语言来自 Pixso 落地页「Pod of Cast」（`/landing`）。
+
+- 双黑体：展示字 `Montserrat Alternates`（标题、按钮、导航、`--font-serif`），
+  正文字 `IBM Plex Sans`（阅读内容、`--font-sans`）；中文都退到苹方 / 思源黑体。
+  想换正文字体只改 `--font-sans` 一处并替换 `public/fonts/` 里的 woff2。
+- 等宽：`JetBrains Mono`（日期、字数一类数字）
+- 引用与按语：同一族，靠奶油底卡片和留白区分，**不倾斜**
+- 字体文件：`public/fonts/montserrat-alternates-{500,700}-latin.woff2`、
+  `public/fonts/ibm-plex-sans-{400,500,600,700}-latin.woff2`，
+  `@font-face` 在 `src/fonts.css`；字体栈在 `src/data/fonts.ts`、`tailwind.config.ts` 需同步。
+- 色板：奶油 `#F7EDE8`（页面底）、纸白 `#FFFFFF`（卡片）、砖红 `#CD4631`（强调）、
+  浅蓝 `#EDF3F7`、锡蓝 `#81ADC8`（次强调）。变量见 `src/index.css` 的 `:root`。
+- 首页分段：`--pink #F9DFD9`（top 粉底）、`--body-bg #FFFFFF`（body 纯白）、
+  `--card-shadow #C3DBE8`（文章卡的偏移阴影）。暗色分别映射到 `#241B18 / #171512 / #2F3F49`。
+- 形状：圆角 `--r-sm 8 / md 12 / lg 16 / xl 24 / pill 999`；主按钮带硬阴影 `3px 3px 0`。
+- 阅读字号：`--read-size`（正文，桌面 24px）、`--quote-size`（引用 ≈17px）、`--read-leading 1.85`；
+  阅读栏宽 46rem，改字号时三个值一起调。
+- 页眉导航字号：`--nav-size`（`:root`，1rem；≤900px 在 `.site-nav` 上改为 0.78rem）。
+  `.site-nav a` 与 `.nav-button`（搜索 / 夜）共用这一个值，改一处即可；
+  `@layer base` 里旧的 `font-size` 声明已删除，别再往那里加。
 - 主题：`blog-theme` localStorage；`index.html` 有内联脚本在首屏前加 `.dark`，避免闪白。
-- 切换按钮显示「夜」/「日」；同时更新 `meta[name=theme-color]`。
-- 暗色不要加滤镜到照片；只有「画」使用反相混合。
+- 暗色映射：`--paper #14120F`、`--paper-2 #1E1B17`、`--cream #221E1A`、`--red #E2604A`；
+  暗色不要加滤镜到照片；只有「画」使用反相混合。
+- 切换按钮显示「夜」/「日」；同时更新 `meta[name=theme-color]`（亮 `#F7EDE8` / 暗 `#14120F`）。
+- 重构层集中在 `src/index.css` 末尾（两段「重构层」注释），写在整个 `@layer base` 之外，
+  所以能覆盖旧规则；新增样式请沿用那里的 token，不要再写死颜色。
 
 ## PWA
 
 - `vite-plugin-pwa`，`registerType: 'prompt'`；更新提示在 `src/components/PwaPrompts.tsx`。
-- 名称「ChenzhuoJi」，主题纸色 `#F6F3EB`，图标由 `public/favicon.svg`（墨底「记」，取「记录」之意，不是名字）生成。
+- 名称「ChenzhuoJi」，主题纸色 `#F7EDE8`，图标由 `public/favicon.svg`（墨底「记」，取「记录」之意，不是名字）生成。
 - 快捷方式：记 `/posts`、影 `/gallery`、读 `/reading`。
 - 图片走运行时 CacheFirst，构建产物预缓存；导航回退 `index.html`。
 - 手机适配：`.safe-top` / `.safe-bottom`，灯箱与搜索用 `dvh`。
@@ -221,9 +287,10 @@ pin: true              # 可选，当前页面不依赖
 ## 配置参考
 
 - `src/index.css` —— 设计变量、版式、prose、灯箱、搜索、响应式
+- `01-web-adjustment-method.md` —— 外观与布局微调方法（不动路由）
 - `tailwind.config.ts` —— 旧组件的色阶别名；新页面主要用 CSS 变量
 - `src/data/fonts.ts` —— 字体栈
-- `src/data/site.ts` —— 站名、题记、摄影引句、时区
+- `src/data/site.ts` —— 站名、时区、首页头像 `avatar`、社交链接 `social`
 - `src/data/columns.ts` —— 栏目英文别名
 - `index.html` —— 初始 title、meta、主题色、防闪白脚本
 - `vite.config.ts` —— Vite + PWA manifest
@@ -238,4 +305,5 @@ pin: true              # 可选，当前页面不依赖
 - **新增图片 404** —— 变体是构建期生成的，重启 dev 或 `npm run images`。
 - **手机上看不到新文章** —— Service Worker 缓存了 `index.html`；页面重新可见时会检查更新，也可手动刷新。
 - **React Router 警告** —— `v7_startTransition` / `v7_relativeSplatPath` 未来标志警告不影响运行。
+- **修改记录没显示** —— 确认 `timeline:` 下面是一组以日期开头的列表项；写错日期或漏写概要的条目会被跳过，并在控制台留下 `[timeline]` 警告。
 - **旧页面** —— `/graph` 已移除，会由 `NotFound` 接住；不要重新加入导航。

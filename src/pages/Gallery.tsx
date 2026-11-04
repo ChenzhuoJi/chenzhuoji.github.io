@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet-async'
 import artworks from '../data/artworks'
 import photos from '../data/photos'
 import { site } from '../data/site'
-import { chineseNumber } from '../utils/format'
 import ResponsiveImage from '../components/ResponsiveImage'
 import GalleryLightbox from '../components/GalleryLightbox'
 import type { Artwork } from '../types'
@@ -31,30 +30,16 @@ export default function Gallery() {
         <meta name="description" content="照片与画。摄影也许有两个目的，一个是捕捉瞬间，一个是记录日常。" />
       </Helmet>
 
-      <div className="spread">
-        <aside className="rail">
-          <span className="rail-label">Gallery</span>
-          <span className="rail-date">
-            <span>照片{chineseNumber(photoCount)}帧</span>
-            <span>画{chineseNumber(artCount)}幅</span>
-          </span>
-        </aside>
-
-        <div className="spread-main">
+      <div className="page-body">
           <header className="page-head">
             <h1 className="page-title">Gallery</h1>
-            <p className="page-dek">{site.photography.text}</p>
-            <p className="page-meta">
-              ——
-              <Link to={`/posts/${site.photography.slug}`}>{site.photography.source}</Link>
-            </p>
           </header>
 
           <section className="gallery-section">
             <div className="gallery-section-head">
               <h2>照片</h2>
               <span>
-                {chineseNumber(photoCount)}帧 · 二〇二六年十月 · 南开园
+                {photoCount} 帧 · 2026.10 · 南开园
               </span>
             </div>
 
@@ -88,7 +73,7 @@ export default function Gallery() {
           <section className="gallery-section">
             <div className="gallery-section-head">
               <h2>画</h2>
-              <span>{chineseNumber(artCount)}幅</span>
+              <span>{artCount} 幅</span>
             </div>
 
             <div className="art-grid">
@@ -122,7 +107,6 @@ export default function Gallery() {
             <Link to="/posts">笔记</Link>
             <Link to="/reading">阅读</Link>
           </div>
-        </div>
       </div>
 
       <GalleryLightbox

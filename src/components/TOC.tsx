@@ -39,8 +39,8 @@ export default function TOC({ post }: Props) {
   if (headings.length < 2) return null
 
   return (
-    <nav className="toc" aria-label="文章目次">
-      <p className="toc-title">目次</p>
+    <nav className="toc" aria-label="文章目录">
+      <p className="toc-title">目录</p>
       <ol>
         {headings.map((heading) => (
           <li key={heading.id}>

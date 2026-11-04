@@ -19,7 +19,7 @@ export function useTheme() {
     localStorage.setItem(STORAGE_KEY, theme)
 
     const meta = document.querySelector('meta[name="theme-color"]')
-    meta?.setAttribute('content', isDark ? '#141512' : '#F6F3EB')
+    meta?.setAttribute('content', isDark ? '#14120F' : '#F7EDE8')
   }, [theme])
 
   const toggle = useCallback(() => {

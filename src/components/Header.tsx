@@ -37,9 +37,6 @@ export default function Header() {
             <Link to="/" className="wordmark" aria-label={`${site.name}，回到首页`}>
               {site.name}
             </Link>
-            <span className="masthead-note">
-              {site.place} · 二〇二六
-            </span>
           </div>
 
           <nav className="site-nav" aria-label="主导航">

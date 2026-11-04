@@ -6,7 +6,6 @@ import { sortPostsByDate } from '../utils/posts'
 import { site } from '../data/site'
 import ArchiveRows from '../components/ArchiveRows'
 import { GENRE_LABEL } from '../data/genres'
-import { chineseNumber } from '../utils/format'
 import type { Genre } from '../types'
 
 export default function GenrePosts() {
@@ -24,15 +23,7 @@ export default function GenrePosts() {
         <title>{`${label} · ${site.name}`}</title>
       </Helmet>
 
-      <div className="spread">
-        <aside className="rail">
-          <span className="rail-label">类别</span>
-          <span className="rail-date">
-            <span>{chineseNumber(sorted.length)}篇</span>
-          </span>
-        </aside>
-
-        <div className="spread-main">
+      <div className="page-body">
           <header className="page-head">
             <h1 className="page-title">{label}</h1>
           </header>
@@ -43,7 +34,6 @@ export default function GenrePosts() {
             <Link to="/posts">全部文章</Link>
             <Link to="/tags">索引</Link>
           </div>
-        </div>
       </div>
     </div>
   )

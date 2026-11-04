@@ -1,20 +1,19 @@
-import { useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import MarkdownRenderer from '../components/MarkdownRenderer'
+import PostEndnote from '../components/PostEndnote'
+import PostTimeline from '../components/PostTimeline'
 import TOC from '../components/TOC'
-import { usePost, usePosts } from '../hooks/usePosts'
+import WaveEdge from '../components/WaveEdge'
+import { usePost } from '../hooks/usePosts'
 import { site } from '../data/site'
 import { chineseDate } from '../utils/format'
-import { countChars, getColumnUrl, sortPostsByDate } from '../utils/posts'
+import { countChars, getColumnUrl } from '../utils/posts'
 import { GENRE_LABEL } from '../data/genres'
 
 export default function Post() {
   const { slug } = useParams<{ slug: string }>()
   const post = usePost(slug ?? '')
-  const posts = usePosts()
-
-  const sorted = useMemo(() => sortPostsByDate(posts), [posts])
 
   if (!post) {
     return (
@@ -29,9 +28,9 @@ export default function Post() {
 
   const date = chineseDate(post.meta.date)
   const chars = countChars(post.content)
-  const index = sorted.findIndex((p) => p.meta.slug === post.meta.slug)
-  const newer = index > 0 ? sorted[index - 1] : null
-  const older = index >= 0 && index < sorted.length - 1 ? sorted[index + 1] : null
+  // 尾注里的「最后更新」取修改记录的最后一条，没有就退回发布日期
+  const timelineDates = (post.meta.timeline ?? []).map((entry) => entry.date).sort()
+  const updated = timelineDates[timelineDates.length - 1] ?? post.meta.date
 
   return (
     <article className="article-page">
@@ -40,96 +39,68 @@ export default function Post() {
         {post.meta.description && <meta name="description" content={post.meta.description} />}
       </Helmet>
 
-      <div className="spread">
-        <aside className="rail post-rail-wrap">
-          <div className="post-rail">
+      <header className="post-hero">
+        <div className="post-hero__inner">
+          <div className="post-hero__top">
             <Link to="/posts" className="back-link">
-              ← 记
+              ← 笔记
             </Link>
-
-            {date.valid && (
-              <div className="rail-block">
-                <span className="rail-key">日期</span>
-                <time className="rail-value" dateTime={post.meta.date}>
-                  <span>{date.year}年</span>
-                  <span>{date.monthDay}</span>
-                </time>
-              </div>
-            )}
-
-            <div className="rail-block">
-              <span className="rail-key">类别</span>
-              <Link to={`/genre/${post.meta.genre}`} className="rail-value">
-                {GENRE_LABEL[post.meta.genre]}
-              </Link>
-            </div>
-
-            <div className="rail-block">
-              <span className="rail-key">篇幅</span>
-              <span className="rail-value">
-                {chars.toLocaleString('zh-CN')} 字
-                <br />
-                约 {post.readingTime} 分钟
-              </span>
-            </div>
-
             {post.meta.column && (
-              <div className="rail-block">
-                <span className="rail-key">栏目</span>
-                <Link to={`/columns/${getColumnUrl(post.meta.column)}`} className="rail-value">
-                  {post.meta.column}
-                </Link>
-              </div>
+              <Link
+                to={`/columns/${getColumnUrl(post.meta.column)}`}
+                className="back-link"
+              >
+                栏目 · {post.meta.column}
+              </Link>
             )}
-
-            <TOC post={post} />
-          </div>
-        </aside>
-
-        <div className="spread-main">
-          <header className="post-head">
-            <h1 className="post-title">{post.meta.title}</h1>
-            {post.meta.description && <p className="post-dek">{post.meta.description}</p>}
-          </header>
-
-          <div className="post-body">
-            <MarkdownRenderer content={post.content} />
           </div>
 
-          <footer className="post-foot">
-            {post.meta.tags.length > 0 && (
-              <div className="post-tags">
-                <span className="rail-key">标签</span>
-                {post.meta.tags.map((tag) => (
-                  <Link key={tag} to={`/tags/${tag}`}>
-                    {tag}
-                  </Link>
-                ))}
-              </div>
-            )}
+          <h1 className="post-title">{post.meta.title}</h1>
+          {post.meta.description && <p className="post-dek">{post.meta.description}</p>}
 
-            {(older || newer) && (
-              <nav className="post-nav" aria-label="前后文章">
-                <div>
-                  {older && (
-                    <Link to={`/posts/${older.meta.slug}`}>
-                      <span className="post-nav-label">前一篇</span>
-                      {older.meta.title}
-                    </Link>
-                  )}
-                </div>
-                <div className="next">
-                  {newer && (
-                    <Link to={`/posts/${newer.meta.slug}`}>
-                      <span className="post-nav-label">后一篇</span>
-                      {newer.meta.title}
-                    </Link>
-                  )}
-                </div>
-              </nav>
+          <p className="post-meta">
+            <Link to={`/genre/${post.meta.genre}`}>{GENRE_LABEL[post.meta.genre]}</Link>
+            {date.valid && (
+              <>
+                <span aria-hidden="true">·</span>
+                <time dateTime={post.meta.date}>{post.meta.date.replace(/-/g, '.')}</time>
+              </>
             )}
-          </footer>
+            <span aria-hidden="true">·</span>
+            <span>
+              {chars.toLocaleString('zh-CN')} 字 · 约 {post.readingTime} 分钟
+            </span>
+          </p>
         </div>
+
+        <WaveEdge />
+      </header>
+
+      <div className="post-main">
+        <TOC post={post} />
+
+        <div className="post-body">
+          <MarkdownRenderer content={post.content} />
+        </div>
+
+        <footer className="post-foot">
+          <PostEndnote updated={updated} />
+
+          {post.meta.tags.length > 0 && (
+            <div className="post-tags">
+              <span className="rail-key">标签</span>
+              {post.meta.tags.map((tag) => (
+                <Link key={tag} to={`/tags/${tag}`}>
+                  {tag}
+                </Link>
+              ))}
+            </div>
+          )}
+
+          {post.meta.timeline && (
+            <PostTimeline entries={post.meta.timeline} orientation="horizontal" />
+          )}
+        </footer>
       </div>
     </article>
   )

@@ -1,5 +1,10 @@
 export type Genre = 'vibe' | 'my' | 'tech'
 
+export interface PostTimelineEntry {
+  date: string
+  note: string
+}
+
 export interface PostMeta {
   slug: string
   title: string
@@ -12,6 +17,7 @@ export interface PostMeta {
   description?: string
   draft?: boolean
   pin?: boolean
+  timeline?: PostTimelineEntry[]
 }
 
 export interface Post {

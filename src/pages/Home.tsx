@@ -1,48 +1,35 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { usePosts } from '../hooks/usePosts'
 import { sortPostsByDate } from '../utils/posts'
-import ResponsiveImage from '../components/ResponsiveImage'
-import photos from '../data/photos'
-import { site } from '../data/site'
-import {
-  chineseNumber,
-  excerpt,
-  getClock,
-  shortDate,
-} from '../utils/format'
+import { excerpt, shortDate } from '../utils/format'
 import { GENRE_LABEL } from '../data/genres'
+import { site } from '../data/site'
+import TopDoodles from '../components/TopDoodles'
+import type { Genre } from '../types'
+
+type Tab = 'all' | Genre
+
+const TABS: { key: Tab; label: string }[] = [
+  { key: 'all', label: '全部' },
+  { key: 'my', label: GENRE_LABEL.my },
+  { key: 'tech', label: GENRE_LABEL.tech },
+  { key: 'vibe', label: GENRE_LABEL.vibe },
+]
 
 export default function Home() {
   const posts = usePosts()
-  const [clock, setClock] = useState(() => getClock(site.timeZone))
+  const [tab, setTab] = useState<Tab>('all')
 
-  useEffect(() => {
-    const timer = window.setInterval(() => setClock(getClock(site.timeZone)), 60_000)
-    return () => window.clearInterval(timer)
-  }, [])
-
-  const chronological = useMemo(
-    () => sortPostsByDate(posts),
-    [posts],
+  const sorted = useMemo(() => sortPostsByDate(posts), [posts])
+  const list = useMemo(
+    () => (tab === 'all' ? sorted : sorted.filter((post) => post.meta.genre === tab)),
+    [sorted, tab],
   )
 
-  // 首页不由技术笔记领读：优先取最近一篇生活记录。
-  const lead = useMemo(
-    () =>
-      chronological.find((p) => p.meta.genre === 'my' && p.content.trim().length > 80) ??
-      chronological[0],
-    [chronological],
-  )
-
-  const rest = useMemo(
-    () => chronological.filter((p) => p.meta.slug !== lead?.meta.slug).slice(0, 3),
-    [chronological, lead],
-  )
-
-  const photo = photos[0]
-  const count = posts.length
+  const nameLead = site.name.slice(0, -2)
+  const nameTail = site.name.slice(-2)
 
   return (
     <>
@@ -51,104 +38,118 @@ export default function Home() {
         <meta name="description" content={site.description} />
       </Helmet>
 
-      <h1 className="sr-only">{site.name}</h1>
+      {/* top：占满首屏的粉底区 */}
+      <section className="landing-top">
+        <TopDoodles />
 
-      <section className="home-hero">
-        <div className="spread">
-          <div className="rail">
-            <time className="rail-date" dateTime={clock.iso}>
-              <span>{clock.yearLabel}</span>
-              <span>{clock.monthDayLabel}</span>
-            </time>
-            <span className="rail-note">
-              {clock.phase} · {clock.time}
-            </span>
-          </div>
+        <div className="landing-top__inner">
+          <h1 className="landing-title">
+            {nameLead}
+            <em>{nameTail}</em>
+            <svg
+              className="landing-scribble"
+              viewBox="0 0 240 18"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M4 13c22-9 40 4 61-3 19-6 32 5 52-2 18-6 34 6 52-1 16-6 30 2 67-6"
+                stroke="currentColor"
+                strokeWidth="5"
+                strokeLinecap="round"
+              />
+            </svg>
+          </h1>
 
-          <div className="spread-main">
-            <blockquote className="epigraph">
-              在白塔倾颓之前，
-              <br />
-              留住安静等候某某的它。
-            </blockquote>
-            <p className="epigraph-source">
-              <Link to={`/posts/${site.epigraph.slug}`}>{site.epigraph.source}</Link>
-            </p>
+          <div className="profile">
+            <img
+              className="profile__avatar"
+              src={site.avatar}
+              alt={`${site.name} 的头像`}
+              width="140"
+              height="140"
+            />
+            <ul className="profile__links">
+              {site.social.map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    {...(item.href.startsWith('http')
+                      ? { target: '_blank', rel: 'noreferrer' }
+                      : {})}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
+
+        <a className="scroll-hint" href="#latest">
+          向下看笔记 <span aria-hidden="true">↓</span>
+        </a>
       </section>
 
-      <section className="section">
-        <div className="spread">
-          <aside className="rail section-rail">
-            <h2>笔记</h2>
-            <p>{chineseNumber(count)}篇</p>
-          </aside>
+      {/* body：向下滚动才出现的纯白区域 */}
+      <section className="landing-body" id="latest">
+        <div className="shell">
+          <div className="section-big-wrap">
+            <h2 className="section-big">最新笔记</h2>
+          </div>
 
-          <div className="spread-main">
-            {lead && (
-              <Link to={`/posts/${lead.meta.slug}`} className="lead-entry">
-                <div className="entry-meta">
-                  <time dateTime={lead.meta.date}>{shortDate(lead.meta.date)}</time>
-                  <span className="sep">/</span>
-                  <span>{GENRE_LABEL[lead.meta.genre]}</span>
-                </div>
-                <h3 className="lead-title">{lead.meta.title}</h3>
-                <p className="lead-excerpt">
-                  {excerpt(lead.content, 118) || lead.meta.description}
-                </p>
-              </Link>
-            )}
-
-            {rest.map((post) => (
-              <Link key={post.meta.slug} to={`/posts/${post.meta.slug}`} className="entry">
-                <time dateTime={post.meta.date}>{shortDate(post.meta.date)}</time>
-                <span>
-                  <span className="entry-title">{post.meta.title}</span>
-                  {(post.meta.description || post.content) && (
-                    <span className="entry-desc">
-                      {post.meta.description || excerpt(post.content, 62)}
-                    </span>
-                  )}
-                </span>
-                <span className="entry-arrow" aria-hidden="true">
-                  →
-                </span>
-              </Link>
+          <nav className="genre-tabs" aria-label="按门类筛选">
+            {TABS.map((item) => (
+              <button
+                key={item.key}
+                type="button"
+                aria-pressed={tab === item.key}
+                onClick={() => setTab(item.key)}
+              >
+                {item.label}
+              </button>
             ))}
+          </nav>
 
-            <Link to="/posts" className="more-link">
-              全部{chineseNumber(count)}篇 <span aria-hidden="true">→</span>
+          {list.length === 0 ? (
+            <p className="empty">这个门类下还没有文章。</p>
+          ) : (
+            <div className="post-grid">
+              {list.map((post) => {
+                const summary = post.meta.description || excerpt(post.content, 96)
+
+                return (
+                  <Link
+                    key={post.meta.slug}
+                    to={`/posts/${post.meta.slug}`}
+                    className="post-card"
+                  >
+                    <time className="post-card__date" dateTime={post.meta.date}>
+                      {shortDate(post.meta.date)}
+                    </time>
+                    <h3 className="post-card__title">{post.meta.title}</h3>
+                    {summary && (
+                      <>
+                        <span className="post-card__rule" aria-hidden="true" />
+                        <p className="post-card__excerpt">{summary}</p>
+                      </>
+                    )}
+                    <div className="post-card__foot">
+                      <span className="tag-chip">{GENRE_LABEL[post.meta.genre]}</span>
+                      <span className="post-card__more" aria-hidden="true">
+                        阅读 →
+                      </span>
+                    </div>
+                  </Link>
+                )
+              })}
+            </div>
+          )}
+
+          <div className="landing-more">
+            <Link to="/posts" className="btn btn--outline">
+              全部 {posts.length} 篇
             </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="spread">
-          <aside className="rail section-rail">
-            <h2>Gallery</h2>
-            <p>{chineseNumber(photos.length)}帧</p>
-          </aside>
-
-          <div className="spread-main">
-            <figure className="home-photo">
-              <Link to="/gallery" aria-label="查看全部照片">
-                <ResponsiveImage
-                  src={photo.src}
-                  alt={photo.alt}
-                  sizes="(min-width: 1200px) 704px, (min-width: 760px) 62vw, 100vw"
-                />
-              </Link>
-              <figcaption>
-                <span>
-                  <span className="photo-index">01</span>　{photo.caption} · {photo.place}
-                </span>
-                <Link to="/gallery" className="photo-link">
-                  还有{chineseNumber(photos.length - 1)}帧 →
-                </Link>
-              </figcaption>
-            </figure>
           </div>
         </div>
       </section>

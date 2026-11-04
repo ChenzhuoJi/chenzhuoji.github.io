@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { usePosts } from '../hooks/usePosts'
 import { site } from '../data/site'
-import { chineseNumber } from '../utils/format'
 
 export default function TagList() {
   const posts = usePosts()
@@ -24,15 +23,7 @@ export default function TagList() {
         <title>{`索引 · ${site.name}`}</title>
       </Helmet>
 
-      <div className="spread">
-        <aside className="rail">
-          <span className="rail-label">索引</span>
-          <span className="rail-date">
-            <span>{chineseNumber(tags.length)}个标签</span>
-          </span>
-        </aside>
-
-        <div className="spread-main">
+      <div className="page-body">
           <header className="page-head">
             <h1 className="page-title">索引</h1>
             <p className="page-dek">按标签找文章。</p>
@@ -53,9 +44,8 @@ export default function TagList() {
 
           <div className="section-link-row">
             <Link to="/posts">全部文章</Link>
-            <Link to="/gallery">影</Link>
+            <Link to="/gallery">Gallery</Link>
           </div>
-        </div>
       </div>
     </div>
   )
